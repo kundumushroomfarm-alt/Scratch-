@@ -22,13 +22,11 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 .mushroom-title{color:#22c55e;line-height:1.2}
 .point-title{color:#ff3b30;line-height:1.2}
 
-/* --- পারফেক্ট মিনিমাইজড ফার্ম বক্স --- */
 .farmBox{background:#1e293b;padding:8px 12px;border-radius:12px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;border:1px solid #06b6d4;box-shadow:0 0 10px rgba(6,182,212,0.15)}
 .farm-info{display:flex;align-items:center;gap:10px}
 #mushroomPlant{font-size:32px;line-height:1;min-width:40px;text-align:center;transition:transform .3s ease}
 #plantDay{font-size:12px;color:#facc15;font-weight:bold;background:#334155;padding:4px 8px;border-radius:6px;border:1px solid #475569}
 #waterBtn{background:linear-gradient(135deg,#06b6d4,#0891b2);color:#fff;border:none;padding:7px 12px;border-radius:8px;font-weight:bold;cursor:pointer;font-size:12px;box-shadow:0 2px 6px rgba(0,0,0,0.3)}
-#waterBtn:active{transform:scale(0.95)}
 
 .bonus-zone{margin-bottom:15px}
 .btn-bonus{width:100%;background:#eab308;color:#0f172a;padding:12px;font-weight:bold;border:none;border-radius:12px;cursor:pointer;font-size:15px}
@@ -38,45 +36,50 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 @keyframes sc{0%,100%{transform:translate(0,0) rotate(-18deg)}10%{transform:translate(25px,8px) rotate(-8deg)}20%{transform:translate(55px,-6px) rotate(5deg)}30%{transform:translate(78px,10px) rotate(-10deg)}40%{transform:translate(105px,-5px) rotate(6deg)}50%{transform:translate(130px,8px) rotate(-8deg) scale(.95)}60%{transform:translate(160px,-8px) rotate(8deg)}70%{transform:translate(135px,15px) rotate(-6deg)}80%{transform:translate(90px,-2px) rotate(5deg)}90%{transform:translate(45px,10px) rotate(-10deg)}}
 .scratch-reveal{position:absolute;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;font-size:24px;font-weight:bold;color:#f472b6;padding:20px;z-index:1}
 #scratchCanvas{position:absolute;top:0;left:0;z-index:2;cursor:crosshair}
-.sparkle{position:absolute;width:6px;height:6px;border-radius:50%;pointer-events:none;z-index:3;animation:s 1.2s ease-out forwards}
-@keyframes s{0%{transform:scale(0);opacity:1}50%{transform:scale(1.8)}100%{transform:scale(.2);opacity:0}}
-.coin{position:absolute;font-size:22px;pointer-events:none;z-index:999;animation:c 1.6s ease-out forwards}
-@keyframes c{0%{opacity:1;transform:translate(0,0) scale(.5)}100%{opacity:0;transform:translate(var(--eX),var(--eY)) scale(.2)}}
+
+.sparkle,.coin,.moneyFly,.ripple,.powder,.foil{position:absolute;pointer-events:none}
+.ripple{width:22px;height:22px;border:2px solid #fff;border-radius:50%;transform:translate(-50%,-50%);animation:ripple .6s linear forwards;z-index:30}
+@keyframes ripple{from{opacity:1;transform:translate(-50%,-50%) scale(.2)}to{opacity:0;transform:translate(-50%,-50%) scale(2.2)}}
+.powder{width:6px;height:6px;border-radius:50%;z-index:50;animation:powderFly .8s ease-out forwards;box-shadow:0 0 4px #fff}
+@keyframes powderFly{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--x),var(--y)) scale(.2)}}
+.foil{width:10px;height:10px;background:linear-gradient(135deg,#fff,#d9d9d9,#a8a8a8,#fff);clip-path:polygon(50% 0%,100% 40%,80% 100%,20% 100%,0% 40%);z-index:60;animation:foilFly .9s ease-out forwards}
+@keyframes foilFly{0%{opacity:1;transform:translate(0,0) rotate(0deg) scale(1)}100%{opacity:0;transform:translate(var(--fx),var(--fy)) rotate(720deg) scale(.2)}}
+.moneyFly{font-size:28px;z-index:999999;animation:moneyFly .9s ease-in forwards}
+@keyframes moneyFly{0%{transform:translate(0,0) scale(1.3);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
+
 #rewardPopup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);padding:25px 40px;border-radius:20px;font-size:28px;font-weight:bold;z-index:9999;color:#fff;background:linear-gradient(135deg,gold,#E5E4E2,hotpink);pointer-events:none}
 .showReward{animation:r 2.2s forwards}
 @keyframes r{0%{transform:translate(-50%,-50%) scale(.2);opacity:0}25%{transform:translate(-50%,-50%) scale(1.3);opacity:1}100%{transform:translate(-50%,-50%) translateY(-80px);opacity:0}}
+
 .loader-container{margin:15px 0;display:none}
 .progress-bar{width:100%;height:8px;background:#334155;border-radius:4px;overflow:hidden}
 .progress-fill{width:0%;height:100%;background:#22c55e}
 .countdown-txt{font-size:13px;color:#94a3b8;margin-top:5px}
 .btn-withdraw{width:100%;background:#ef4444;padding:14px;font-size:16px;font-weight:bold;border:none;border-radius:12px;color:#fff;cursor:pointer}
 .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000c;z-index:100;justify-content:center;align-items:center;padding:20px}
-.modal-content{background:#1e293b;padding:25px;border-radius:20px;width:100%;max-width:350px;border:2px solid #eab308;text-align:center}
-.modal-title{font-size:20px;color:#eab308;font-weight:bold;margin-bottom:12px}
-.modal-text{font-size:15px;margin-bottom:15px}
+.modal-content{background:#1e293b;padding:20px;border-radius:20px;width:100%;max-width:360px;border:2px solid #eab308;text-align:center;position:relative}
+.modal-title{font-size:20px;color:#eab308;font-weight:bold;margin-bottom:10px}
+.modal-text{font-size:14px;margin-bottom:15px}
 .modal-input{width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:1px solid #475569;background:#334155;color:#fff;outline:none;text-align:left}
-.btn-modal-claim{background:#22c55e;color:#fff;padding:10px 25px;border:none;border-radius:10px;font-weight:bold;cursor:pointer;font-size:16px}
+.btn-modal-claim{background:#22c55e;color:#fff;padding:12px 25px;border:none;border-radius:10px;font-weight:bold;cursor:pointer;font-size:16px;width:100%}
+.btn-modal-claim:disabled{background:#64748b;cursor:not-allowed}
 #s{position:fixed;inset:0;background:#000;display:flex;justify-content:center;align-items:center;z-index:999999;transition:.5s}
 #bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 #gif{position:relative;width:230px;max-width:70%;display:none}
 
-#fingerGuide{position:absolute;width:55px;left:20px;top:-120px;z-index:20;pointer-events:none;animation:autoGuide 6s linear infinite}
-@keyframes autoGuide{0%{left:20px;top:-120px;transform:scale(1)}15%{left:250px;top:-95px;transform:scale(.85)}20%{transform:scale(1)}25%{transform:scale(.85)}30%{transform:scale(1)}45%{left:40px;top:70px;transform:rotate(-20deg)}60%{left:230px;top:90px;transform:rotate(10deg)}75%{left:70px;top:110px;transform:rotate(-15deg)}90%{left:220px;top:80px;transform:rotate(8deg)}100%{left:20px;top:-120px;transform:rotate(0deg)}}
+/* 🎡 আকর্ষণীয় স্পিন হুইল ডিজাইন */
+.wheel-outer-box{position:relative;width:260px;height:260px;margin:15px auto;border-radius:50%;background:radial-gradient(circle,#2d0654,#0f021e);padding:10px;box-shadow:0 0 25px rgba(234,179,8,0.6), inset 0 0 15px #000}
+.wheel-outer-box::before{content:'';position:absolute;top:-4px;left:-4px;right:-4px;bottom:-4px;border-radius:50%;background:linear-gradient(45deg,#facc15,#ef4444,#06b6d4,#3b82f6,#facc15);z-index:-1;animation:borderGlow 3s linear infinite}
+@keyframes borderGlow{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}}
 
-.moneyFly{position:fixed;font-size:28px;z-index:999999;pointer-events:none;animation:moneyFly .9s ease-in forwards}
-@keyframes moneyFly{0%{transform:translate(0,0) scale(1.3);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
+.wheel-inner{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;border:4px solid #facc15;box-shadow:0 0 10px #000}
+#spinWheelSvg{width:100%;height:100%;border-radius:50%;transition:transform 4s cubic-bezier(.15,.85,.35,1.15)}
+
+.wheel-center-cap{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:45px;height:45px;background:radial-gradient(circle,#fff,#facc15,#ca8a04);border-radius:50%;border:3px solid #fff;box-shadow:0 0 10px #000;z-index:15;display:flex;align-items:center;justify-content:center;font-size:18px}
+.wheel-pointer{position:absolute;top:-12px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:24px solid #ef4444;filter:drop-shadow(0 3px 5px #000);z-index:20}
 
 #winnerToast{position:fixed;left:50%;bottom:-80px;transform:translateX(-50%);background:#16a34a;color:#fff;padding:12px 18px;border-radius:12px;font-weight:bold;font-size:14px;z-index:99999;transition:.5s;box-shadow:0 5px 20px #0006;max-width:90%}
 #winnerToast.show{bottom:20px}
-
-.ripple{position:absolute;width:22px;height:22px;border:2px solid #fff;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);animation:ripple .6s linear forwards;z-index:30}
-@keyframes ripple{from{opacity:1;transform:translate(-50%,-50%) scale(.2)}to{opacity:0;transform:translate(-50%,-50%) scale(2.2)}}
-
-.powder{position:absolute;width:6px;height:6px;border-radius:50%;pointer-events:none;z-index:50;animation:powderFly .8s ease-out forwards;box-shadow:0 0 4px #fff;filter:blur(.3px)}
-@keyframes powderFly{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--x),var(--y)) scale(.2)}}
-
-.foil{position:absolute;width:10px;height:10px;background:linear-gradient(135deg,#fff,#d9d9d9,#a8a8a8,#fff);clip-path:polygon(50% 0%,100% 40%,80% 100%,20% 100%,0% 40%);pointer-events:none;z-index:60;animation:foilFly .9s ease-out forwards;filter:drop-shadow(0 0 3px #fff)}
-@keyframes foilFly{0%{opacity:1;transform:translate(0,0) rotate(0deg) scale(1)}100%{opacity:0;transform:translate(var(--fx),var(--fy)) rotate(720deg) scale(.2)}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
@@ -112,13 +115,13 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
   <div class="stat-box" id="pointBox"><div class="point-title">পয়েন্ট<br>⭐</div><div id="points">0 Pts</div></div>
 </div>
 
-<!-- আল্ট্রা-মিনিমাইজড মাশরুম ফার্ম বক্স -->
+<!-- মিনিমাইজড ফার্ম বক্স -->
 <div class="farmBox">
    <div class="farm-info">
       <div id="mushroomPlant">🌱</div>
       <div id="plantDay">Day 1 / 7</div>
    </div>
-   <button id="waterBtn" onclick="playClickSound(); waterPlant();">💧 পানি দিন</button>
+   <button id="waterBtn" onclick="playClickSound(); waterPlant();">💧 জল দিন</button>
 </div>
 
 <div class="bonus-zone">
@@ -157,14 +160,46 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 </div>
 </div>
 
-<!-- স্পিন মোডাল (Order/Withdraw) -->
+<!-- প্রফেশনাল সুন্দর স্পিন হুইল মোডাল -->
 <div id="spinModal" class="modal">
   <div class="modal-content">
-    <div class="modal-title">🎡 Spin Before Order</div>
-    <div id="spinWheel" style="font-size:90px;transition:transform 4s cubic-bezier(.2,.8,.2,1);">🎡</div>
-    <div id="spinReward" style="margin:15px 0;font-size:20px;font-weight:bold;color:#facc15;">Tap Spin</div>
+    <div class="modal-title">🎰 Lucky Spin Wheel</div>
+    
+    <div class="wheel-outer-box">
+      <div class="wheel-pointer"></div>
+      <div class="wheel-center-cap">🎁</div>
+      <div class="wheel-inner">
+        <svg id="spinWheelSvg" viewBox="0 0 200 200">
+          <!-- Sector 1: Cash ₹2 -->
+          <path d="M100 100 L100 0 A100 100 0 0 1 186.6 50 Z" fill="#dc2626"/>
+          <g transform="translate(132, 38) rotate(30)"><text fill="#fff" font-size="10" font-weight="900">💵 ₹2 Cash</text></g>
+
+          <!-- Sector 2: 20g Mushroom -->
+          <path d="M100 100 L186.6 50 A100 100 0 0 1 186.6 150 Z" fill="#2563eb"/>
+          <g transform="translate(150, 105) rotate(90)"><text fill="#fff" font-size="9" font-weight="900">🍄 20g Shroom</text></g>
+
+          <!-- Sector 3: 100 Pts -->
+          <path d="M100 100 L186.6 150 A100 100 0 0 1 100 200 Z" fill="#059669"/>
+          <g transform="translate(128, 162) rotate(150)"><text fill="#fff" font-size="10" font-weight="900">⭐ 100 Pts</text></g>
+
+          <!-- Sector 4: Cash ₹1 -->
+          <path d="M100 100 L100 200 A100 100 0 0 1 13.4 150 Z" fill="#d97706"/>
+          <g transform="translate(68, 162) rotate(210)"><text fill="#fff" font-size="10" font-weight="900">💵 ₹1 Cash</text></g>
+
+          <!-- Sector 5: 10g Mushroom -->
+          <path d="M100 100 L13.4 150 A100 100 0 0 1 13.4 50 Z" fill="#7c3aed"/>
+          <g transform="translate(48, 105) rotate(270)"><text fill="#fff" font-size="9" font-weight="900">🍄 10g Shroom</text></g>
+
+          <!-- Sector 6: 50 Pts -->
+          <path d="M100 100 L13.4 50 A100 100 0 0 1 100 0 Z" fill="#db2777"/>
+          <g transform="translate(68, 38) rotate(330)"><text fill="#fff" font-size="10" font-weight="900">⭐ 50 Pts</text></g>
+        </svg>
+      </div>
+    </div>
+
+    <div id="spinReward" style="margin:10px 0;font-size:15px;font-weight:bold;color:#facc15;">কোড ভেরিফাই করে স্পিন করুন!</div>
     <button id="spinBtn" class="btn-modal-claim" onclick="playClickSound(); spinOrderWheel();">🎡 SPIN NOW</button>
-    <button id="claimBtn" class="btn-modal-claim" style="display:none;margin-top:10px;" onclick="playClickSound(); claimSpinReward();">🛒 Claim & Order</button>
+    <button id="claimBtn" class="btn-modal-claim" style="display:none;margin-top:10px;background:#06b6d4;" onclick="playClickSound(); claimSpinReward();">🛒 Claim & Withdraw</button>
   </div>
 </div>
 
@@ -185,7 +220,11 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 
 <script>
 const API="https://script.google.com/macros/s/AKfycbyDgAPFl-7b05R2hVtYrfoCq-oNpOjSwr9JVA16zdSjMAHWZWHrKjRhmgTs4sECUirq/exec";
-let verified=0,cash=+localStorage.getItem("km_cash")||0,shroom=+localStorage.getItem("km_shroom")||0,pts=+localStorage.getItem("km_points")||0,isScr=!1,isDraw=!1,lx=0,ly=0,cRew=null,pCash=0,sparkleTimer=null,spinGift=null;
+let verified=0,cash=+localStorage.getItem("km_cash")||0,shroom=+localStorage.getItem("km_shroom")||0,pts=+localStorage.getItem("km_points")||0,isScr=!1,isDraw=!1,lx=0,ly=0,cRew=null,pCash=0,sparkleTimer=null;
+
+let canSpin = false;
+let currentSpinReward = null;
+let currentRotation = 0;
 
 const h=document.getElementById("h"),tap=document.getElementById("tap"),p=document.getElementById("p"),fingerGuide=document.getElementById("fingerGuide"),codeInput=document.getElementById("codeInput");
 const sS=document.getElementById("sS"),cS=document.getElementById("cS"),mS=document.getElementById("mS"),pS=document.getElementById("pS"),gS=document.getElementById("gS"),scS=document.getElementById("scS"),eS=document.getElementById("eS"),spinS=document.getElementById("spinS");
@@ -193,12 +232,19 @@ const lMsg=document.getElementById("loaderMsg"),lZone=document.getElementById("l
 
 const rews=[{text:"💵 ক্যাশ ₹ 2",type:"cash",val:2},{text:"💵 ক্যাশ ₹ 3",type:"cash",val:3},{text:"💵 ক্যাশ ₹ 4",type:"cash",val:4},{text:"💵 ক্যাশ ₹ 5",type:"cash",val:5},{text:"💵 ক্যাশ ₹ 6",type:"cash",val:6},{text:"⭐ 399 পয়েন্ট",type:"points",val:399},{text:"⭐ 180 পয়েন্ট",type:"points",val:180},{text:"⭐ 299 পয়েন্ট",type:"points",val:299},{text:"🍄 50 গ্ৰাম মাশরুম",type:"mushroom",val:50},{text:"🍄 40 গ্ৰাম মাশরুম",type:"mushroom",val:40},{text:"😭 Better Luck Next Time",type:"lose",val:0}];
 const dPool=[100,300,150,200,199,120,105];
-const spinRewards=[{txt:"💵 ₹1 Cashback",type:"cash",val:10},{txt:"🏷️ 2% OFF Coupon",type:"coupon"},{txt:"🚚 Free Delivery",type:"delivery"},{txt:"🍄 Free 20g Mushroom",type:"mushroom",val:50},{txt:"🎟️ ₹0.5 Coupon",type:"coupon20"},{txt:"😢 Better Luck Next Time",type:"lose"}];
-const winners=["রাহুল (Delhi) won ₹4","Amit (Kolkata) won ₹25","সুমনা (Purulia) won ₹2","Riya (Howrah) won ₹1","বাপ্পা (Durgapur) won ₹15","প্রিয়া (Midnapore) won ₹6","Arjun (Bardhaman) won ₹25","অনিমেষ (Malda) won ₹10"];
 
-function playClickSound(){
-  pAud("pS");
-}
+const spinRewards=[
+  {txt:"💵 ₹2 Cash", type:"cash", val:2, degMin:0, degMax:60},
+  {txt:"🍄 20g Mushroom", type:"mushroom", val:20, degMin:300, degMax:360},
+  {txt:"⭐ 100 Points", type:"points", val:100, degMin:240, degMax:300},
+  {txt:"💵 ₹1 Cash", type:"cash", val:1, degMin:180, degMax:240},
+  {txt:"🍄 10g Mushroom", type:"mushroom", val:10, degMin:120, degMax:180},
+  {txt:"⭐ 50 Points", type:"points", val:50, degMin:60, degMax:120}
+];
+
+const winners=["রাহুল (Delhi) won ₹4","Amit (Kolkata) won ₹25","সুমনা (Purulia) won ₹2","Riya (Howrah) won ₹1","বাপ্পা (Durgapur) won ₹15","প্রিয়া (Midnapore) won ₹6"];
+
+function playClickSound(){ pAud("pS"); }
 
 function animateValue(id, start, end, duration, prefix = "", suffix = "", decimals = 2) {
     let obj = document.getElementById(id);
@@ -209,9 +255,7 @@ function animateValue(id, start, end, duration, prefix = "", suffix = "", decima
         let progress = Math.min((timestamp - startTime) / duration, 1);
         let value = start + (range * progress);
         obj.innerText = prefix + value.toFixed(decimals) + suffix;
-        if (progress < 1) {
-            requestAnimationFrame(step);
-        }
+        if (progress < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
 }
@@ -223,12 +267,16 @@ async function verifyCode(){
   if(!e)return pop("কোড লিখুন Submit করুন");
   try{
     let t=await fetch(API,{method:"POST",body:new URLSearchParams({code:e})});
-    if("success"===(t=await t.text()))verified=1,tap.style.display="none",fireConfetti(),spk("অভিনন্দন! আপনার কোডটি সফলভাবে ভেরিফাই হয়েছে! এখন স্ক্র্যাচ করতে পারবেন।"),alert("🎉 কোড টি! সফল হয়েছে Successful ✅।");
-    else pop("used"==t?"☑️ কোড টি ব্যবহার হয়েছে":"ভুল কোড দেবেন না ❌")
+    if("success"===(t=await t.text())){
+      verified=1;
+      canSpin=true;
+      tap.style.display="none";
+      fireConfetti();
+      spk("অভিনন্দন! আপনার কোডটি ভেরিফাই হয়েছে! এখন স্পিন করুন।");
+      alert("🎉 কোড সফল হয়েছে! ১টি স্পিন করার সুযোগ পেয়েছেন ✅");
+    } else pop("used"==t?"☑️ কোড টি ব্যবহার হয়েছে":"ভুল কোড দেবেন না ❌")
   }catch(e){pop("😠 মাশরুম কিনুন, আবার চেষ্টা করুন")}
-}
-
-function pAud(e){try{let t=document.getElementById(e);t&&(t.currentTime=0,t.play().catch(()=>{}))}catch(e){}}
+}function pAud(e){try{let t=document.getElementById(e);t&&(t.currentTime=0,t.play().catch(()=>{}))}catch(e){}}
 function stopS(){sS.pause();sS.currentTime=0}
 function spk(e){try{let t=new SpeechSynthesisUtterance(e);t.lang="bn-IN",speechSynthesis.speak(t)}catch(e){}}
 
@@ -278,67 +326,15 @@ function stScr(e){
   h.style.display="none";
   if(!verified)return pop(" উপরে কোড টি বসান");
   if(!isScr){isDraw=!0;sS.play().catch(()=>{});let t=getP(e);lx=t.x;ly=t.y}
-}function makeRipple(x,y){
-  let box=document.querySelector(".scratch-container");
-  let r=document.createElement("div");r.className="ripple";
-  r.style.left=x+"px";r.style.top=y+"px";
-  box.appendChild(r);
-  setTimeout(()=>r.remove(),600);
-}
-
-function scratchPowder(x,y){
-  let box=document.querySelector(".scratch-container");
-  for(let i=0;i<12;i++){
-    let p=document.createElement("div");p.className="powder";
-    let c=["#ffffff","#e5e7eb","#d1d5db","#c0c0c0","#f8fafc"];p.style.background=c[Math.floor(Math.random()*c.length)];
-    p.style.left=x+"px";p.style.top=y+"px";
-    p.style.setProperty("--x",(Math.random()*40-20)+"px");
-    p.style.setProperty("--y",(Math.random()*40-20)+"px");
-    p.style.transform="rotate("+(Math.random()*360)+"deg)";
-    box.appendChild(p);
-    setTimeout(()=>p.remove(),800);
-  }
-}
-
-function silverFoil(x,y){
-  let box=document.querySelector(".scratch-container");
-  for(let i=0;i<8;i++){
-    let f=document.createElement("div");f.className="foil";
-    f.style.left=x+"px";f.style.top=y+"px";
-    f.style.setProperty("--fx",(Math.random()*80-40)+"px");
-    f.style.setProperty("--fy",(Math.random()*80-40)+"px");
-    box.appendChild(f);
-    setTimeout(()=>f.remove(),900);
-  }
-}
-
-function scratchEdge(x,y){
-  cx.save();
-  cx.globalCompositeOperation="source-over";
-  let grd=cx.createRadialGradient(x,y,2,x,y,22);
-  grd.addColorStop(0,"rgba(255,255,255,.35)");
-  grd.addColorStop(.4,"rgba(220,220,220,.18)");
-  grd.addColorStop(1,"rgba(255,255,255,0)");
-  cx.fillStyle=grd;
-  cx.beginPath();cx.arc(x,y,22,0,Math.PI*2);cx.fill();
-  cx.restore();
 }
 
 function doScr(e){
   if(isDraw&&!isScr){
     let t=getP(e);
     cx.globalCompositeOperation="destination-out";
-    cx.beginPath();cx.lineCap="round";
-    cx.lineWidth=34+Math.random()*8;
+    cx.beginPath();cx.lineCap="round";cx.lineWidth=36;
     cx.moveTo(lx,ly);cx.lineTo(t.x,t.y);cx.stroke();
-    
-    scratchEdge(t.x,t.y);
-    makeRipple(t.x,t.y);
-    scratchPowder(t.x,t.y);
-    silverFoil(t.x,t.y);
-    
     lx=t.x;ly=t.y;
-    if(navigator.vibrate)navigator.vibrate(15);
     chkScr();
   }
 }
@@ -350,88 +346,37 @@ function chkScr(){
     if(t/(e.length/4)>.45){
       isScr=!0;isDraw=!1;stopS();clearInterval(sparkleTimer);
       verified=0;codeInput.value="";
-      spk("খুব সুন্দর! আপনার কোডটি ব্যবহার হয়ে গেছে।");
       cx.clearRect(0,0,cv.width,cv.height);
       hRew();
     }
   }
 }
 
-function crSpark(){
-  let e=document.querySelector(".scratch-container");
-  if(e)for(let t=0;t<20;t++){
-    let a=document.createElement("div");a.className="sparkle";
-    a.style.left=280*Math.random()+"px";a.style.top=160*Math.random()+"px";
-    a.style.background="#FFD700";e.appendChild(a);
-    setTimeout(()=>a.remove(),1200)
-  }
-}
-
-function cBurst(){
-  let e=document.querySelector(".scratch-container");
-  if(e)for(let t=0;t<15;t++){
-    let a=document.createElement("div");a.className="coin";a.innerHTML="💰";
-    a.style.left="150px";a.style.top="90px";
-    a.style.setProperty("--eX",160*Math.random()-80+"px");
-    a.style.setProperty("--eY","-100px");
-    e.appendChild(a);setTimeout(()=>a.remove(),1600)
-  }
-}
-
-function flyMoney(){
-  let card=document.querySelector(".scratch-container");
-  let wallet=document.getElementById("cashBox");
-  let s=card.getBoundingClientRect();
-  let e=wallet.getBoundingClientRect();
-  let note=document.createElement("div");
-  note.className="moneyFly";note.innerHTML="💵";
-  note.style.left=s.left+130+"px";note.style.top=s.top+70+"px";
-  note.style.setProperty("--dx",(e.left-s.left-120)+"px");
-  note.style.setProperty("--dy",(e.top-s.top-60)+"px");
-  document.body.appendChild(note);
-  setTimeout(()=>note.remove(),900);
-}
-
-function sPop(e){
-  let t=document.getElementById("rewardPopup");
-  document.getElementById("rewardText").innerHTML=e;
-  t.classList.remove("showReward");void t.offsetWidth;
-  t.classList.add("showReward")
-}
-
 function hRew(){
   if("cash"===cRew.type){
     cash+=cRew.val;localStorage.setItem("km_cash",cash);
-    uUI();crSpark();cBurst();flyMoney();sPop("💰 "+cRew.text);pAud("mS");
-    spk(`অভিনন্দন! আপনি ${cRew.val} টাকা জিতেছেন`);
+    uUI();pAud("mS");
     sLdr("ক্যাশ যোগ হচ্ছে...",8,()=>initCv())
   }else if("mushroom"===cRew.type){
     shroom+=cRew.val;localStorage.setItem("km_shroom",shroom);
     uUI();pAud("gS");
-    spk(`চমৎকার! আপনি ${cRew.val} গ্রাম মাশরুম পেয়েছেন`);
     sLdr("মাশরুম যোগ হচ্ছে...",8,()=>initCv())
   }else if("points"===cRew.type){
     pts+=cRew.val;pCash=cRew.val/100;localStorage.setItem("km_points",pts);
-    uUI();crSpark();pAud("pS");
-    spk(`চমৎকার! আপনি ${cRew.val} পয়েন্ট পেয়েছেন`);
+    uUI();pAud("pS");
     sLdr("পয়েন্ট যোগ হচ্ছে...",8,()=>{
       let e=15;lMsg.innerText="১৫ সেকেন্ড পরে ক্যাশে কনভার্ট হবে...";lZone.style.display="block";cT.innerText=e;
       let t=setInterval(()=>{
         e--;cT.innerText=e;
         if(e<=0){
-          clearInterval(t);cBurst();flyMoney();
-          cash+=pCash;pts=0;
+          clearInterval(t);cash+=pCash;pts=0;
           localStorage.setItem("km_cash",cash);localStorage.setItem("km_points",0);
-          uUI();pAud("mS");
-          spk(`${pCash} টাকা ক্যাশে যোগ হয়েছে`);
-          lZone.style.display="none";pCash=0;initCv()
+          uUI();pAud("mS");lZone.style.display="none";pCash=0;initCv()
         }
       },1e3)
     })
   }else{
-    sPop("😭 Better Luck Next Time");pAud("eS");
-    spk("মাশরুম কিনুন! আবার চেষ্টা করুন");
-    sLdr("ফলাফল চোখ রাখুন...",8,()=>initCv())
+    pAud("eS");sLdr("ফলাফল চোখ রাখুন...",8,()=>initCv())
   }
 }
 
@@ -443,32 +388,28 @@ function sLdr(e,t,a){
     o--;cT.innerText=o;
     if(o<=0){clearInterval(r);n.style.transition="none";n.style.width="100%";a&&a()}
   },1e3)
-  }function openBonusModal(){pAud("cS");document.getElementById("bonusModal").style.display="flex"}
+}
+
+function openBonusModal(){pAud("cS");document.getElementById("bonusModal").style.display="flex"}
 
 function claimDailyBonus(){
   document.getElementById("bonusModal").style.display="none";
   localStorage.setItem("km_lastBonus",Date.now());
   let e=dPool[Math.floor(Math.random()*dPool.length)];
   pts+=e;pCash=+(e/100).toFixed(2);
-  localStorage.setItem("km_points",pts);uUI();crSpark();pAud("pS");chkBns();
-  spk(`খুব ভালো! আপনি ${e} পয়েন্ট বোনাস পেয়েছেন`);
+  localStorage.setItem("km_points",pts);uUI();pAud("pS");chkBns();
   sLdr("বোনাস পয়েন্ট যোগ হচ্ছে...",8,()=>{
     let t=15;lMsg.innerText="১৫ সেকেন্ড পরে ক্যাশে কনভার্ট হবে...";lZone.style.display="block";cT.innerText=t;
     let i=setInterval(()=>{
       cT.innerText=--t;
       if(t<0){
-        clearInterval(i);cBurst();flyMoney();
-        cash+=pCash;pts-=e;
+        clearInterval(i);cash+=pCash;pts-=e;
         localStorage.setItem("km_cash",cash);localStorage.setItem("km_points",pts);
-        uUI();pAud("mS");
-        spk(`${pCash} টাকা ক্যাশে যোগ হয়েছে`);
-        lZone.style.display="none";initCv()
+        uUI();pAud("mS");lZone.style.display="none";initCv()
       }
     },1e3)
   })
-}
-
-function chkBns(){
+  }function chkBns(){
   let e=localStorage.getItem("km_lastBonus"),t=document.getElementById("bonusBtn"),a=document.getElementById("bonusTimer");
   if(!e)return t.disabled=!1,void(a.innerText="");
   let n=Date.now()- +e,o=864e5-n;
@@ -480,7 +421,6 @@ function chkBns(){
   }else t.disabled=!1,a.innerText="বোনাস 💎 রেডি আছে!"
 }
 
-/* মাশরুম ফার্ম লজিক */
 let growDay=+localStorage.getItem("km_growDay")||1;
 let lastWater=+localStorage.getItem("km_lastWater")||0;
 
@@ -499,49 +439,65 @@ function updatePlant(){
   const stages=["🌱","🍄","🍄🍄","🍄🍄🍄","🍄🍄🍄🍄","🍄🍄🍄🍄🍄","👑🍄"];
   plant.innerHTML=stages[Math.min(growDay-1,6)];
   dayTxt.innerHTML="Day "+growDay+" / 7";
-  if(growDay>=7) showGoldenReward();
 }
 
-function showGoldenReward(){
-  if(localStorage.getItem("km_goldenReward")) return;
-  localStorage.setItem("km_goldenReward","1");
-  cash+=10;localStorage.setItem("km_cash",cash);
-  uUI();fireConfetti();
-  alert("🎉 Golden Mushroom Complete!\n\n💵 ₹7 Bonus Added");
-}
-
-/* স্পিন মোডাল কোড */
+/* 🎡 প্রফেশনাল স্পিন লজিক */
 function openSpinOrder(){
   document.getElementById("spinModal").style.display="flex";
   document.getElementById("claimBtn").style.display="none";
-  document.getElementById("spinBtn").disabled=false;
-  document.getElementById("spinReward").innerHTML="Tap Spin";
-  document.getElementById("spinWheel").style.transform="rotate(0deg)";
+  let btn=document.getElementById("spinBtn");
+  
+  if(!canSpin){
+    btn.disabled=true;
+    document.getElementById("spinReward").innerText="⚠️ স্পিন করতে ! নতুন কোড Submit করুন!";
+  } else {
+    btn.disabled=false;
+    document.getElementById("spinReward").innerText="Tap SPIN to Win Rewards!";
+  }
 }
 
 function spinOrderWheel(){
-  let wheel=document.getElementById("spinWheel");
+  if(!canSpin) return;
+  
+  let wheel=document.getElementById("spinWheelSvg");
   let btn=document.getElementById("spinBtn");
   btn.disabled=true;
+  canSpin=false;
+  
   spinS.currentTime=0;spinS.loop=true;spinS.play().catch(()=>{});
-  let deg=3600+Math.random()*720;
-  wheel.style.transform="rotate("+deg+"deg)";
-  spinGift=spinRewards[Math.floor(Math.random()*spinRewards.length)];
+  
+  let selected = spinRewards[Math.floor(Math.random()*spinRewards.length)];
+  currentSpinReward = selected;
+  
+  let randomOffset = Math.floor(Math.random()*(selected.degMax - selected.degMin - 10)) + selected.degMin + 5;
+  currentRotation += 1800 + randomOffset;
+  
+  wheel.style.transform = `rotate(${currentRotation}deg)`;
+  
   setTimeout(()=>{
     spinS.pause();spinS.currentTime=0;
-    document.getElementById("spinReward").innerHTML=spinGift.txt;
+    document.getElementById("spinReward").innerHTML = "🎉 আপনি জিতেছেন: <b style='color:#22c55e;font-size:18px;'>" + currentSpinReward.txt + "</b>";
     fireConfetti();
     document.getElementById("claimBtn").style.display="block";
-  },4200);
+  },4000);
 }
 
 function claimSpinReward(){
-  if(spinGift.type=="cash"){
-    cash+=spinGift.val;localStorage.setItem("km_cash",cash);
-  }else if(spinGift.type=="mushroom"){
-    shroom+=spinGift.val;localStorage.setItem("km_shroom",shroom);
+  if(!currentSpinReward) return;
+  
+  if(currentSpinReward.type === "cash"){
+    cash += currentSpinReward.val;
+    localStorage.setItem("km_cash", cash);
+  } else if(currentSpinReward.type === "mushroom"){
+    shroom += currentSpinReward.val;
+    localStorage.setItem("km_shroom", shroom);
+  } else if(currentSpinReward.type === "points"){
+    pts += currentSpinReward.val;
+    localStorage.setItem("km_points", pts);
   }
+  
   uUI();
+  spk(`অভিনন্দন! ${currentSpinReward.txt} ওয়ালেটে যোগ করা হয়েছে`);
   document.getElementById("spinModal").style.display="none";
   openWithdrawModal();
 }
@@ -550,7 +506,7 @@ function openWithdrawModal(){pAud("cS");document.getElementById("withdrawModal")
 function closeWithdrawModal(){document.getElementById("withdrawModal").style.display="none"}
 
 function submitWithdraw(){
-  if(cash<2)return spk("দুঃখিত! Withdraw করতে হলে! ক্যাশ ওয়ালেটে কমপক্ষে! ২ টাকা থাকতে হবে।"),pop(" ক্যাশ Wallet-এ কমপক্ষে ₹2 টাকা থাকতে হবে।");
+  if(cash<2)return spk("দুঃখিত! ক্যাশ ওয়ালেটে কমপক্ষে ২ টাকা থাকতে হবে।"),pop(" ক্যাশ Wallet-এ কমপক্ষে ₹2 টাকা থাকতে হবে।");
   let e=document.getElementById("wName").value.trim(),t=document.getElementById("wPhone").value.trim();
   if(!e||!t)return pop("নাম এবং ফোন নাম্বার ✍️পূরণ করুন!");
   if(10!==t.length||/\D/.test(t))return pop("❌ 10 সংখ্যার UPI নম্বর লিখুন");
@@ -563,38 +519,15 @@ function submitWithdraw(){
   uUI();closeWithdrawModal();
 }
 
-/* উইনার টোস্ট নোটিফিকেশন */
-function showWinner(){
-  let t=document.getElementById("winnerToast");
-  t.innerHTML="🟢 "+winners[Math.floor(Math.random()*winners.length)]+"<br><small>Just now</small>";
-  t.classList.add("show");
-  setTimeout(()=>t.classList.remove("show"),4000);
-}
-setInterval(showWinner,12000);
-
-/* ইভেন্ট লিসেনার */
 cv.addEventListener("mousedown",stScr);
 cv.addEventListener("mousemove",doScr);
 window.addEventListener("mouseup",()=>{isDraw=!1;stopS()});
-cv.addEventListener("mouseleave",()=>{isDraw=!1;stopS()});
 cv.addEventListener("touchstart",e=>{e.preventDefault();stScr(e)},{passive:!1});
 cv.addEventListener("touchmove",e=>{e.preventDefault();doScr(e)},{passive:!1});
 cv.addEventListener("touchend",()=>{isDraw=!1;stopS()});
-addEventListener("pointerdown",_=>spk("আপনাকে দেওয়া! কোডটি উপরে লিখুন! এবং মাঝের বক্সে! আঙুল দিয়ে ঘষুন।"),{once:1});
 
 window.onload=()=>{
   initApp();
-  setTimeout(()=>{
-    let e=0,t=setInterval(()=>{
-      scrollTo(0,e+=1);
-      if(e>=document.body.scrollHeight){
-        clearInterval(t);
-        setTimeout(()=>{
-          let a=setInterval(()=>{scrollTo(0,e-=1);if(e<=0)clearInterval(a)},10)
-        },1e3)
-      }
-    },10)
-  },500)
 };
 
 const bg=document.getElementById("bg"),gif=document.getElementById("gif"),s=document.getElementById("s");
@@ -604,9 +537,4 @@ setTimeout(()=>{s.style.opacity="0";setTimeout(()=>s.remove(),500)},1e4);
 </script>
 </body>
 </html>
-
-
-
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 </html>
- 
+  
