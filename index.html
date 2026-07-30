@@ -384,7 +384,7 @@ function doScr(e){
     lx=t.x;ly=t.y;
     chkScr();
   }
-    }function chkScr(){
+  }function chkScr(){
   if(!isScr){
     let e=cx.getImageData(0,0,cv.width,cv.height).data,t=0;
     for(let a=0;a<e.length;a+=4)0===e[a+3]&&t++;
@@ -492,82 +492,49 @@ function updatePlant(){
 }
 
 /* 🎡 Spin & Contact / Withdraw Section */
-function openSpinOrder(){
-  if(canSpin){
-    document.getElementById("spinModal").style.display="flex";
-    document.getElementById("claimBtn").style.display="none";
-    document.getElementById("spinBtn").style.display="block";
-    document.getElementById("spinBtn").disabled=false;
-    document.getElementById("spinReward").innerText="Tap SPIN to Win Rewards!";
-  }else{
-    openWithdrawModal();
-  }
+function openSpinOrder(){canSpin?(spinModal.style.display="flex",claimBtn.style.display="none",spinBtn.style.display="block",spinBtn.disabled=!1,spinReward.innerHTML="🎡 SPIN করে পুরস্কার জিতুন"):openWithdrawModal()}
+
+function spinOrderWheel(){
+if(!canSpin)return;
+playSpinSound();
+spinBtn.disabled=!0;
+const w=spinWheelVisual,r=["💵 ₹0.80 ক্যাশ","🍄 20g মাশরুম","⭐ 100 পয়েন্ট","💵 ₹1.00 ক্যাশ","🍄 10g মাশরুম","⭐ 50 পয়েন্ট"],f=Math.floor(Math.random()*360);
+wheel.style.transition="transform 8s cubic-bezier(.08,.82,.17,1)";
+currentRotation+=2880+f;
+w.style.transform=`rotate(${currentRotation}deg)`;
+setTimeout(()=>showSpinReward(r[Math.floor(((360-currentRotation%360)%360)/60)]),7000)
 }
 
 function showSpinReward(r){
-  playClap();
-  fireConfetti();
-  document.getElementById("spinReward").innerHTML="🎉 আপনি জিতেছেন: "+r;
-  document.getElementById("claimBtn").style.display="block";
-  document.getElementById("spinBtn").style.display="none";
-  
-  if(r.includes("₹0.80 Cash")) currentSpinReward = {type:"cash", val:2};
-  else if(r.includes("20g মাশরুম")) currentSpinReward = {type:"মাশরুম", val:20};
-  else if(r.includes("100 Points")) currentSpinReward = {type:"points", val:100};
-  else if(r.includes("₹1 Cash")) currentSpinReward = {type:"cash", val:1};
-  else if(r.includes("10g মাশরুম")) currentSpinReward = {type:"মাশরুম", val:10};
-  else if(r.includes("50 Points")) currentSpinReward = {type:"points", val:50};
-}
-
-function spinOrderWheel(){
-  if(!canSpin) return;
-  playSpinSound();
-  let btn=document.getElementById("spinBtn");
-  btn.disabled=true;
-
-  const w=document.getElementById("spinWheelVisual"),r=["₹0.80 Cash","20g মাশরুম","100 Points","₹1 Cash","10g মাশরুম","50 Points"],f=Math.floor(Math.random()*360);w.style.transition="transform 7s cubic-bezier(.12,.85,.15,1)";currentRotation+=2880+f;w.style.transform=`rotate(${currentRotation}deg)`;setTimeout(()=>{let a=currentRotation%360,i=Math.floor(((360-a)%360)/60),reward=r[i];showSpinReward(reward)},7000);
+playClap();
+fireConfetti();
+spinReward.innerHTML="🎉 আপনি জিতেছেন<br><b>"+r+"</b>";
+claimBtn.style.display="block";
+spinBtn.style.display="none";
+currentSpinReward=r.includes("₹0.80")?{type:"cash",val:.8}:r.includes("20g")?{type:"mushroom",val:20}:r.includes("100")?{type:"points",val:100}:r.includes("₹1.00")?{type:"cash",val:1}:r.includes("10g")?{type:"mushroom",val:10}:{type:"points",val:50}
 }
 
 function claimSpinReward(){
-  if(!currentSpinReward)return;
-  
-  playClap();
-  flyReward(currentSpinReward.type);
-
-  let msg="";
-  if(currentSpinReward.type=="cash"){
-    msg=`অভিনন্দন! আপনি ${currentSpinReward.val} টাকা ক্যাশ জিতেছেন! টাকা টি ক্যাশে যোগ হয়েছে।`;
-  }
-  else if(currentSpinReward.type=="mushroom"){
-    msg=`অভিনন্দন! আপনি ${currentSpinReward.val} গ্রাম মাশরুম জিতেছেন! মাশরুম টি ক্যাশে যোগ হয়েছে।`;
-  }
-  else{
-    msg=`অভিনন্দন! আপনি ${currentSpinReward.val} পয়েন্ট জিতেছেন! পয়েন্ট টি ক্যাশে যোগ হয়েছে।`;
-  }
-
-  speechSynthesis.cancel();
-  let u=new SpeechSynthesisUtterance(msg);
-  u.lang="bn-IN";
-  u.rate=.95;
-  u.pitch=1;
-  speechSynthesis.speak(u);
-
-  if(currentSpinReward.type=="cash")cash+=currentSpinReward.val;
-  else if(currentSpinReward.type=="points")pts+=currentSpinReward.val;
-  else if(currentSpinReward.type=="mushroom")shroom+=currentSpinReward.val;
-
-  localStorage.setItem("km_cash",cash);
-  localStorage.setItem("km_points",pts);
-  localStorage.setItem("km_shroom",shroom);
-
-  uUI();
-
-  document.getElementById("spinModal").style.display="none";
-
-  currentSpinReward=null;
-  canSpin=false;
-
-  openWithdrawModal();
+if(!currentSpinReward)return;
+playClap();
+flyReward(currentSpinReward.type);
+let m="";
+if(currentSpinReward.type=="cash")cash+=currentSpinReward.val,m=`অভিনন্দন! আপনি ₹${currentSpinReward.val.toFixed(2)} ক্যাশ জিতেছেন।`;
+else if(currentSpinReward.type=="mushroom")shroom+=currentSpinReward.val,m=`অভিনন্দন! আপনি ${currentSpinReward.val} গ্রাম মাশরুম জিতেছেন।`;
+else pts+=currentSpinReward.val,m=`অভিনন্দন! আপনি ${currentSpinReward.val} পয়েন্ট জিতেছেন।`;
+speechSynthesis.cancel();
+let u=new SpeechSynthesisUtterance(m);
+u.lang="bn-IN";
+u.rate=.95;
+speechSynthesis.speak(u);
+localStorage.setItem("km_cash",cash);
+localStorage.setItem("km_points",pts);
+localStorage.setItem("km_shroom",shroom);
+uUI();
+spinModal.style.display="none";
+currentSpinReward=null;
+canSpin=!1;
+openWithdrawModal()
 }
 
 function openWithdrawModal(){pAud("cS");document.getElementById("withdrawModal").style.display="flex"}
