@@ -37,19 +37,14 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 .scratch-reveal{position:absolute;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;font-size:24px;font-weight:bold;color:#f472b6;padding:20px;z-index:1}
 #scratchCanvas{position:absolute;top:0;left:0;z-index:2;cursor:crosshair}
 
-.sparkle,.coin,.moneyFly,.ripple,.powder,.foil{position:absolute;pointer-events:none}
-.ripple{width:22px;height:22px;border:2px solid #fff;border-radius:50%;transform:translate(-50%,-50%);animation:ripple .6s linear forwards;z-index:30}
-@keyframes ripple{from{opacity:1;transform:translate(-50%,-50%) scale(.2)}to{opacity:0;transform:translate(-50%,-50%) scale(2.2)}}
-.powder{width:6px;height:6px;border-radius:50%;z-index:50;animation:powderFly .8s ease-out forwards;box-shadow:0 0 4px #fff}
-@keyframes powderFly{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--x),var(--y)) scale(.2)}}
-.foil{width:10px;height:10px;background:linear-gradient(135deg,#fff,#d9d9d9,#a8a8a8,#fff);clip-path:polygon(50% 0%,100% 40%,80% 100%,20% 100%,0% 40%);z-index:60;animation:foilFly .9s ease-out forwards}
-@keyframes foilFly{0%{opacity:1;transform:translate(0,0) rotate(0deg) scale(1)}100%{opacity:0;transform:translate(var(--fx),var(--fy)) rotate(720deg) scale(.2)}}
-.moneyFly{font-size:28px;z-index:999999;animation:moneyFly .9s ease-in forwards}
-@keyframes moneyFly{0%{transform:translate(0,0) scale(1.3);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
+.peel{position:absolute;width:26px;height:26px;background:linear-gradient(135deg,#fff,#ececec,#bdbdbd,#fff);border-radius:4px;pointer-events:none;z-index:70;transform-origin:center;animation:peel .8s ease-out forwards;filter:drop-shadow(0 0 5px #fff)}
+@keyframes peel{0%{opacity:1;transform:rotate(0) scale(1)}100%{opacity:0;transform:translate(var(--px),var(--py)) rotate(900deg) scale(.2)}}
 
-#rewardPopup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);padding:25px 40px;border-radius:20px;font-size:28px;font-weight:bold;z-index:9999;color:#fff;background:linear-gradient(135deg,gold,#E5E4E2,hotpink);pointer-events:none}
-.showReward{animation:r 2.2s forwards}
-@keyframes r{0%{transform:translate(-50%,-50%) scale(.2);opacity:0}25%{transform:translate(-50%,-50%) scale(1.3);opacity:1}100%{transform:translate(-50%,-50%) translateY(-80px);opacity:0}}
+.powder{position:absolute;width:6px;height:6px;border-radius:50%;z-index:50;pointer-events:none;animation:powderFly .8s ease-out forwards;box-shadow:0 0 4px #fff}
+@keyframes powderFly{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--x),var(--y)) scale(.2)}}
+
+.foil{position:absolute;width:10px;height:10px;background:linear-gradient(135deg,#fff,#d9d9d9,#a8a8a8,#fff);clip-path:polygon(50% 0%,100% 40%,80% 100%,20% 100%,0% 40%);z-index:60;pointer-events:none;animation:foilFly .9s ease-out forwards}
+@keyframes foilFly{0%{opacity:1;transform:translate(0,0) rotate(0deg) scale(1)}100%{opacity:0;transform:translate(var(--fx),var(--fy)) rotate(720deg) scale(.2)}}
 
 .loader-container{margin:15px 0;display:none}
 .progress-bar{width:100%;height:8px;background:#334155;border-radius:4px;overflow:hidden}
@@ -64,7 +59,6 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 .btn-modal-claim{background:#22c55e;color:#fff;padding:12px 25px;border:none;border-radius:10px;font-weight:bold;cursor:pointer;font-size:16px;width:100%}
 .btn-modal-claim:disabled{background:#64748b;cursor:not-allowed}
 
-/* ✖ Back Button */
 #closeSpin{position:absolute;top:12px;right:12px;width:38px;height:38px;border:none;border-radius:50%;background:#ef4444;color:#fff;font-size:20px;cursor:pointer;z-index:110;box-shadow:0 0 10px rgba(0,0,0,0.5)}
 
 /* 🎡 3D Spin Wheel CSS Style */
@@ -84,7 +78,6 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
     width:100%;
     height:100%;
     border-radius:50%;
-    transition:transform 4s cubic-bezier(.15,.85,.35,1);
     box-shadow:inset 0 0 20px rgba(255,255,255,.25),inset 0 -10px 20px rgba(0,0,0,.4),0 12px 25px rgba(0,0,0,.45);
 }
 
@@ -137,8 +130,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 #bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 #gif{position:relative;width:230px;max-width:70%;display:none}
 
-#winnerToast{position:fixed;left:50%;bottom:-80px;transform:translateX(-50%);background:#16a34a;color:#fff;padding:12px 18px;border-radius:12px;font-weight:bold;font-size:14px;z-index:99999;transition:.5s;box-shadow:0 5px 20px #0006;max-width:90%}
-#winnerToast.show{bottom:20px}
+#p{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#e11d48;color:#fff;padding:18px 25px;border-radius:12px;font:700 18px Arial;z-index:99999;box-shadow:0 0 20px #0008}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
@@ -146,7 +138,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 
 <div id="s"><img id="bg" src="img/splash1.jpg"><img id="gif" src="img/splash2.gif"></div>
 
-<!-- অডিও সোর্স -->
+<!-- Audio Sources -->
 <audio id="sS" src="https://files.catbox.moe/po27od.mp3" loop preload="auto"></audio>
 <audio id="cS" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" preload="auto"></audio>
 <audio id="mS" src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3" preload="auto"></audio>
@@ -155,8 +147,6 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 <audio id="scS" src="https://assets.mixkit.co/active_storage/sfx/2020/2020-preview.mp3" preload="auto"></audio>
 <audio id="eS" src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3" preload="auto"></audio>
 <audio id="spinSound" src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3" preload="auto"></audio>
-
-<div id="rewardPopup"><div id="rewardText"></div></div>
 
 <div class="container">
 <canvas id="confetti" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99"></canvas>
@@ -179,7 +169,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
       <div id="mushroomPlant">🌱</div>
       <div id="plantDay">Day 1 / 7</div>
    </div>
-   <button id="waterBtn" onclick="playClickSound(); waterPlant();">💧 পানি দিন</button>
+   <button id="waterBtn" onclick="playClickSound(); waterPlant();">💧 জল দিন</button>
 </div>
 
 <div class="bonus-zone">
@@ -191,7 +181,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
   <div id="h">👆</div>
   <div class="scratch-reveal" id="revealZone">Scratch Card!</div>
   <canvas id="scratchCanvas" width="300" height="180"></canvas>
-  <img id="fingerGuide" src="img/finger.png" alt="finger">
+  <img id="fingerGuide" src="img/finger.png" alt="finger" style="display:none">
 </div>
 
 <div class="loader-container" id="loaderZone">
@@ -207,7 +197,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 <iframe src="https://www.youtube.com/embed/TFJTk4hPq_0" style="width:100%;aspect-ratio:16/9;border:0;border-radius:12px" allowfullscreen></iframe>
 </div>
 
-<div id="p" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#e11d48;color:#fff;padding:18px 25px;border-radius:12px;font:700 18px Arial;z-index:99999;box-shadow:0 0 20px #0008"></div>
+<div id="p"></div>
 
 <!-- ফ্রি বোনাস মোডাল -->
 <div id="bonusModal" class="modal">
@@ -218,7 +208,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 </div>
 </div>
 
-<!-- 🎡 3D Glow Spin Wheel Modal -->
+<!-- 🎡 3D Spin Wheel Modal -->
 <div id="spinModal" class="modal">
   <div class="modal-content">
     <button id="closeSpin" onclick="closeSpinModal()">✖</button>
@@ -228,7 +218,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
       <div class="wheel-pointer">👇</div>
       <div class="center-btn">🎁</div>
       <svg id="spinWheelVisual" viewBox="0 0 100 100" width="260" height="260">
-        <!-- Exact 6 Slices -->
+        <!-- 6 Slices -->
         <path d="M50 50 L50 0 A50 50 0 0 1 93.3 25 Z" fill="#ef4444"/>
         <text x="69" y="24" text-anchor="middle" textLength="22" lengthAdjust="spacingAndGlyphs">₹2 Cash</text>
 
@@ -249,7 +239,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
       </svg>
     </div>
 
-    <div id="spinReward" style="margin:10px 0;font-size:15px;font-weight:bold;color:#facc15;">কোড ভেরিফাই করে স্পিন করুন!</div>
+    <div id="spinReward" style="margin:10px 0;font-size:15px;font-weight:bold;color:#facc15;">কোড ভেরিফাই করে ! স্পিন করুন!</div>
     <button id="spinBtn" class="btn-modal-claim" onclick="playClickSound(); spinOrderWheel();">🎡 SPIN NOW</button>
     <button id="claimBtn" class="btn-modal-claim" style="display:none;margin-top:10px;background:#06b6d4;" onclick="playClickSound(); claimSpinReward();">🛒 Claim & Withdraw</button>
   </div>
@@ -268,14 +258,12 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 </div>
 </div>
 
-<div id="winnerToast"></div>
-
 <script>
 const API="https://script.google.com/macros/s/AKfycbyDgAPFl-7b05R2hVtYrfoCq-oNpOjSwr9JVA16zdSjMAHWZWHrKjRhmgTs4sECUirq/exec";
 let verified=0,cash=+localStorage.getItem("km_cash")||0,shroom=+localStorage.getItem("km_shroom")||0,pts=+localStorage.getItem("km_points")||0,isScr=!1,isDraw=!1,lx=0,ly=0,cRew=null,pCash=0,sparkleTimer=null;
 
 let canSpin = false;
-let currentSpinReward = null;
+let currentSpinRewardObj = null;
 let currentRotation = 0;
 
 const h=document.getElementById("h"),tap=document.getElementById("tap"),p=document.getElementById("p"),fingerGuide=document.getElementById("fingerGuide"),codeInput=document.getElementById("codeInput");
@@ -284,15 +272,6 @@ const lMsg=document.getElementById("loaderMsg"),lZone=document.getElementById("l
 
 const rews=[{text:"💵 ক্যাশ ₹ 2",type:"cash",val:2},{text:"💵 ক্যাশ ₹ 3",type:"cash",val:3},{text:"💵 ক্যাশ ₹ 4",type:"cash",val:4},{text:"💵 ক্যাশ ₹ 5",type:"cash",val:5},{text:"💵 ক্যাশ ₹ 6",type:"cash",val:6},{text:"⭐ 399 পয়েন্ট",type:"points",val:399},{text:"⭐ 180 পয়েন্ট",type:"points",val:180},{text:"⭐ 299 পয়েন্ট",type:"points",val:299},{text:"🍄 50 গ্ৰাম মাশরুম",type:"mushroom",val:50},{text:"🍄 40 গ্ৰাম মাশরুম",type:"mushroom",val:40},{text:"😭 Better Luck Next Time",type:"lose",val:0}];
 const dPool=[100,300,150,200,199,120,105];
-
-const spinRewards=[
-  {txt:"💵 ₹2 Cash", type:"cash", val:2, degMin:0, degMax:60},
-  {txt:"🍄 20g Mushroom", type:"mushroom", val:20, degMin:300, degMax:360},
-  {txt:"⭐ 100 Points", type:"points", val:100, degMin:240, degMax:300},
-  {txt:"💵 ₹1 Cash", type:"cash", val:1, degMin:180, degMax:240},
-  {txt:"🍄 10g Mushroom", type:"mushroom", val:10, degMin:120, degMax:180},
-  {txt:"⭐ 50 Points", type:"points", val:50, degMin:60, degMax:120}
-];
 
 function playSpinSound() {
     spinSound.currentTime = 0;
@@ -303,14 +282,12 @@ function closeSpinModal(){
     document.getElementById("spinModal").style.display="none";
 }
 
-/* Outside Click Close Support */
 window.onclick=function(e){
     if(e.target==document.getElementById("spinModal")){
         closeSpinModal();
     }
 }
 
-/* ESC Key Close Support */
 document.addEventListener("keydown",function(e){
     if(e.key==="Escape"){
         closeSpinModal();
@@ -346,7 +323,7 @@ async function verifyCode(){
       tap.style.display="none";
       fireConfetti();
       spk("অভিনন্দন! আপনার কোডটি ভেরিফাই হয়েছে! এখন স্পিন করতে পারবেন।");
-      alert("🎉 কোড সফল হয়েছে! ১টি স্পিন করার সুযোগ পেয়েছেন ✅");
+      alert("🎉 কোড সফল হয়েছে! Successful ✅");
     } else pop("used"==t?"☑️ কোড টি ব্যবহার হয়েছে":"ভুল কোড দেবেন না ❌")
   }catch(e){pop("😠 মাশরুম কিনুন, আবার চেষ্টা করুন")}
 }
@@ -364,22 +341,14 @@ function uUI(){
     document.getElementById("points").innerText = pts + " Pts";
 }
 
+/* 🌟 Silver Foil Scratch Card Layer & Effects */
 function initCv(){
   isScr=!1;isDraw=!1;stopS();clearInterval(sparkleTimer);
   cRew=rews[Math.floor(Math.random()*rews.length)];
   document.getElementById("revealZone").innerText=cRew.text;
   cx.clearRect(0,0,cv.width,cv.height);
   cx.globalCompositeOperation="source-over";
-  
-  let g=cx.createLinearGradient(0,0,300,180);
-  g.addColorStop(0,"#f8f8f8");g.addColorStop(.15,"#d9d9d9");g.addColorStop(.35,"#b5b5b5");
-  g.addColorStop(.50,"#ffffff");g.addColorStop(.70,"#9d9d9d");g.addColorStop(1,"#efefef");
-  cx.fillStyle=g;cx.fillRect(0,0,300,180);
-
-  for(let i=0;i<2500;i++){
-    cx.fillStyle=`rgba(255,255,255,${Math.random()*0.18})`;
-    cx.fillRect(Math.random()*300,Math.random()*180,1,1);
-  }
+  let g=cx.createLinearGradient(0,0,300,180);g.addColorStop(0,"#f8f8f8");g.addColorStop(.15,"#d9d9d9");g.addColorStop(.35,"#b5b5b5");g.addColorStop(.5,"#fff");g.addColorStop(.7,"#9d9d9d");g.addColorStop(1,"#efefef");cx.fillStyle=g;cx.fillRect(0,0,300,180);for(let i=0;i<2500;i++){cx.fillStyle=`rgba(255,255,255,${Math.random()*.18})`;cx.fillRect(Math.random()*300,Math.random()*180,1,1)}
   
   cx.strokeStyle="#666";cx.strokeRect(2,2,296,176);
   cx.fillStyle="#555";cx.font="bold 22px Arial";cx.textAlign="center";
@@ -403,12 +372,25 @@ function stScr(e){
   if(!isScr){isDraw=!0;sS.play().catch(()=>{});let t=getP(e);lx=t.x;ly=t.y}
 }
 
+function peelFoil(x,y){let b=document.querySelector(".scratch-container");for(let i=0;i<4;i++){let p=document.createElement("div");p.className="peel";p.style.left=x-12+"px";p.style.top=y-12+"px";p.style.setProperty("--px",Math.random()*120-60+"px");p.style.setProperty("--py",Math.random()*100-50+"px");b.appendChild(p);setTimeout(()=>p.remove(),800)}}
+
+function scratchEdge(x,y){cx.save();cx.globalCompositeOperation="source-over";let g=cx.createRadialGradient(x,y,2,x,y,22);g.addColorStop(0,"rgba(255,255,255,.35)");g.addColorStop(.4,"rgba(220,220,220,.18)");g.addColorStop(1,"rgba(255,255,255,0)");cx.fillStyle=g;cx.beginPath();cx.arc(x,y,22,0,6.283);cx.fill();cx.restore()}
+
+function scratchPowder(x,y){let b=document.querySelector(".scratch-container");for(let i=0;i<3;i++){let p=document.createElement("div");p.className="powder";p.style.left=x+"px";p.style.top=y+"px";p.style.background="#fff";p.style.setProperty("--x",Math.random()*80-40+"px");p.style.setProperty("--y",Math.random()*80-40+"px");b.appendChild(p);setTimeout(()=>p.remove(),800)}}
+
+function silverFoil(x,y){let b=document.querySelector(".scratch-container");for(let i=0;i<2;i++){let f=document.createElement("div");f.className="foil";f.style.left=x+"px";f.style.top=y+"px";f.style.setProperty("--fx",Math.random()*100-50+"px");f.style.setProperty("--fy",Math.random()*100-50+"px");b.appendChild(f);setTimeout(()=>f.remove(),900)}}
+
 function doScr(e){
   if(isDraw&&!isScr){
     let t=getP(e);
     cx.globalCompositeOperation="destination-out";
-    cx.beginPath();cx.lineCap="round";cx.lineWidth=36;
+    cx.beginPath();cx.lineCap="round";
+    cx.lineWidth=34+Math.random()*8;
     cx.moveTo(lx,ly);cx.lineTo(t.x,t.y);cx.stroke();
+    scratchEdge(t.x,t.y);
+    scratchPowder(t.x,t.y);
+    silverFoil(t.x,t.y);
+    peelFoil(t.x,t.y);
     lx=t.x;ly=t.y;
     chkScr();
   }
@@ -484,9 +466,8 @@ function claimDailyBonus(){
       }
     },1e3)
   })
-}
-
-function chkBns(){
+    }
+    function chkBns(){
   let e=localStorage.getItem("km_lastBonus"),t=document.getElementById("bonusBtn"),a=document.getElementById("bonusTimer");
   if(!e)return t.disabled=!1,void(a.innerText="");
   let n=Date.now()- +e,o=864e5-n;
@@ -503,12 +484,14 @@ let lastWater=+localStorage.getItem("km_lastWater")||0;
 
 function waterPlant(){
   let now=Date.now();
-  if(now-lastWater<86400000){pop("💧 আজকে পানি দেওয়া হয়েছে");return;}
+  if(now-lastWater<86400000){pop("💧 আজকে জল দেওয়া হয়েছে");return;}
   growDay++;lastWater=now;
   localStorage.setItem("km_growDay",growDay);
   localStorage.setItem("km_lastWater",lastWater);
   updatePlant();
-  }function updatePlant(){
+}
+
+function updatePlant(){
   let plant=document.getElementById("mushroomPlant");
   let dayTxt=document.getElementById("plantDay");
   const stages=["🌱","🍄","🍄🍄","🍄🍄🍄","🍄🍄🍄🍄","🍄🍄🍄🍄🍄","👑🍄"];
@@ -516,7 +499,7 @@ function waterPlant(){
   dayTxt.innerHTML="Day "+growDay+" / 7";
 }
 
-/* 🎡 3D Spin Functionality */
+/* 🎡 7-Second Minified Spin Wheel Logic */
 function openSpinOrder(){
   document.getElementById("spinModal").style.display="flex";
   document.getElementById("claimBtn").style.display="none";
@@ -524,54 +507,52 @@ function openSpinOrder(){
   
   if(!canSpin){
     btn.disabled=true;
-    document.getElementById("spinReward").innerText="⚠️ স্পিন করতে নতুন কোড Submit করুন!";
+    document.getElementById("spinReward").innerText="⚠️ স্পিন করতে ! নতুন কোড Submit করুন!";
   } else {
     btn.disabled=false;
     document.getElementById("spinReward").innerText="Tap SPIN to Win Rewards!";
   }
 }
 
+function showSpinReward(r){
+  document.getElementById("spinReward").innerHTML="🎉 আপনি জিতেছেন: "+r;
+  fireConfetti();
+  document.getElementById("claimBtn").style.display="block";
+  
+  if(r.includes("₹2 Cash")) currentSpinRewardObj = {type:"cash", val:2, txt:r};
+  else if(r.includes("20g Shroom")) currentSpinRewardObj = {type:"mushroom", val:20, txt:r};
+  else if(r.includes("100 Points")) currentSpinRewardObj = {type:"points", val:100, txt:r};
+  else if(r.includes("₹1 Cash")) currentSpinRewardObj = {type:"cash", val:1, txt:r};
+  else if(r.includes("10g Shroom")) currentSpinRewardObj = {type:"mushroom", val:10, txt:r};
+  else if(r.includes("50 Points")) currentSpinRewardObj = {type:"points", val:50, txt:r};
+}
+
 function spinOrderWheel(){
   if(!canSpin) return;
-  
-  playSpinSound(); // সাউন্ড শুরু
-  
-  let wheel=document.getElementById("spinWheelVisual");
+  playSpinSound();
   let btn=document.getElementById("spinBtn");
   btn.disabled=true;
   canSpin=false;
-  
-  let selected = spinRewards[Math.floor(Math.random()*spinRewards.length)];
-  currentSpinReward = selected;
-  
-  let randomOffset = Math.floor(Math.random()*(selected.degMax - selected.degMin - 10)) + selected.degMin + 5;
-  currentRotation += 1800 + randomOffset;
-  
-  wheel.style.transform = `rotate(${currentRotation}deg)`;
-  
-  setTimeout(()=>{
-    document.getElementById("spinReward").innerHTML = "🎉 আপনি জিতেছেন: <b style='color:#22c55e;font-size:18px;'>" + currentSpinReward.txt + "</b>";
-    fireConfetti();
-    document.getElementById("claimBtn").style.display="block";
-  },4000);
+
+  const w=document.getElementById("spinWheelVisual"),r=["₹2 Cash","20g Shroom","100 Points","₹1 Cash","10g Shroom","50 Points"],f=Math.floor(Math.random()*360);w.style.transition="transform 7s cubic-bezier(.12,.85,.15,1)";currentRotation+=2880+f;w.style.transform=`rotate(${currentRotation}deg)`;setTimeout(()=>{let a=currentRotation%360,i=Math.floor(((360-a)%360)/60),reward=r[i];showSpinReward(reward)},7000);
 }
 
 function claimSpinReward(){
-  if(!currentSpinReward) return;
+  if(!currentSpinRewardObj) return;
   
-  if(currentSpinReward.type === "cash"){
-    cash += currentSpinReward.val;
+  if(currentSpinRewardObj.type === "cash"){
+    cash += currentSpinRewardObj.val;
     localStorage.setItem("km_cash", cash);
-  } else if(currentSpinReward.type === "mushroom"){
-    shroom += currentSpinReward.val;
+  } else if(currentSpinRewardObj.type === "mushroom"){
+    shroom += currentSpinRewardObj.val;
     localStorage.setItem("km_shroom", shroom);
-  } else if(currentSpinReward.type === "points"){
-    pts += currentSpinReward.val;
+  } else if(currentSpinRewardObj.type === "points"){
+    pts += currentSpinRewardObj.val;
     localStorage.setItem("km_points", pts);
   }
   
   uUI();
-  spk(`অভিনন্দন! ${currentSpinReward.txt} ওয়ালেটে যোগ করা হয়েছে`);
+  spk(`অভিনন্দন! ${currentSpinRewardObj.txt} ওয়ালেটে যোগ করা হয়েছে`);
   closeSpinModal();
   openWithdrawModal();
 }
@@ -611,4 +592,6 @@ setTimeout(()=>{s.style.opacity="0";setTimeout(()=>s.remove(),500)},1e4);
 </script>
 </body>
 </html>
-  
+
+
+      
