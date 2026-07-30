@@ -77,7 +77,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 
 /* 🎡 Spin Wheel CSS */
 .wheel-wrapper{position:relative;width:260px;height:260px;margin:15px auto;border-radius:50%;padding:8px;background:radial-gradient(circle,#ffe66d,#facc15,#d97706);box-shadow:0 0 15px #facc15,0 0 30px rgba(250,204,21,.8),0 0 60px rgba(250,204,21,.4),inset 0 0 18px rgba(255,255,255,.5),inset 0 -8px 18px rgba(0,0,0,.45);animation:wheelGlow 2.2s ease-in-out infinite}
-#spinWheelVisual{width:100%;height:100%;border-radius:50%;box-shadow:inset 0 0 20px rgba(255,255,255,.25),inset 0 -10px 20px rgba(0,0,0,.4),0 12px 25px rgba(0,0,0,.45)}
+#spinWheelVisual{width:100%;height:100%;border-radius:50%;box-shadow:inset 0 0 20px rgba(255,255,255,.25),inset 0 -10px 20px rgba(0,0,0,.4),0 12px 25px rgba(0,0,0,.45);transition:transform 8s cubic-bezier(.08,.82,.17,1)}
 #spinWheelVisual text{font-size:4px;font-weight:bold;fill:#fff}
 .wheel-pointer{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:34px;z-index:100;filter:drop-shadow(0 0 8px gold) drop-shadow(0 0 15px orange);animation:pointerPulse .8s infinite}
 .center-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;background:radial-gradient(circle,#fff,#ffd700,#ff9800);border:5px solid white;box-shadow:0 0 20px gold,inset 0 4px 8px rgba(255,255,255,.8),inset 0 -6px 8px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-size:34px;z-index:105}
@@ -94,7 +94,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 </head>
 <body>
 
-<div id="s"><img id="bg" src="img/splash1.jpg"><img id="gif" src="img/splash2.gif"></div>
+<div id="s"><img id="bg" src="img/splash1.jpg" alt="Splash"><img id="gif" src="img/splash2.gif" alt="Splash GIF"></div>
 
 <!-- Custom Confirm Popup -->
 <div id="confirmPop" class="cPop"><div class="cBox"><div class="cIcon">💸</div><h2>ক্যাশ আউট</h2><p id="cMsg">আপনি কি নিশ্চিত?</p><div class="cBtn"><button onclick="closePop()">না</button><button onclick="okPop()">হ্যাঁ</button></div></div></div>
@@ -112,7 +112,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 
 <div class="container">
 <canvas id="confetti" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99"></canvas>
-<div class="header">🎉UP TO ₹25 CASHBACK  🎉</div>
+<div class="header">🎉UP TO ₹25 CASHBACK 🎉</div>
 
 <div class="verify-box">
   <input id="codeInput" placeholder="✍️ কোড লিখুন">
@@ -181,22 +181,22 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
       <div class="center-btn">🎁</div>
       <svg id="spinWheelVisual" viewBox="0 0 100 100" width="260" height="260">
         <path d="M50 50 L50 0 A50 50 0 0 1 93.3 25 Z" fill="#ef4444"/>
-        <text x="69" y="24" text-anchor="middle" textLength="22" lengthAdjust="spacingAndGlyphs">₹2 Cash</text>
+        <text x="69" y="24" text-anchor="middle">₹2 Cash</text>
 
         <path d="M50 50 L93.3 25 A50 50 0 0 1 93.3 75 Z" fill="#3b82f6"/>
-        <text x="78" y="52" text-anchor="middle" textLength="22" lengthAdjust="spacingAndGlyphs">20g Shroom</text>
+        <text x="78" y="52" text-anchor="middle">20g Shroom</text>
 
         <path d="M50 50 L93.3 75 A50 50 0 0 1 50 100 Z" fill="#10b981"/>
-        <text x="69" y="78" text-anchor="middle" textLength="22" lengthAdjust="spacingAndGlyphs">100 Pts</text>
+        <text x="69" y="78" text-anchor="middle">100 Pts</text>
 
         <path d="M50 50 L50 100 A50 50 0 0 1 6.7 75 Z" fill="#f59e0b"/>
-        <text x="31" y="78" text-anchor="middle" textLength="22" lengthAdjust="spacingAndGlyphs">₹1 Cash</text>
+        <text x="31" y="78" text-anchor="middle">₹1 Cash</text>
 
         <path d="M50 50 L6.7 75 A50 50 0 0 1 6.7 25 Z" fill="#8b5cf6"/>
-        <text x="22" y="52" text-anchor="middle" textLength="22" lengthAdjust="spacingAndGlyphs">10g Shroom</text>
+        <text x="22" y="52" text-anchor="middle">10g Shroom</text>
 
         <path d="M50 50 L6.7 25 A50 50 0 0 1 50 0 Z" fill="#ec4899"/>
-        <text x="31" y="24" text-anchor="middle" textLength="22" lengthAdjust="spacingAndGlyphs">50 Pts</text>
+        <text x="31" y="24" text-anchor="middle">50 Pts</text>
       </svg>
     </div>
 
@@ -255,17 +255,13 @@ function flyReward(t){
     d.style.top=innerHeight/2+"px";
     d.style.setProperty("--mx",Math.random()*180-90+"px");
     d.style.setProperty("--my",Math.random()*120-60+"px");
-    d.style.setProperty("--dx",r.left-innerWidth/2+25+"px");d.style.setProperty("--mx",Math.random()*180-90+"px");
-    d.style.setProperty("--my",Math.random()*120-60+"px");
     d.style.setProperty("--dx",r.left-innerWidth/2+25+"px");
     d.style.setProperty("--dy",r.top-innerHeight/2+15+"px");
     document.body.appendChild(d);
     setTimeout(()=>d.remove(),1800);
   }
   playClap();
-}
-
-function playSpinSound() {
+}function playSpinSound() {
     spinSound.currentTime = 0;
     spinSound.play().catch(()=>{});
 }
@@ -307,21 +303,22 @@ async function verifyCode(){
   if(!e)return pop("কোড লিখুন Submit করুন");
   try{
     let t=await fetch(API,{method:"POST",body:new URLSearchParams({code:e})});
-    if("success"===(t=await t.text())){
+    let res = await t.text();
+    if("success"===res){
       verified=1;
       canSpin=true;
       tap.style.display="none";
       playClap();
       fireConfetti();
       openSpinOrder();
-    } else pop("used"==t?"☑️ কোড টি ব্যবহার হয়েছে":"ভুল কোড দেবেন না ❌")
+    } else pop("used"==res?"☑️ কোড টি ব্যবহার হয়েছে":"ভুল কোড দেবেন না ❌")
   }catch(e){pop("😠 মাশরুম কিনুন, আবার চেষ্টা করুন")}
 }
 
 function pAud(e){try{let t=document.getElementById(e);t&&(t.currentTime=0,t.play().catch(()=>{}))}catch(e){}}
 function stopS(){sS.pause();sS.currentTime=0}
 
-function initApp(){uUI(!1);initCv();chkBns();updatePlant();}
+function initApp(){uUI();initCv();chkBns();updatePlant();}
 
 function uUI(){
     let oldCash = parseFloat(document.getElementById("cash").innerText.replace("₹","")) || 0;
@@ -384,7 +381,9 @@ function doScr(e){
     lx=t.x;ly=t.y;
     chkScr();
   }
-  }function chkScr(){
+}
+
+function chkScr(){
   if(!isScr){
     let e=cx.getImageData(0,0,cv.width,cv.height).data,t=0;
     for(let a=0;a<e.length;a+=4)0===e[a+3]&&t++;
@@ -457,9 +456,7 @@ function claimDailyBonus(){
       }
     },1e3)
   })
-}
-
-function chkBns(){
+  }function chkBns(){
   let e=localStorage.getItem("km_lastBonus"),t=document.getElementById("bonusBtn"),a=document.getElementById("bonusTimer");
   if(!e)return t.disabled=!1,void(a.innerText="");
   let n=Date.now()- +e,o=864e5-n;
@@ -492,57 +489,75 @@ function updatePlant(){
 }
 
 /* 🎡 Spin & Contact / Withdraw Section */
-function openSpinOrder(){canSpin?(spinModal.style.display="flex",claimBtn.style.display="none",spinBtn.style.display="block",spinBtn.disabled=!1,spinReward.innerHTML="🎡 SPIN করে পুরস্কার জিতুন"):openWithdrawModal()}
+function openSpinOrder(){
+  if(canSpin){
+    document.getElementById("spinModal").style.display="flex";
+    document.getElementById("claimBtn").style.display="none";
+    document.getElementById("spinBtn").style.display="block";
+    document.getElementById("spinBtn").disabled=!1;
+    document.getElementById("spinReward").innerHTML="🎡 SPIN করে পুরস্কার জিতুন";
+  } else {
+    openWithdrawModal();
+  }
+}
 
 function spinOrderWheel(){
-if(!canSpin)return;
-playSpinSound();
-spinBtn.disabled=!0;
-const w=spinWheelVisual,r=["💵 ₹0.80 ক্যাশ","🍄 20g মাশরুম","⭐ 100 পয়েন্ট","💵 ₹1.00 ক্যাশ","🍄 10g মাশরুম","⭐ 50 পয়েন্ট"],f=Math.floor(Math.random()*360);
-wheel.style.transition="transform 8s cubic-bezier(.08,.82,.17,1)";
-currentRotation+=2880+f;
-w.style.transform=`rotate(${currentRotation}deg)`;
-setTimeout(()=>showSpinReward(r[Math.floor(((360-currentRotation%360)%360)/60)]),7000)
+  if(!canSpin)return;
+  playSpinSound();
+  let spinBtn = document.getElementById("spinBtn");
+  spinBtn.disabled=!0;
+  const w=document.getElementById("spinWheelVisual");
+  const r=["💵 ₹0.80 ক্যাশ","🍄 20g মাশরুম","⭐ 100 point","💵 ₹1.00 ক্যাশ","🍄 10g মাশরুম","⭐ 50 point"];
+  const f=Math.floor(Math.random()*360);
+  currentRotation+=2880+f;
+  w.style.transform=`rotate(${currentRotation}deg)`;
+  setTimeout(()=>showSpinReward(r[Math.floor(((360-currentRotation%360)%360)/60)]),7000);
 }
 
 function showSpinReward(r){
-playClap();
-fireConfetti();
-spinReward.innerHTML="🎉 আপনি জিতেছেন<br><b>"+r+"</b>";
-claimBtn.style.display="block";
-spinBtn.style.display="none";
-currentSpinReward=r.includes("₹0.80")?{type:"cash",val:.8}:r.includes("20g")?{type:"mushroom",val:20}:r.includes("100")?{type:"points",val:100}:r.includes("₹1.00")?{type:"cash",val:1}:r.includes("10g")?{type:"mushroom",val:10}:{type:"points",val:50}
+  playClap();
+  fireConfetti();
+  document.getElementById("spinReward").innerHTML="🎉 আপনি জিতেছেন<br><b>"+r+"</b>";
+  document.getElementById("claimBtn").style.display="block";
+  document.getElementById("spinBtn").style.display="none";
+  currentSpinReward=r.includes("₹0.80")?{type:"cash",val:.8}:r.includes("20g")?{type:"mushroom",val:20}:r.includes("100")?{type:"points",val:100}:r.includes("₹1.00")?{type:"cash",val:1}:r.includes("10g")?{type:"mushroom",val:10}:{type:"points",val:50};
 }
 
 function claimSpinReward(){
-if(!currentSpinReward)return;
-playClap();
-flyReward(currentSpinReward.type);
-let m="";
-if(currentSpinReward.type=="cash")cash+=currentSpinReward.val,m=`অভিনন্দন! আপনি ₹${currentSpinReward.val.toFixed(2)} ক্যাশ জিতেছেন।`;
-else if(currentSpinReward.type=="mushroom")shroom+=currentSpinReward.val,m=`অভিনন্দন! আপনি ${currentSpinReward.val} গ্রাম মাশরুম জিতেছেন।`;
-else pts+=currentSpinReward.val,m=`অভিনন্দন! আপনি ${currentSpinReward.val} পয়েন্ট জিতেছেন।`;
-speechSynthesis.cancel();
-let u=new SpeechSynthesisUtterance(m);
-u.lang="bn-IN";
-u.rate=.95;
-speechSynthesis.speak(u);
-localStorage.setItem("km_cash",cash);
-localStorage.setItem("km_points",pts);
-localStorage.setItem("km_shroom",shroom);
-uUI();
-spinModal.style.display="none";
-currentSpinReward=null;
-canSpin=!1;
-openWithdrawModal()
+  if(!currentSpinReward)return;
+  playClap();
+  flyReward(currentSpinReward.type);
+  let m="";
+  if(currentSpinReward.type=="cash")cash+=currentSpinReward.val,m=`অভিনন্দন! আপনি ₹${currentSpinReward.val.toFixed(2)} ক্যাশ জিতেছেন।`;
+  else if(currentSpinReward.type=="mushroom")shroom+=currentSpinReward.val,m=`অভিনন্দন! আপনি ${currentSpinReward.val} গ্রাম মাশরুম জিতেছেন।`;
+  else pts+=currentSpinReward.val,m=`অভিনন্দন! আপনি ${currentSpinReward.val} পয়েন্ট জিতেছেন।`;
+  
+  if('speechSynthesis' in window){
+    speechSynthesis.cancel();
+    let u=new SpeechSynthesisUtterance(m);
+    u.lang="bn-IN";
+    u.rate=.95;
+    speechSynthesis.speak(u);
+  }
+  
+  localStorage.setItem("km_cash",cash);
+  localStorage.setItem("km_points",pts);
+  localStorage.setItem("km_shroom",shroom);
+  uUI();
+  document.getElementById("spinModal").style.display="none";
+  currentSpinReward=null;
+  canSpin=!1;
+  openWithdrawModal();
 }
 
 function openWithdrawModal(){pAud("cS");document.getElementById("withdrawModal").style.display="flex"}
 function closeWithdrawModal(){document.getElementById("withdrawModal").style.display="none"}
 
-/* 💸 Custom Confirm trigger in withdraw process */
 function confirmWithdraw(){
-  if(cash<2)return speechSynthesis.cancel(),pop(" ক্যাশ Wallet-এ কমপক্ষে ₹2 টাকা থাকতে হবে।");
+  if(cash<2){
+    if('speechSynthesis' in window) speechSynthesis.cancel();
+    return pop(" ক্যাশ Wallet-এ কমপক্ষে ₹2 টাকা থাকতে হবে।");
+  }
   let e=document.getElementById("wName").value.trim(),t=document.getElementById("wPhone").value.trim();
   if(!e||!t)return pop("নাম এবং ফোন নাম্বার ✍️পূরণ করুন!");
   if(10!==t.length||/\D/.test(t))return pop("❌ 10 সংখ্যার UPI নম্বর লিখুন");
@@ -582,5 +597,3 @@ setTimeout(()=>{s.style.opacity="0";setTimeout(()=>s.remove(),500)},1e4);
 </script>
 </body>
 </html>
-
-  
