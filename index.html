@@ -181,22 +181,22 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
       <div class="center-btn">🎁</div>
       <svg id="spinWheelVisual" viewBox="0 0 100 100" width="260" height="260">
         <path d="M50 50 L50 0 A50 50 0 0 1 93.3 25 Z" fill="#ef4444"/>
-        <text x="69" y="24" text-anchor="middle">₹2 Cash</text>
+        <text x="69" y="24" text-anchor="middle">₹0.80 ক্যাশ</text>
 
         <path d="M50 50 L93.3 25 A50 50 0 0 1 93.3 75 Z" fill="#3b82f6"/>
-        <text x="78" y="52" text-anchor="middle">20g Shroom</text>
+        <text x="78" y="52" text-anchor="middle">20g মাশরুম</text>
 
         <path d="M50 50 L93.3 75 A50 50 0 0 1 50 100 Z" fill="#10b981"/>
-        <text x="69" y="78" text-anchor="middle">100 Pts</text>
+        <text x="69" y="78" text-anchor="middle">100 পয়েন্ট</text>
 
         <path d="M50 50 L50 100 A50 50 0 0 1 6.7 75 Z" fill="#f59e0b"/>
-        <text x="31" y="78" text-anchor="middle">₹1 Cash</text>
+        <text x="31" y="78" text-anchor="middle">₹1.00 ক্যাশ</text>
 
         <path d="M50 50 L6.7 75 A50 50 0 0 1 6.7 25 Z" fill="#8b5cf6"/>
-        <text x="22" y="52" text-anchor="middle">10g Shroom</text>
+        <text x="22" y="52" text-anchor="middle">10g মাশরুম</text>
 
         <path d="M50 50 L6.7 25 A50 50 0 0 1 50 0 Z" fill="#ec4899"/>
-        <text x="31" y="24" text-anchor="middle">50 Pts</text>
+        <text x="31" y="24" text-anchor="middle">50 পয়েন্ট</text>
       </svg>
     </div>
 
@@ -456,7 +456,9 @@ function claimDailyBonus(){
       }
     },1e3)
   })
-  }function chkBns(){
+}
+
+function chkBns(){
   let e=localStorage.getItem("km_lastBonus"),t=document.getElementById("bonusBtn"),a=document.getElementById("bonusTimer");
   if(!e)return t.disabled=!1,void(a.innerText="");
   let n=Date.now()- +e,o=864e5-n;
@@ -478,15 +480,14 @@ function waterPlant(){
   localStorage.setItem("km_growDay",growDay);
   localStorage.setItem("km_lastWater",lastWater);
   updatePlant();
-}
-
-function updatePlant(){
+  }function updatePlant(){
   let plant=document.getElementById("mushroomPlant");
   let dayTxt=document.getElementById("plantDay");
   const stages=["🌱","🍄","🍄🍄","🍄🍄🍄","🍄🍄🍄🍄","🍄🍄🍄🍄🍄","👑🍄"];
   plant.innerHTML=stages[Math.min(growDay-1,6)];
   dayTxt.innerHTML="Day "+growDay+" / 7";
 }
+
 /* 🎡 Spin & Contact / Withdraw Section */
 function openSpinOrder(){
   if(canSpin){
@@ -527,9 +528,16 @@ function claimSpinReward(){
   playClap();
   flyReward(currentSpinReward.type);
   let m="";
-  if(currentSpinReward.type=="cash")cash+=currentSpinReward.val,m=`অভিনন্দন! আপনি ₹${currentSpinReward.val.toFixed(2)} ক্যাশ জিতেছেন।`;
-  else if(currentSpinReward.type=="mushroom") মাশরুম+=currentSpinReward.val,m=`অভিনন্দন! আপনি ${currentSpinReward.val} গ্রাম মাশরুম জিতেছেন।`;
-  else pts+=currentSpinReward.val,m=`অভিনন্দন! আপনি ${currentSpinReward.val} পয়েন্ট জিতেছেন।`;
+  if(currentSpinReward.type=="cash"){
+    cash+=currentSpinReward.val;
+    m=`অভিনন্দন! আপনি ₹${currentSpinReward.val.toFixed(2)} ক্যাশ জিতেছেন।`;
+  } else if(currentSpinReward.type=="mushroom"){
+    shroom+=currentSpinReward.val;
+    m=`অভিনন্দন! আপনি ${currentSpinReward.val} গ্রাম মাশরুম জিতেছেন।`;
+  } else {
+    pts+=currentSpinReward.val;
+    m=`অভিনন্দন! আপনি ${currentSpinReward.val} পয়েন্ট জিতেছেন।`;
+  }
   
   if('speechSynthesis' in window){
     speechSynthesis.cancel();
@@ -539,9 +547,9 @@ function claimSpinReward(){
     speechSynthesis.speak(u);
   }
   
-  localStorage.setItem("km_cash",cash);
-  localStorage.setItem("km_points",পয়েন্ট);
-  localStorage.setItem("km_mushroom",মাশরুম);
+  localStorage.setItem("km_cash", cash);
+  localStorage.setItem("km_points", pts);
+  localStorage.setItem("km_shroom", shroom);
   uUI();
   document.getElementById("spinModal").style.display="none";
   currentSpinReward=null;
@@ -566,7 +574,7 @@ function confirmWithdraw(){
 
 function submitWithdraw(){
   let e=document.getElementById("wName").value.trim(),t=document.getElementById("wPhone").value.trim();
-  let a=`✨ সম্মানিত🙏 গ্রাহক ✨\n(💵Transfer) প্রসেস..🕵️\n UPI পেমেন্ট Only 30 মিনিট/⏱️Wait ✅\n━━━━━━━━━━━━━\n👤 আপনার নাম: ${e}\n📞 Phone: ${t}\n💸 ক্যাশ: ₹${cash.toFixed(2)}\n🪙 পয়েন্ট: ${pts}\n🍄 ছাতু: ${shroom} gm`;
+  let a=`✨ সম্মানিত🙏 গ্রাহক ✨\n(💵Transfer) প্রসেস..🕵️\n UPI পেমেন্ট Only 30 মিনিট/⏱️Wait ✅\n━━━━━━━━━━━━━\n👤 আপনার নাম: ${e}\n📞 Phone: ${t}\n💸 ক্যাশ: ₹${cash.toFixed(2)}\n🪙 পয়েন্ট: ${pts}\n🍄 মাশরুম: ${shroom} গ্রাম`;
   pAud("scS");
   window.open("https://wa.me/917047643951?text="+encodeURIComponent(a),"_blank");
   cash=0;shroom=0;pts=0;
@@ -596,5 +604,5 @@ setTimeout(()=>{s.style.opacity="0";setTimeout(()=>s.remove(),500)},1e4);
 </script>
 </body>
 </html>
-
-  
+        
+    
