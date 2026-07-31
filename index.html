@@ -487,7 +487,6 @@ function updatePlant(){
   plant.innerHTML=stages[Math.min(growDay-1,6)];
   dayTxt.innerHTML="Day "+growDay+" / 7";
 }
-
 /* 🎡 Spin & Contact / Withdraw Section */
 function openSpinOrder(){
   if(canSpin){
@@ -520,7 +519,7 @@ function showSpinReward(r){
   document.getElementById("spinReward").innerHTML="🎉 আপনি জিতেছেন<br><b>"+r+"</b>";
   document.getElementById("claimBtn").style.display="block";
   document.getElementById("spinBtn").style.display="none";
-  currentSpinReward=r.includes("₹0.80")?{type:"cash",val:.8}:r.includes("20g")?{type:"মাশরুম",val:20}:r.includes("100")?{type:"points",val:100}:r.includes("₹1.00")?{type:"cash",val:1}:r.includes("10g")?{type:"মাশরুম",val:10}:{type:"points",val:50};
+  currentSpinReward=r.includes("₹0.80")?{type:"cash",val:.8}:r.includes("20g")?{type:"mushroom",val:20}:r.includes("100")?{type:"points",val:100}:r.includes("₹1.00")?{type:"cash",val:1}:r.includes("10g")?{type:"mushroom",val:10}:{type:"points",val:50};
 }
 
 function claimSpinReward(){
@@ -529,7 +528,7 @@ function claimSpinReward(){
   flyReward(currentSpinReward.type);
   let m="";
   if(currentSpinReward.type=="cash")cash+=currentSpinReward.val,m=`অভিনন্দন! আপনি ₹${currentSpinReward.val.toFixed(2)} ক্যাশ জিতেছেন।`;
-  else if(currentSpinReward.type=="mushroom")shroom+=currentSpinReward.val,m=`অভিনন্দন! আপনি ${currentSpinReward.val} গ্রাম মাশরুম জিতেছেন।`;
+  else if(currentSpinReward.type=="mushroom") মাশরুম+=currentSpinReward.val,m=`অভিনন্দন! আপনি ${currentSpinReward.val} গ্রাম মাশরুম জিতেছেন।`;
   else pts+=currentSpinReward.val,m=`অভিনন্দন! আপনি ${currentSpinReward.val} পয়েন্ট জিতেছেন।`;
   
   if('speechSynthesis' in window){
@@ -542,7 +541,7 @@ function claimSpinReward(){
   
   localStorage.setItem("km_cash",cash);
   localStorage.setItem("km_points",পয়েন্ট);
-  localStorage.setItem("km_shroom",মাশরুম);
+  localStorage.setItem("km_mushroom",মাশরুম);
   uUI();
   document.getElementById("spinModal").style.display="none";
   currentSpinReward=null;
@@ -596,4 +595,6 @@ setTimeout(()=>{gif.src="img/splash3.gif"},7e3);
 setTimeout(()=>{s.style.opacity="0";setTimeout(()=>s.remove(),500)},1e4);
 </script>
 </body>
-</html>   
+</html>
+
+  
