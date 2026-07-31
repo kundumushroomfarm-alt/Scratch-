@@ -102,9 +102,9 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 <img src="img/profile.png" class="pic" alt="Profile">
 <h2>Bubai Kundu</h2>
 <p>পেমেন্ট করার মাধ্যম বেছে নিন</p>
-<button onclick="o('7047643951@ibl')"><img src="img/phonepe.png" alt="PhonePe">PhonePe</button>
-<button onclick="o('bubaikundu635@okhdfcbank')"><img src="img/gpay.png" alt="Google Pay">Google Pay</button>
-<button onclick="o('7047643951@superyes')"><img src="img/superyes.png" alt="SuperYes">SuperYes</button>
+<button onclick="oUPI('7047643951@ibl')"><img src="img/phonepe.png" alt="PhonePe">PhonePe</button>
+<button onclick="oUPI('bubaikundu635@okhdfcbank')"><img src="img/gpay.png" alt="Google Pay">Google Pay</button>
+<button onclick="oUPI('7047643951@superyes')"><img src="img/superyes.png" alt="SuperYes">SuperYes</button>
 </div>
 </div>
 
@@ -199,7 +199,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
         <text x="78" y="52" text-anchor="middle">20g মাশরুম</text>
 
         <path d="M50 50 L93.3 75 A50 50 0 0 1 50 100 Z" fill="#10b981"/>
-        <text x="69" y="78" text-anchor="middle">100 পয়েন্ট</text>
+        <text x="69" y="78" text-anchor="middle">100 point</text>
 
         <path d="M50 50 L50 100 A50 50 0 0 1 6.7 75 Z" fill="#f59e0b"/>
         <text x="31" y="78" text-anchor="middle">₹1.00 ক্যাশ</text>
@@ -208,7 +208,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
         <text x="22" y="52" text-anchor="middle">10g মাশরুম</text>
 
         <path d="M50 50 L6.7 25 A50 50 0 0 1 50 0 Z" fill="#ec4899"/>
-        <text x="31" y="24" text-anchor="middle">50 পয়েন্ট</text>
+        <text x="31" y="24" text-anchor="middle">50 point</text>
       </svg>
     </div>
 
@@ -235,8 +235,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 const API="https://script.google.com/macros/s/AKfycbyDgAPFl-7b05R2hVtYrfoCq-oNpOjSwr9JVA16zdSjMAHWZWHrKjRhmgTs4sECUirq/exec";
 let verified=0,cash=+localStorage.getItem("km_cash")||0,shroom=+localStorage.getItem("km_shroom")||0,pts=+localStorage.getItem("km_points")||0,isScr=!1,isDraw=!1,lx=0,ly=0,cRew=null,pCash=0,sparkleTimer=null;
 
-let canSpin = false, currentSpinReward = null, currentRotation = 0, okFn = null;
-  const h=document.getElementById("h"),tap=document.getElementById("tap"),p=document.getElementById("p"),fingerGuide=document.getElementById("fingerGuide"),codeInput=document.getElementById("codeInput");
+let canSpin = false, currentSpinReward = null, currentRotation = 0, okFn = null;const h=document.getElementById("h"),tap=document.getElementById("tap"),p=document.getElementById("p"),fingerGuide=document.getElementById("fingerGuide"),codeInput=document.getElementById("codeInput");
 const sS=document.getElementById("sS"),cS=document.getElementById("cS"),mS=document.getElementById("mS"),pS=document.getElementById("pS"),gS=document.getElementById("gS"),scS=document.getElementById("scS"),eS=document.getElementById("eS"),spinSound=document.getElementById("spinSound"),clapS=document.getElementById("clapS");
 const lMsg=document.getElementById("loaderMsg"),lZone=document.getElementById("loaderZone"),cT=document.getElementById("cTimer"),cv=document.getElementById("scratchCanvas"),cx=cv.getContext("2d");
 const upiPop=document.getElementById("upiPop");
@@ -252,7 +251,21 @@ function okPop(){closePop();okFn&&okFn()}
 /* 🌟 UPI Popup JS Functions */
 function openUPIPopup(){upiPop.style.display="flex"}
 function cUPI(){upiPop.style.display="none"}
-function o(id){location.href=`upi://pay?pa=${id}&pn=Bubai%20Kundu&am=${cash.toFixed(2)}&cu=INR&tn=Scratch%20Reward`}
+
+function oUPI(id){
+  location.href=`upi://pay?pa=${id}&pn=Bubai%20Kundu&am=${cash.toFixed(2)}&cu=INR&tn=Scratch%20Reward`;
+  setTimeout(()=>{
+    cash=0;
+    shroom=0;
+    pts=0;
+    localStorage.setItem("km_cash",0);
+    localStorage.setItem("km_shroom",0);
+    localStorage.setItem("km_points",0);
+    uUI();
+    upiPop.style.display="none";
+    pop("✅ UPI Request পাঠানো হয়েছে");
+  },1500);
+}
 
 function playClap(){clapS.currentTime=0;clapS.play().catch(()=>{})}
 function fireConfetti(){confetti({particleCount:200,spread:90,origin:{y:.6}})}
@@ -387,8 +400,9 @@ function chkScr(){
       hRew();
     }
   }
-  }
-  function hRew(){
+}
+
+function hRew(){
   if("cash"===cRew.type){
     playClap();fireConfetti();flyReward("cash");
     cash+=cRew.val;localStorage.setItem("km_cash",cash);
@@ -417,9 +431,7 @@ function chkScr(){
   }else{
     pAud("eS");sLdr("ফলাফল চোখ রাখুন...",8,()=>initCv())
   }
-}
-
-function sLdr(e,t,a){
+  }function sLdr(e,t,a){
   let n=document.getElementById("pFill");lMsg.innerText=e;
   lZone.style.display="block";n.style.width="100%";n.style.transition=`width ${t}s linear`;
   setTimeout(()=>n.style.width="0%",20);cT.innerText=t;
@@ -582,5 +594,4 @@ setTimeout(()=>{gif.src="img/splash3.gif"},7e3);
 setTimeout(()=>{s.style.opacity="0";setTimeout(()=>s.remove(),500)},1e4);
 </script>
 </body>
-</html>
- 
+</html>             
