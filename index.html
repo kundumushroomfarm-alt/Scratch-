@@ -568,24 +568,39 @@ function submitWithdraw(){
   let msg=`✨ Withdraw Request\n\n👤 ${e}\n📞 ${t}\n\n💵 Cash: ₹${cash.toFixed(2)}\n⭐ Points: ${pts}\n🍄 Mushroom: ${shroom} gm`;
 
   fetch(PAYMENT_API,{
-    method:"POST",
-    mode:"no-cors",
-    body:new URLSearchParams({
-      action:"withdraw",
-      code:codeInput.value,
-      name:e,
-      phone:t,
-      cash:cash,
-      points:pts,
-      mushroom:shroom
-    })
-  });
+  fetch(PAYMENT_API,{
+  method:"POST",
+  body:new URLSearchParams({
+    action:"withdraw",
+    code:codeInput.value,
+    name:e,
+    phone:t,
+    cash:cash,
+    points:pts,
+    mushroom:shroom
+  })
+})
+.then(r=>r.text())
+.then(res=>{
+  alert("Server Response: " + res);
+
+  let msg=`✨ Withdraw Request
+
+👤 ${e}
+📞 ${t}
+
+💵 Cash: ₹${cash.toFixed(2)}
+⭐ Points: ${pts}
+🍄 Mushroom: ${shroom} gm`;
 
   window.open("https://wa.me/917047643951?text="+encodeURIComponent(msg),"_blank");
 
   pop("✅ Withdraw Request পাঠানো হয়েছে");
   closeWithdrawModal();
-}
+})
+.catch(err=>{
+  alert("Error: " + err);
+});
 
 function checkPayment(){
   fetch(PAYMENT_API+"?action=status&code="+codeInput.value)
