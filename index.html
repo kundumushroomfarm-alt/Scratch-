@@ -232,13 +232,16 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 </div>
 
 <script>
+const SHEET_ID="1TPqqgrbZvwf_gSBZV3wgLjpEjXSlCzO8";
+const SHEET_NAME="Sheet1";
+
 const VERIFY_API="https://script.google.com/macros/s/AKfycbyDgAPFl-7b05R2hVtYrfoCq-oNpOjSwr9JVA16zdSjMAHWZWHrKjRhmgTs4sECUirq/exec";
-const PAYMENT_API="https://script.google.com/macros/s/AKfycbwbOFBwH0pFpld4Z2F4wO3QgVhCKqXOdmBdRcKV8BiAdV00WXWX_bBBbHMfZOJ4EW7f/exec";
+const PAYMENT_API="https://script.google.com/macros/s/AKfycbyNHbWj4m4muIgYBYBuPJAaFuvuB3Dv6Pl7zy756dzSbEfEfWms2xzVo8j2yGD2LcN3KA/exec";
 
 let verified=0,cash=+localStorage.getItem("km_cash")||0,shroom=+localStorage.getItem("km_shroom")||0,pts=+localStorage.getItem("km_points")||0,isScr=!1,isDraw=!1,lx=0,ly=0,cRew=null,pCash=0,sparkleTimer=null;
 let canSpin=!1,currentSpinReward=null,currentRotation=0,okFn=null;
-const h=document.getElementById("h"),tap=document.getElementById("tap"),p=document.getElementById("p"),fingerGuide=document.getElementById("fingerGuide"),codeInput=document.getElementById("codeInput");
-  const sS=document.getElementById("sS"),cS=document.getElementById("cS"),mS=document.getElementById("mS"),pS=document.getElementById("pS"),gS=document.getElementById("gS"),scS=document.getElementById("scS"),eS=document.getElementById("eS"),spinSound=document.getElementById("spinSound"),clapS=document.getElementById("clapS");
+  const h=document.getElementById("h"),tap=document.getElementById("tap"),p=document.getElementById("p"),fingerGuide=document.getElementById("fingerGuide"),codeInput=document.getElementById("codeInput");
+const sS=document.getElementById("sS"),cS=document.getElementById("cS"),mS=document.getElementById("mS"),pS=document.getElementById("pS"),gS=document.getElementById("gS"),scS=document.getElementById("scS"),eS=document.getElementById("eS"),spinSound=document.getElementById("spinSound"),clapS=document.getElementById("clapS");
 const lMsg=document.getElementById("loaderMsg"),lZone=document.getElementById("loaderZone"),cT=document.getElementById("cTimer"),cv=document.getElementById("scratchCanvas"),cx=cv.getContext("2d");
 const upiPop=document.getElementById("upiPop");
 
@@ -369,9 +372,7 @@ function stScr(e){
 function peelFoil(x,y){let b=document.querySelector(".scratch-container");for(let i=0;i<4;i++){let p=document.createElement("div");p.className="peel";p.style.left=x-12+"px";p.style.top=y-12+"px";p.style.setProperty("--px",Math.random()*120-60+"px");p.style.setProperty("--py",Math.random()*100-50+"px");b.appendChild(p);setTimeout(()=>p.remove(),800)}}
 function scratchEdge(x,y){cx.save();cx.globalCompositeOperation="source-over";let g=cx.createRadialGradient(x,y,2,x,y,22);g.addColorStop(0,"rgba(255,255,255,.35)");g.addColorStop(.4,"rgba(220,220,220,.18)");g.addColorStop(1,"rgba(255,255,255,0)");cx.fillStyle=g;cx.beginPath();cx.arc(x,y,22,0,6.283);cx.fill();cx.restore()}
 function scratchPowder(x,y){let b=document.querySelector(".scratch-container");for(let i=0;i<3;i++){let p=document.createElement("div");p.className="powder";p.style.left=x+"px";p.style.top=y+"px";p.style.background="#fff";p.style.setProperty("--x",Math.random()*80-40+"px");p.style.setProperty("--y",Math.random()*80-40+"px");b.appendChild(p);setTimeout(()=>p.remove(),800)}}
-function silverFoil(x,y){let b=document.querySelector(".scratch-container");for(let i=0;i<2;i++){let f=document.createElement("div");f.className="foil";f.style.left=x+"px";f.style.top=y+"px";f.style.setProperty("--fx",Math.random()*100-50+"px");f.style.setProperty("--fy",Math.random()*100-50+"px");b.appendChild(f);setTimeout(()=>f.remove(),900)}}
-
-function doScr(e){
+function silverFoil(x,y){let b=document.querySelector(".scratch-container");for(let i=0;i<2;i++){let f=document.createElement("div");f.className="foil";f.style.left=x+"px";f.style.top=y+"px";f.style.setProperty("--fx",Math.random()*100-50+"px");f.style.setProperty("--fy",Math.random()*100-50+"px");b.appendChild(f);setTimeout(()=>f.remove(),900)}}function doScr(e){
   if(isDraw&&!isScr){
     let t=getP(e);
     cx.globalCompositeOperation="destination-out";
@@ -394,7 +395,9 @@ function chkScr(){
       hRew();
     }
   }
-  }function hRew(){
+}
+
+function hRew(){
   if("cash"===cRew.type){
     playClap();fireConfetti();flyReward("cash");
     cash+=cRew.val;localStorage.setItem("km_cash",cash);
@@ -562,12 +565,14 @@ function confirmWithdraw(){
 }
 
 function submitWithdraw(){
+  let e=document.getElementById("wName").value.trim();
+  let t=document.getElementById("wPhone").value.trim();
 
-  let e = document.getElementById("wName").value.trim();
-  let t = document.getElementById("wPhone").value.trim();
+  let msg=`✨ Withdraw Request\n\n👤 ${e}\n📞 ${t}\n\n💵 Cash: ₹${cash.toFixed(2)}\n⭐ Points: ${pts}\n🍄 Mushroom: ${shroom} gm`;
 
   fetch(PAYMENT_API,{
     method:"POST",
+    mode:"no-cors",
     body:new URLSearchParams({
       action:"withdraw",
       code:codeInput.value,
@@ -577,35 +582,13 @@ function submitWithdraw(){
       points:pts,
       mushroom:shroom
     })
-  })
-  .then(r => r.text())
-  .then(res => {
-
-    alert("Server Response: " + res);
-
-    let msg=`✨ Withdraw Request
-
-👤 ${e}
-📞 ${t}
-
-💵 Cash: ₹${cash.toFixed(2)}
-⭐ Points: ${pts}
-🍄 Mushroom: ${shroom} gm`;
-
-    window.open(
-      "https://wa.me/917047643951?text=" + encodeURIComponent(msg),
-      "_blank"
-    );
-
-    pop("✅ Withdraw Request পাঠানো হয়েছে");
-    closeWithdrawModal();
-
-  })
-  .catch(err => {
-    alert("Error: " + err);
   });
 
-  }
+  window.open("https://wa.me/917047643951?text="+encodeURIComponent(msg),"_blank");
+
+  pop("✅ Withdraw Request পাঠানো হয়েছে");
+  closeWithdrawModal();
+}
 
 function checkPayment(){
   fetch(PAYMENT_API+"?action=status&code="+codeInput.value)
@@ -621,6 +604,7 @@ function checkPayment(){
       localStorage.setItem("km_shroom",0);
 
       uUI();
+
       pop("✅ Payment সফল হয়েছে");
     }else{
       pop("⏳ Payment Pending");
