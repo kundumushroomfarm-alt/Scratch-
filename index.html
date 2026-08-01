@@ -568,7 +568,6 @@ function submitWithdraw(){
   let msg=`✨ Withdraw Request\n\n👤 ${e}\n📞 ${t}\n\n💵 Cash: ₹${cash.toFixed(2)}\n⭐ Points: ${pts}\n🍄 Mushroom: ${shroom} gm`;
 
   fetch(PAYMENT_API,{
-  fetch(PAYMENT_API,{
   method:"POST",
   body:new URLSearchParams({
     action:"withdraw",
@@ -601,7 +600,7 @@ function submitWithdraw(){
 .catch(err=>{
   alert("Error: " + err);
 });
-
+  
 function checkPayment(){
   fetch(PAYMENT_API+"?action=status&code="+codeInput.value)
   .then(r=>r.json())
