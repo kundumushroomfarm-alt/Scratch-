@@ -11,8 +11,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 .header{font-size:22px;font-weight:800;color:#f59e0b;margin-bottom:12px}
 .verify-box{display:flex;gap:8px;margin-bottom:15px;position:relative}
 .verify-box input{flex:1;padding:12px;border-radius:10px;border:1px solid #475569;background:#334155;color:#fff;outline:none;font-size:14px;text-align:center}
-.verify-box button{background:#eab308;color:#0f172a;border:none;padding:10px 15px;border-radius:10px;font-weight:bold;cursor:pointer;transition:0.2s}
-.verify-box button:active{transform:scale(0.95)}
+.verify-box button{background:#eab308;color:#0f172a;border:none;padding:10px 15px;border-radius:10px;font-weight:bold;cursor:pointer}
 #tap{position:absolute;left:20px;top:6px;font-size:26px;pointer-events:none;animation:tapMove 3.5s ease-in-out infinite;filter:hue-rotate(320deg) saturate(10);z-index:10}
 @keyframes tapMove{0%{transform:translateX(0);opacity:0}15%{transform:translateX(0);opacity:1}55%{transform:translateX(240px) scale(1)}62%{transform:translateX(240px) scale(.75)}68%{transform:translateX(240px) scale(1)}74%{transform:translateX(240px) scale(.75)}80%{transform:translateX(240px) scale(1)}90%{opacity:1}100%{transform:translateX(240px);opacity:0}}
 .stats-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
@@ -20,8 +19,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 .stat-box div:first-child{font-size:13px;font-weight:700;margin-bottom:4px}
 .stat-box div:last-child{font-size:18px;font-weight:bold;color:#f8fafc}
 .cash-title{color:#fff;text-transform:uppercase}.cash-title .red{color:#ff3b30}.cash-title .green{color:#22c55e}
-.mushroom-title{color:#22c55e;line-height:1.2}
-.point-title{color:#ff3b30;line-height:1.2}
+.mushroom-title{color:#22c55e;line-height:1.2}.point-title{color:#ff3b30;line-height:1.2}
 .farmBox{background:#1e293b;padding:8px 12px;border-radius:12px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;border:1px solid #06b6d4;box-shadow:0 0 10px rgba(6,182,212,0.15)}
 .farm-info{display:flex;align-items:center;gap:10px}
 #mushroomPlant{font-size:32px;line-height:1;min-width:40px;text-align:center;transition:transform .3s ease}
@@ -74,7 +72,6 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 #bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 #gif{position:relative;width:230px;max-width:70%;display:none}
 #p{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#e11d48;color:#fff;padding:18px 25px;border-radius:12px;font:700 16px Arial;z-index:99999;box-shadow:0 0 20px #0008;text-align:center;width:80%;max-width:300px}
-
 .uPop{position:fixed;inset:0;background:#0009;display:none;justify-content:center;align-items:center;z-index:999999;backdrop-filter:blur(8px)}
 .uBox{position:relative;width:92%;max-width:340px;padding:22px;background:#1e293b;border:2px solid #facc15;border-radius:22px;text-align:center;box-shadow:0 0 35px gold;animation:p .25s}
 .pic{width:80px;height:80px;border-radius:50%;border:3px solid #fff;object-fit:cover}
@@ -82,15 +79,46 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 .uBox p{color:#facc15;margin-bottom:15px;font-size:14px}
 .uBox button{width:100%;margin:8px 0;padding:12px;border:0;border-radius:12px;background:#334155;color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:.2s}
 .uBox button img{width:24px;height:24px}
-.uBox button:hover{background:#475569}
 .x{position:absolute;top:12px;right:12px;background:#ef4444;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-weight:bold;display:flex;align-items:center;justify-content:center}
-@keyframes p{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+
+/* Rocket Loading Bar */
+#loaderWrap{position:absolute;left:50%;bottom:35px;transform:translateX(-50%);width:280px;text-align:center;z-index:99999}
+#loaderBar{position:relative;height:14px;background:#ffffff26;border:2px solid #ffffff55;border-radius:50px;overflow:hidden;box-shadow:0 0 20px #ffffff55}
+#loaderFill{width:0;height:100%;border-radius:50px;background:linear-gradient(90deg,#00ff95,#00c3ff,#7b61ff,#ffce00,#00ff95);background-size:300% 100%;animation:bg 2s linear infinite;position:relative}
+#loaderGlow{position:absolute;right:-10px;top:-6px;width:22px;height:22px;border-radius:50%;background:#fff;filter:blur(6px)}
+#rocket{position:absolute;top:-28px;font-size:24px;transition:.1s}
+#loaderText{margin-top:12px;color:#fff;font:700 16px Arial;text-shadow:0 0 10px #00e5ff}
+#welcomeText{margin-top:10px;color:gold;font:700 18px Arial;animation:pulse 1.2s infinite;text-shadow:0 0 12px gold}
+@keyframes bg{to{background-position:300%}}
+@keyframes pulse{50%{transform:scale(1.08);opacity:.7}}
+
+/* Mushroom Claim Modal */
+.mClaim{position:fixed;inset:0;background:#0009;display:none;justify-content:center;align-items:center;z-index:999999;backdrop-filter:blur(5px)}
+.mCard{position:relative;width:92%;max-width:340px;background:#fff;border-radius:18px;padding:20px;text-align:center;animation:pop .3s}
+.mIcon{font-size:55px;animation:bounce 1s infinite}
+.mCard h2{color:#16a34a;margin:8px 0;font-size:20px}
+.mCard p{color:#555;font-size:14px;margin-bottom:10px}
+.mCard input{width:100%;padding:12px;margin:6px 0;border:2px solid #ddd;border-radius:10px;outline:none;font-size:14px}
+.mCard button{width:100%;padding:13px;border:0;border-radius:10px;background:#16a34a;color:#fff;font-size:16px;font-weight:bold;cursor:pointer;position:relative}
+#tapFinger{position:absolute;right:35px;bottom:78px;font-size:48px;z-index:99999;animation:tapAnim .7s infinite;filter:drop-shadow(0 0 8px #fff);pointer-events:none}
+@keyframes tapAnim{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(12px) scale(.9)}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
-<div id="s"><img id="bg" src="img/splash1.jpg" alt="Splash"><img id="gif" src="img/splash2.gif" alt="Splash GIF"></div>
+<div id="s">
+  <img id="bg" src="img/splash1.jpg" alt="Splash">
+  <img id="gif" src="img/splash2.gif" alt="Splash GIF">
+  <div id="loaderWrap">
+    <div id="loaderBar">
+      <div id="loaderFill"><div id="loaderGlow"></div></div>
+      <div id="rocket">🚀</div>
+    </div>
+    <div id="loaderText">Loading... 0%</div>
+    <div id="welcomeText">🍄 Kundu Mushroom Farm 🍄</div>
+  </div>
+</div>
 
 <!-- Custom Confirm Popup -->
 <div id="confirmPop" class="cPop"><div class="cBox"><div class="cIcon">💸</div><h2>ক্যাশ আউট</h2><p id="cMsg">আপনি কি নিশ্চিত?</p><div class="cBtn"><button onclick="closePop()">না</button><button onclick="okPop()">হ্যাঁ</button></div></div></div>
@@ -105,6 +133,19 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 <button onclick="oUPI('7047643951@ibl')"><img src="img/phonepe.png" alt="PhonePe">PhonePe</button>
 <button onclick="oUPI('bubaikundu635@okhdfcbank')"><img src="img/gpay.png" alt="Google Pay">Google Pay</button>
 <button onclick="oUPI('7047643951@superyes')"><img src="img/superyes.png" alt="SuperYes">SuperYes</button>
+</div>
+</div>
+
+<!-- 100g Mushroom Claim Modal -->
+<div id="mClaim" class="mClaim">
+<div class="mCard">
+<div class="mIcon">🍄</div>
+<h2>100g Mushroom Completed</h2>
+<p>আপনার 100g Mushroom পূর্ণ হয়েছে।<br>Claim Cash করুন।</p>
+<input id="mcName" placeholder="👤 নাম">
+<input id="mcPhone" maxlength="10" type="tel" placeholder="📞 মোবাইল নম্বর">
+<div id="tapFinger">👆</div>
+<button onclick="claimMushroomCash()" id="claimBtn">💰 Claim Cash</button>
 </div>
 </div>
 
@@ -186,27 +227,21 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 <div id="spinModal" class="modal">
   <div class="modal-content">
     <button id="closeSpin" onclick="closeSpinModal()">✖</button>
-    <div class="modal-title">🎰 Lucky Spin Wheel</div>
+    <div class="modal-title">🎰 বোনাস Spin করুন</div>
     
     <div class="wheel-wrapper">
       <div class="wheel-pointer">👇</div>
-      <div class="center-btn">🎁</div>
-      <svg id="spinWheelVisual" viewBox="0 0 100 100" width="260" height="260">
+      <div class="center-btn">🎁</div><svg id="spinWheelVisual" viewBox="0 0 100 100" width="260" height="260">
         <path d="M50 50 L50 0 A50 50 0 0 1 93.3 25 Z" fill="#ef4444"/>
         <text x="69" y="24" text-anchor="middle">₹0.80 ক্যাশ</text>
-
         <path d="M50 50 L93.3 25 A50 50 0 0 1 93.3 75 Z" fill="#3b82f6"/>
         <text x="78" y="52" text-anchor="middle">20g মাশরুম</text>
-
         <path d="M50 50 L93.3 75 A50 50 0 0 1 50 100 Z" fill="#10b981"/>
         <text x="69" y="78" text-anchor="middle">100 point</text>
-
         <path d="M50 50 L50 100 A50 50 0 0 1 6.7 75 Z" fill="#f59e0b"/>
         <text x="31" y="78" text-anchor="middle">₹1.00 ক্যাশ</text>
-
         <path d="M50 50 L6.7 75 A50 50 0 0 1 6.7 25 Z" fill="#8b5cf6"/>
         <text x="22" y="52" text-anchor="middle">10g মাশরুম</text>
-
         <path d="M50 50 L6.7 25 A50 50 0 0 1 50 0 Z" fill="#ec4899"/>
         <text x="31" y="24" text-anchor="middle">50 point</text>
       </svg>
@@ -214,7 +249,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 
     <div id="spinReward" style="margin:10px 0;font-size:15px;font-weight:bold;color:#facc15;">কোড ভেরিফাই করে স্পিন করুন!</div>
     <button id="spinBtn" class="btn-modal-claim" onclick="playClickSound(); spinOrderWheel();">🎡 SPIN NOW</button>
-    <button id="claimBtn" class="btn-modal-claim" style="display:none;margin-top:10px;background:#06b6d4;" onclick="playClickSound(); claimSpinReward();">🛒 Claim & Withdraw</button>
+    <button id="claimBtn" class="btn-modal-claim" style="display:none;margin-top:10px;background:#06b6d4;" onclick="playClickSound(); claimSpinReward();">🛒 Claim Reward</button>
   </div>
 </div>
 
@@ -235,16 +270,27 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 <script>
 const VERIFY_API = "https://script.google.com/macros/s/AKfycbyDgAPFl-7b05R2hVtYrfoCq-oNpOjSwr9JVA16zdSjMAHWZWHrKjRhmgTs4sECUirq/exec";
 const PAYMENT_API = "https://script.google.com/macros/s/AKfycbwGEt-LWliqvp3KLF-Bx_qGDLSpzeqdBVy_xQDk1xS6d-_fnpAgYfvHxSf6Rn115gscKw/exec"; 
-  let verified=0,cash=+localStorage.getItem("km_cash")||0,shroom=+localStorage.getItem("km_shroom")||0,pts=+localStorage.getItem("km_points")||0,isScr=!1,isDraw=!1,lx=0,ly=0,cRew=null,pCash=0,sparkleTimer=null;
+
+let verified=0,cash=+localStorage.getItem("km_cash")||0,shroom=+localStorage.getItem("km_shroom")||0,pts=+localStorage.getItem("km_points")||0;
+let isScr=!1,isDraw=!1,lx=0,ly=0,cRew=null,pCash=0,sparkleTimer=null,paymentTimer=null;
 let canSpin=!1,currentSpinReward=null,currentRotation=0,okFn=null;
 
 const h=document.getElementById("h"),tap=document.getElementById("tap"),p=document.getElementById("p"),fingerGuide=document.getElementById("fingerGuide"),codeInput=document.getElementById("codeInput");
 const sS=document.getElementById("sS"),cS=document.getElementById("cS"),mS=document.getElementById("mS"),pS=document.getElementById("pS"),gS=document.getElementById("gS"),scS=document.getElementById("scS"),eS=document.getElementById("eS"),spinSound=document.getElementById("spinSound"),clapS=document.getElementById("clapS");
 const lMsg=document.getElementById("loaderMsg"),lZone=document.getElementById("loaderZone"),cT=document.getElementById("cTimer"),cv=document.getElementById("scratchCanvas"),cx=cv.getContext("2d");
-const upiPop=document.getElementById("upiPop");
+const upiPop=document.getElementById("upiPop"),mClaim=document.getElementById("mClaim"),tapFinger=document.getElementById("tapFinger");
 
 const rews=[{text:"💵 ক্যাশ ₹ 2",type:"cash",val:2},{text:"💵 ক্যাশ ₹ 3",type:"cash",val:3},{text:"💵 ক্যাশ ₹ 4",type:"cash",val:4},{text:"💵 ক্যাশ ₹ 5",type:"cash",val:5},{text:"💵 ক্যাশ ₹ 6",type:"cash",val:6},{text:"⭐ 399 পয়েন্ট",type:"points",val:399},{text:"⭐ 180 পয়েন্ট",type:"points",val:180},{text:"⭐ 299 পয়েন্ট",type:"points",val:299},{text:"🍄 50 গ্ৰাম মাশরুম",type:"mushroom",val:50},{text:"🍄 40 গ্ৰাম মাশরুম",type:"mushroom",val:40},{text:"😭 Better Luck Next Time",type:"lose",val:0}];
 const dPool=[100,300,150,200,199,120,105];
+
+function speak(txt, lang="bn-IN"){
+  if("speechSynthesis" in window){
+    speechSynthesis.cancel();
+    let s=new SpeechSynthesisUtterance(txt);
+    s.lang=lang; s.rate=.9; s.pitch=1;
+    speechSynthesis.speak(s);
+  }
+}
 
 function showConfirm(m,f){document.getElementById("cMsg").innerHTML=m;document.getElementById("confirmPop").style.display="flex";okFn=f}
 function closePop(){document.getElementById("confirmPop").style.display="none"}
@@ -286,11 +332,10 @@ function flyReward(t){
 function playSpinSound(){spinSound.currentTime=0;spinSound.play().catch(()=>{});}
 function closeSpinModal(){document.getElementById("spinModal").style.display="none"}
 
-window.onclick=function(e){
+window.onclick=e=>{
   if(e.target==document.getElementById("spinModal")) closeSpinModal();
   if(e.target==upiPop) cUPI();
 }
-
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSpinModal();cUPI()}});
 
 function playClickSound(){pAud("pS")}
@@ -322,22 +367,21 @@ async function verifyCode(){
 function pAud(e){try{let t=document.getElementById(e);t&&(t.currentTime=0,t.play().catch(()=>{}))}catch(e){}}
 function stopS(){sS.pause();sS.currentTime=0}
 
-function initApp(){uUI();initCv();chkBns();updatePlant()}
+function initApp(){uUI();initCv();chkBns();updatePlant();checkMushroomClaim()}
 
 function uUI(){
   let oldCash = parseFloat(document.getElementById("cash").innerText.replace("₹","")) || 0;
   animateValue("cash", oldCash, cash, 800, "₹", "", 2);
   document.getElementById("mushroom").innerText = shroom + " গ্রাম";
   document.getElementById("points").innerText = pts + " Pts";
+  checkMushroomClaim();
 }
 
 function initCv(){
   isScr=!1;isDraw=!1;stopS();clearInterval(sparkleTimer);
   cRew=rews[Math.floor(Math.random()*rews.length)];
   let i=cRew.type=="cash"?"💵":cRew.type=="mushroom"?"🍄":cRew.type=="points"?"⭐":"😭";
-  document.getElementById("revealZone").innerHTML='<div class="rewardIcon">'+i+'</div><div class="rewardText">'+cRew.text+'</div>';
-
-  cx.clearRect(0,0,cv.width,cv.height);
+  document.getElementById("revealZone").innerHTML='<div class="rewardIcon">'+i+'</div><div class="rewardText">'+cRew.text+'</div>';cx.clearRect(0,0,cv.width,cv.height);
   cx.globalCompositeOperation="source-over";
   
   let g=cx.createLinearGradient(0,0,300,180);
@@ -525,28 +569,22 @@ function showSpinReward(r){
 
 function claimSpinReward(){
   if(!currentSpinReward)return;
-  playClap();flyReward(currentSpinReward.type);
-  let m="";
+  playClap();fireConfetti();
+
   if(currentSpinReward.type=="cash"){
-    cash+=currentSpinReward.val;m=`অভিনন্দন! আপনি ₹${currentSpinReward.val.toFixed(2)} ক্যাশ জিতেছেন।`;
-  } else if(currentSpinReward.type=="mushroom"){
-    shroom+=currentSpinReward.val;m=`অভিনন্দন! আপনি ${currentSpinReward.val} গ্রাম মাশরুম জিতেছেন।`;
-  } else {
-    pts+=currentSpinReward.val;m=`অভিনন্দন! আপনি ${currentSpinReward.val} পয়েন্ট জিতেছেন।`;
+    cash+=currentSpinReward.val; localStorage.setItem("km_cash",cash); flyReward("cash");
+  }else if(currentSpinReward.type=="mushroom"){
+    shroom+=currentSpinReward.val; localStorage.setItem("km_shroom",shroom); flyReward("mushroom");
+  }else{
+    pts+=currentSpinReward.val; localStorage.setItem("km_points",pts); flyReward("points");
   }
-  
-  if('speechSynthesis' in window){
-    speechSynthesis.cancel();
-    let u=new SpeechSynthesisUtterance(m);u.lang="bn-IN";u.rate=.95;speechSynthesis.speak(u);
-  }
-  
-  localStorage.setItem("km_cash", cash);
-  localStorage.setItem("km_points", pts);
-  localStorage.setItem("km_shroom", shroom);
+
   uUI();
+  speak("অভিনন্দন। আপনার পুরস্কার সফলভাবে ওয়ালেটে যোগ হয়েছে।");
+
   document.getElementById("spinModal").style.display="none";
-  currentSpinReward=null;canSpin=!1;
-  openWithdrawModal();
+  currentSpinReward=null;
+  canSpin=false;
 }
 
 function openWithdrawModal(){pAud("cS");document.getElementById("withdrawModal").style.display="flex"}
@@ -554,10 +592,9 @@ function closeWithdrawModal(){document.getElementById("withdrawModal").style.dis
 
 function confirmWithdraw(){
   if(cash<2){
-    if('speechSynthesis' in window) speechSynthesis.cancel();
     return pop("ক্যাশ Wallet-এ কমপক্ষে ₹2 টাকা থাকতে হবে।");
   }
-  let e=document.getElementById("wName").value.trim(),t=document.getElementById("wPhone").value.trim();
+  let e=wName.value.trim(),t=wPhone.value.trim();
   if(!e||!t)return pop("নাম এবং ফোন নাম্বার ✍️পূরণ করুন!");
   if(10!==t.length||/\D/.test(t))return pop("❌ 10 সংখ্যার UPI নম্বর লিখুন");
   
@@ -565,13 +602,16 @@ function confirmWithdraw(){
 }
 
 function submitWithdraw(){
-  let e=document.getElementById("wName").value.trim();
-  let t=document.getElementById("wPhone").value.trim();
+  let e=wName.value.trim(),t=wPhone.value.trim();
+  let requestId="WD"+Date.now()+Math.floor(Math.random()*1000);
+  localStorage.setItem("request_id",requestId);
 
   fetch(PAYMENT_API,{
     method:"POST",
+    mode:"no-cors",
     body:new URLSearchParams({
       action:"withdraw",
+      request_id:requestId,
       code:codeInput.value,
       name:e,
       phone:t,
@@ -579,35 +619,68 @@ function submitWithdraw(){
       points:pts,
       mushroom:shroom
     })
-  })
-  .then(r=>r.text())
-  .then(res=>{
-    let msg=`✨ Withdraw Request\n\n👤 ${e}\n📞 ${t}\n\n💵 Cash: ₹${cash.toFixed(2)}\n⭐ Points: ${pts}\n🍄 Mushroom: ${shroom} gm`;
-    window.open("https://wa.me/917047643951?text="+encodeURIComponent(msg),"_blank");
-    pop("✅ Withdraw Request পাঠানো হয়েছে");
-    closeWithdrawModal();
-  })
-  .catch(err=>{
-    pop("❌ সমস্যা তৈরি হয়েছে, আবার চেষ্টা করুন");
   });
+
+  pop("✅ Withdraw Request পাঠানো হয়েছে");
+  closeWithdrawModal();
+
+  if(paymentTimer) clearInterval(paymentTimer);
+  paymentTimer=setInterval(checkPayment,5000);
 }
 
 function checkPayment(){
-  fetch(PAYMENT_API+"?action=status&code="+codeInput.value)
+  let requestId=localStorage.getItem("request_id");
+  if(!requestId) return;
+
+  fetch(PAYMENT_API+"?action=status&request_id="+requestId)
   .then(r=>r.json())
   .then(d=>{
-    if(d.paid=="YES"){
+    if(String(d.paid).trim().toUpperCase()=="YES"){
+      clearInterval(paymentTimer);
       cash=0; pts=0; shroom=0;
       localStorage.setItem("km_cash",0);
       localStorage.setItem("km_points",0);
       localStorage.setItem("km_shroom",0);
       uUI();
       pop("✅ Payment সফল হয়েছে");
-    }else{
-      pop("⏳ Payment Pending");
     }
   })
-  .catch(e=>pop("❌ Status পাওয়া যায়নি"));
+  .catch(e=>{});
+}
+
+function checkMushroomClaim(){
+  if(shroom>=100){
+    mClaim.style.display="flex";
+    tapFinger.style.display="block";
+    speak("অভিনন্দন! আপনার একশো গ্রাম মাশরুম ছাতু! পূর্ণ হয়েছে! এখন Claim  ক্যাশ আউট করুন।");
+  }
+}
+
+function claimMushroomCash(){
+  let n=mcName.value.trim(), p=mcPhone.value.trim();
+  if(!n)return pop("নাম লিখুন");
+  if(p.length!=10||/\D/.test(p))return pop("সঠিক মোবাইল নাম্বার লিখুন");
+
+  fetch(PAYMENT_API,{
+    method:"POST",
+    mode:"no-cors",
+    body:new URLSearchParams({
+      action:"mushroom_claim",
+      request_id:"MC"+Date.now(),
+      name:n,
+      phone:p
+    })
+  });
+
+  shroom-=100;
+  localStorage.setItem("km_shroom",shroom);
+  uUI();
+
+  tapFinger.style.display="none";
+  mClaim.style.display="none";
+
+  pop("✅ মাশরুম Claim Request পাঠানো হয়েছে");
+  speak("অভিনন্দন! আপনার একশো গ্রাম মাশরুম ছাতু! Withdraw  রিকোয়েস্ট! সফলভাবে পাঠানো হয়েছে।");
 }
 
 cv.addEventListener("mousedown",stScr);
@@ -617,7 +690,23 @@ cv.addEventListener("touchstart",e=>{e.preventDefault();stScr(e)},{passive:!1});
 cv.addEventListener("touchmove",e=>{e.preventDefault();doScr(e)},{passive:!1});
 cv.addEventListener("touchend",()=>{isDraw=!1;stopS()});
 
-window.onload=()=>{initApp()};
+window.onload=()=>{
+  initApp();
+  
+  // Rocket Loader Script
+  let loaderP=0,
+  loaderT=setInterval(()=>{
+    loaderP++;
+    document.getElementById("loaderFill").style.width=loaderP+"%";
+    document.getElementById("loaderText").innerHTML="Loading... "+loaderP+"%";
+    document.getElementById("rocket").style.left="calc("+loaderP+"% - 12px)";
+    if(loaderP==100){
+      clearInterval(loaderT);
+      document.getElementById("loaderText").innerHTML="✅ Ready";
+      speak("Welcome to Kundu Mushroom Farm", "en-IN");
+    }
+  },100);
+};
 
 const bg=document.getElementById("bg"),gif=document.getElementById("gif"),s=document.getElementById("s");
 setTimeout(()=>{bg.style.display="none";gif.style.display="block";gif.src="img/splash2.gif"},3e3);
@@ -625,5 +714,5 @@ setTimeout(()=>{gif.src="img/splash3.gif"},7e3);
 setTimeout(()=>{s.style.opacity="0";setTimeout(()=>s.remove(),500)},1e4);
 </script>
 </body>
-</html>
-   
+</html>  
+               
