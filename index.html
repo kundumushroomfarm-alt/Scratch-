@@ -571,18 +571,20 @@ function submitWithdraw(){
   let phone = document.getElementById("wPhone").value.trim();
 
   fetch(PAYMENT_API,{
-    method:"POST",
-    mode:"no-cors",
-    body:new URLSearchParams({
-      action:"withdraw",
-      code:codeInput.value,
-      name:name,
-      phone:phone,
-      cash:cash,
-      points:pts,
-      mushroom:shroom
-    })
-  });
+  method:"POST",
+  body:new URLSearchParams({
+    action:"withdraw",
+    code:codeInput.value,
+    name:name,
+    phone:phone,
+    cash:cash,
+    points:pts,
+    mushroom:shroom
+  })
+})
+.then(r=>r.text())
+.then(console.log)
+.catch(console.error);
 
   pop("✅ Withdraw Request পাঠানো হয়েছে");
   closeWithdrawModal();
