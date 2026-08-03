@@ -641,18 +641,39 @@ function checkMushroomClaim(){
 }
 
 function claimMushroomCash(){
-  let e=document.getElementById("mcName").value.trim(),t=document.getElementById("mcPhone").value.trim();
-  if(!e)return pop("নাম লিখুন");
-  if(10!=t.length||/\D/.test(t))return pop("সঠিক মোবাইল নম্বর লিখুন");
-  let s="MC"+Date.now()+Math.floor(1e3*Math.random());
-  localStorage.setItem("request_id",s);
-  fetch(PAYMENT_API,{method:"POST",mode:"no-cors",body:new URLSearchParams({action:"mushroom_claim",request_id:s,code:codeInput.value,name:e,phone:t})});
-  tapFinger.style.display="none";mClaim.style.display="none";
+
+  let e=document.getElementById("mcName").value.trim();
+  let t=document.getElementById("mcPhone").value.trim();
+
+  if(!e) return pop("নাম লিখুন");
+  if(t.length!=10 || /\D/.test(t))
+    return pop("সঠিক মোবাইল নম্বর লিখুন");
+
+  fetch(PAYMENT_API,{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/x-www-form-urlencoded"
+    },
+    body:new URLSearchParams({
+      action:"mushroom_claim",
+      code:codeInput.value,
+      name:e,
+      phone:t
+    }).toString()
+  })
+  .then(r=>r.text())
+  .then(console.log)
+  .catch(console.error);
+
+  tapFinger.style.display="none";
+  mClaim.style.display="none";
+
   pop("✅ Mushroom Claim Request পাঠানো হয়েছে");
-  speak("অভিনন্দন। আপনার একশো গ্রাম মাশরুম ক্লেইম রিকোয়েস্ট সফলভাবে পাঠানো হয়েছে।");
-  if(paymentTimer)clearInterval(paymentTimer);
-  paymentTimer=setInterval(checkPayment,5e3);
-}
+
+  if(paymentTimer) clearInterval(paymentTimer);
+  paymentTimer=setInterval(checkPayment,5000);
+
+  }
 
 cv.addEventListener("mousedown",stScr);
 cv.addEventListener("mousemove",doScr);
