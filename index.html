@@ -135,7 +135,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 
 <div class="container">
   <canvas id="confetti" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99"></canvas>
-  <div class="header">🎉 UP TO ₹25 CASHBACK 🎉</div>
+  <div class="header">🎉 UP TO ₹25 CASHBACK </div>
   <div class="verify-box"><input id="codeInput" placeholder="✍️ কোড লিখুন"><button onclick="playClickSound();verifyCode()">Submit কোড</button><div id="tap">👆</div></div>
   <div class="stats-grid">
     <div class="stat-box" id="cashBox"><div class="cash-title">💵 Cash <span class="red">Wal</span><span class="green">let</span></div><div id="cash">₹0.00</div></div>
@@ -181,7 +181,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
   </div><div id="spinModal" class="modal">
   <div class="modal-content">
     <button id="closeSpin" onclick="closeSpinModal()">✖</button>
-    <div class="modal-title">🎰 Lucky Spin Wheel</div>
+    <div class="modal-title">🎰 বোনাস Spin Wheel</div>
     <div class="wheel-wrapper">
       <div class="wheel-pointer">👇</div>
       <div class="center-btn">🎁</div>
@@ -353,7 +353,7 @@ function stScr(e){
       let t=getP(e);lx=t.x;ly=t.y;
     }
   }else{
-    pop("উপরে কোড টি বসান");
+    pop("উপরে কোড টি লিখুন");
   }
 }
 
@@ -428,7 +428,7 @@ function hRew(){
       if(shroom>=e){
         shroom-=e;let t=e/10;cash+=t;
         localStorage.setItem("km_shroom",shroom);localStorage.setItem("km_cash",cash);
-        uUI();pop("💰 "+e+"g Mushroom = ₹"+t+" Cash হয়েছে");
+        uUI();pop("💰 "+e+"g Mushroom = ₹"+t+" Cash এ যোগ হয়েছে");
         speak("অভিনন্দন। আপনার মাশরুম ক্যাশে কনভার্ট হয়েছে।");
       }
     },1e4);
@@ -624,7 +624,7 @@ function checkPayment(){
       }
 
       uUI();
-      pop("✅ Payment সফল হয়েছে");
+      pop("✅ Payment সফল হয়েছে! 🎉Successful");
 
     }
 
@@ -636,7 +636,7 @@ function checkPayment(){
 function checkMushroomClaim(){
   if(shroom>=100){
     mClaim.style.display="flex";tapFinger.style.display="block";
-    speak("অভিনন্দন। আপনার একশো গ্রাম মাশরুম পূর্ণ হয়েছে। এখন ক্লেইম ক্যাশ করুন।");
+    speak("অভিনন্দন! আপনার ১০০ গ্রাম মাশরুম সম্পূর্ণ হয়েছে! বাটনে ক্লিক করে! এখনই ক্যাশ করুন।।");
   }
 }
 
@@ -647,7 +647,7 @@ function claimMushroomCash(){
 
   if(!e) return pop("নাম লিখুন");
   if(t.length!=10 || /\D/.test(t))
-    return pop("সঠিক মোবাইল নম্বর লিখুন");
+    return pop("সঠিক মোবাইল নাম্বার লিখুন");
 
   fetch(PAYMENT_API,{
     method:"POST",
@@ -668,7 +668,7 @@ function claimMushroomCash(){
   tapFinger.style.display="none";
   mClaim.style.display="none";
 
-  pop("✅ Mushroom Claim Request পাঠানো হয়েছে");
+  pop("✅ Mushroom Request পাঠানো হয়েছে");
 
   if(paymentTimer) clearInterval(paymentTimer);
   paymentTimer=setInterval(checkPayment,5000);
@@ -692,7 +692,7 @@ window.onload=()=>{
     if(100==e){
       clearInterval(t);
       document.getElementById("loaderText").innerHTML="✅ Ready";
-      speak("Welcome to Kundu Mushroom Farm","en-IN");
+      speak("Welcome to কুন্ডু মাশরুম ফার্ম","en-IN");
     }
   },100);
 };
