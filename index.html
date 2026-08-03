@@ -571,26 +571,33 @@ function submitWithdraw(){
   let phone = document.getElementById("wPhone").value.trim();
 
   fetch(PAYMENT_API,{
-  method:"POST",
-  body:new URLSearchParams({
-    action:"withdraw",
-    code:codeInput.value,
-    name:name,
-    phone:phone,
-    cash:cash,
-    points:pts,
-    mushroom:shroom
+    method:"POST",
+    headers:{
+      "Content-Type":"application/x-www-form-urlencoded"
+    },
+    body:new URLSearchParams({
+      action:"withdraw",
+      code:codeInput.value,
+      name:name,
+      phone:phone,
+      cash:cash,
+      points:pts,
+      mushroom:shroom
+    }).toString()
   })
-})
-.then(r=>r.text())
-.then(console.log)
-.catch(console.error);
+  .then(r=>r.text())
+  .then(res=>{
+      console.log(res);
+      pop("✅ Withdraw Request পাঠানো হয়েছে");
+      closeWithdrawModal();
 
-  pop("✅ Withdraw Request পাঠানো হয়েছে");
-  closeWithdrawModal();
-
-  if(paymentTimer) clearInterval(paymentTimer);
-  paymentTimer=setInterval(checkPayment,5000);
+      if(paymentTimer) clearInterval(paymentTimer);
+      paymentTimer=setInterval(checkPayment,5000);
+  })
+  .catch(err=>{
+      console.error(err);
+      pop("❌ Request Failed");
+  });
 
   }
 
