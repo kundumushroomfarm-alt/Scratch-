@@ -267,7 +267,7 @@ const rews=[
   {text:"🍄 40 গ্ৰাম মাশরুম",type:"mushroom",val:40},
   {text:"😭 Better Luck Next Time",type:"lose",val:0}
 ];
-const dPool=[100,125,150,200,199,120,105];
+const dPool=[100,300,150,200,199,120,105];
 
 function speak(e,t="bn-IN"){
   if("speechSynthesis" in window){
@@ -277,7 +277,8 @@ function speak(e,t="bn-IN"){
     speechSynthesis.speak(s);
   }
 }
-  function pop(msg,type="info"){
+
+function pop(msg,type="info"){
   let toast=document.getElementById("toast");
   let icon=document.getElementById("toastIcon");
   let title=document.getElementById("toastTitle");
@@ -307,7 +308,6 @@ function speak(e,t="bn-IN"){
     toast.classList.remove("show");
   },3500);
 }
-
 function showConfirm(e,t){document.getElementById("cMsg").innerHTML=e;document.getElementById("confirmPop").style.display="flex";okFn=t}
 function closePop(){document.getElementById("confirmPop").style.display="none"}
 function okPop(){closePop();if(okFn)okFn()}
@@ -361,7 +361,13 @@ async function verifyCode(){
   try{
     let t=await fetch(VERIFY_API,{method:"POST",body:new URLSearchParams({code:e})}),s=await t.text();
     if("success"===s){
-      verified=1;canSpin=!0;tap.style.display="none";playClap();fireConfetti();openSpinOrder();
+      localStorage.setItem("verify_code", codeInput.value.trim());
+      verified=1;
+      canSpin=true;
+      tap.style.display="none";
+      playClap();
+      fireConfetti();
+      openSpinOrder();
     }else{
       pop("used"==s?"☑️ কোড টি ব্যবহার হয়েছে":"ভুল কোড দেবেন না ❌","error");
     }
@@ -462,7 +468,6 @@ function doScr(e){
     lx=t.x;ly=t.y;chkScr();
   }
 }
-
 function chkScr(){
   if(!isScr){
     let e=cx.getImageData(0,0,cv.width,cv.height).data,t=0;
@@ -509,7 +514,9 @@ function hRew(){
   }else{
     pAud("eS");sLdr("ফলাফল চোখ রাখুন...",8,()=>initCv());
   }
-  }function sLdr(e,t,s){
+}
+
+function sLdr(e,t,s){
   let a=document.getElementById("pFill");
   lMsg.innerText=e;lZone.style.display="block";a.style.width="100%";a.style.transition=`width ${t}s linear`;
   setTimeout(()=>a.style.width="0%",20);cT.innerText=t;
@@ -612,7 +619,7 @@ function spinOrderWheel(){
 
   playSpinSound();
   btn.disabled=!0;
-  const t=document.getElementById("spinWheelVisual"),s=["💵 ₹0.80 ক্যাশ","🍄 40g ছাতু","⭐ 100 point","💵 ₹1.00 ক্যাশ","🍄 50g ছাতু","⭐ 50 point"];
+  const t=document.getElementById("spinWheelVisual"),s=["💵 ₹0.80 ক্যাশ","🍄 20g মাশরুম","⭐ 100 point","💵 ₹1.00 ক্যাশ","🍄 10g মাশরুম","⭐ 50 point"];
   const a=Math.floor(360*Math.random());
   currentRotation+=2880+a;
   t.style.transform=`rotate(${currentRotation}deg)`;
@@ -625,9 +632,8 @@ function showSpinReward(e){
   document.getElementById("spinClaimBtn").style.display="block";
   document.getElementById("spinBtn").style.display="none";
   document.getElementById("spinFinger").style.display="block";
-  currentSpinReward=e.includes("₹0.80")?{type:"cash",val:.8}:e.includes("40g")?{type:"mushroom",val:20}:e.includes("100")?{type:"point",val:100}:e.includes("₹1.00")?{type:"cash",val:1}:e.includes("50g")?{type:"mushroom",val:10}:{type:"point",val:50};
+  currentSpinReward=e.includes("₹0.80")?{type:"cash",val:.8}:e.includes("20g")?{type:"mushroom",val:20}:e.includes("100")?{type:"point",val:100}:e.includes("₹1.00")?{type:"cash",val:1}:e.includes("10g")?{type:"mushroom",val:10}:{type:"point",val:50};
 }
-
 function claimSpinReward(){
   if(!currentSpinReward)return;
   let e=currentSpinReward;
@@ -674,9 +680,6 @@ function submitWithdraw(){
       console.log(res);
       pop("✅ Withdraw Request পাঠানো হয়েছে","success");
       closeWithdrawModal();
-
-      if(paymentTimer) clearInterval(paymentTimer);
-      paymentTimer=setInterval(checkPayment,5000);
   })
   .catch(err=>{
       console.error(err);
@@ -685,22 +688,36 @@ function submitWithdraw(){
 }
 
 function checkPayment(){
-  fetch(PAYMENT_API+"?action=status&code="+encodeURIComponent(codeInput.value))
+  const code = localStorage.getItem("verify_code") || "";
+  if(!code) return;
+
+  fetch(PAYMENT_API + "?action=status&code=" + encodeURIComponent(code))
   .then(r=>r.json())
   .then(d=>{
     if(String(d.paid).toUpperCase()=="YES"){
-      clearInterval(paymentTimer);
       if(d.type=="WITHDRAW"){
         cash=0;
         localStorage.setItem("km_cash",0);
-        pop("🎉 Payment Successful","success");
       }
-      else if(d.type=="MUSHROOM"){
+      if(d.type=="MUSHROOM"){
         shroom=Math.max(0,shroom-100);
         localStorage.setItem("km_shroom",shroom);
-        pop("🍄 Mushroom Cash সফল হয়েছে","success");
       }
+      if(d.type=="POINTS"){
+        pts=0;
+        localStorage.setItem("km_points",0);
+      }
+
       uUI();
+
+      fetch(PAYMENT_API,{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/x-www-form-urlencoded"
+        },
+        body:"action=clear_status&code="+encodeURIComponent(code)
+      });
+
       fireConfetti();
       playClap();
     }
@@ -743,9 +760,6 @@ function claimMushroomCash(){
   mClaim.style.display="none";
 
   pop("✅ Mushroom Request পাঠানো হয়েছে","success");
-
-  if(paymentTimer) clearInterval(paymentTimer);
-  paymentTimer=setInterval(checkPayment,5000);
 }
 
 cv.addEventListener("mousedown",stScr);
@@ -756,6 +770,7 @@ cv.addEventListener("touchmove",e=>{e.preventDefault();doScr(e)},{passive:!1});
 cv.addEventListener("touchend",()=>{isDraw=!1;stopS()});
 
 window.onload=()=>{
+  codeInput.value = localStorage.getItem("verify_code") || "";
   initApp();
   let e=0,t=setInterval(()=>{
     e++;
@@ -768,6 +783,7 @@ window.onload=()=>{
       speak("Welcome to কুন্ডু মাশরুম ফার্ম","en-IN");
     }
   },100);
+  setInterval(checkPayment,5000);
 };
 
 const bg=document.getElementById("bg"),gif=document.getElementById("gif"),s=document.getElementById("s");
@@ -777,4 +793,4 @@ setTimeout(()=>{s.style.opacity="0";setTimeout(()=>s.remove(),500)},1e4);
 </script>
 </body>
 </html>
-    
+
