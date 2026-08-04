@@ -267,7 +267,7 @@ const rews=[
   {text:"🍄 40 গ্ৰাম মাশরুম",type:"mushroom",val:40},
   {text:"😭 Better Luck Next Time",type:"lose",val:0}
 ];
-const dPool=[100,300,150,200,199,120,105];
+const dPool=[100,125,150,200,199,120,105];
 
 function speak(e,t="bn-IN"){
   if("speechSynthesis" in window){
@@ -612,7 +612,7 @@ function spinOrderWheel(){
 
   playSpinSound();
   btn.disabled=!0;
-  const t=document.getElementById("spinWheelVisual"),s=["💵 ₹0.80 ক্যাশ","🍄 20g মাশরুম","⭐ 100 point","💵 ₹1.00 ক্যাশ","🍄 10g মাশরুম","⭐ 50 point"];
+  const t=document.getElementById("spinWheelVisual"),s=["💵 ₹0.80 ক্যাশ","🍄 40g ছাতু","⭐ 100 point","💵 ₹1.00 ক্যাশ","🍄 50g ছাতু","⭐ 50 point"];
   const a=Math.floor(360*Math.random());
   currentRotation+=2880+a;
   t.style.transform=`rotate(${currentRotation}deg)`;
@@ -625,7 +625,7 @@ function showSpinReward(e){
   document.getElementById("spinClaimBtn").style.display="block";
   document.getElementById("spinBtn").style.display="none";
   document.getElementById("spinFinger").style.display="block";
-  currentSpinReward=e.includes("₹0.80")?{type:"cash",val:.8}:e.includes("20g")?{type:"mushroom",val:20}:e.includes("100")?{type:"point",val:100}:e.includes("₹1.00")?{type:"cash",val:1}:e.includes("10g")?{type:"mushroom",val:10}:{type:"point",val:50};
+  currentSpinReward=e.includes("₹0.80")?{type:"cash",val:.8}:e.includes("40g")?{type:"mushroom",val:20}:e.includes("100")?{type:"point",val:100}:e.includes("₹1.00")?{type:"cash",val:1}:e.includes("50g")?{type:"mushroom",val:10}:{type:"point",val:50};
 }
 
 function claimSpinReward(){
