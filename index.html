@@ -549,7 +549,7 @@ function claimSpinReward(){
   if("cash"==e.type){cash+=Number(e.val);localStorage.setItem("km_cash",cash);speak("অভিনন্দন। ক্যাশ যোগ হয়েছে।")}
   else if("point"==e.type){pts+=Number(e.val);localStorage.setItem("km_points",pts);speak("অভিনন্দন। পয়েন্ট যোগ হয়েছে।")}
   else if("mushroom"==e.type){shroom+=Number(e.val);localStorage.setItem("km_shroom",shroom);speak("অভিনন্দন। মাশরুম ওয়ালেটে যোগ হয়েছে।");checkMushroomClaim()}
-  uUI();pop("🎉 Reward Wallet-এ যোগ হয়েছে");
+  uUI();pop("🎉 পুরস্কার ক্যাশ Wallet-এ যোগ হয়েছে");
   document.getElementById("spinModal").style.display="none";
   currentSpinReward=null;
 }
