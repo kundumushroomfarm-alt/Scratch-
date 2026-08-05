@@ -792,17 +792,17 @@ function checkPayment(){
     if(paid=="YES"){
 
       if(type=="WITHDRAW"){
-        cash=0;
+        cash = 0;
         localStorage.setItem("km_cash",0);
       }
 
       if(type=="MUSHROOM"){
-        shroom=Math.max(0,shroom-100);
+        shroom = Math.max(0, shroom-100);
         localStorage.setItem("km_shroom",shroom);
       }
 
       if(type=="POINTS"){
-        pts=0;
+        pts = 0;
         localStorage.setItem("km_points",0);
       }
 
@@ -819,14 +819,17 @@ function checkPayment(){
       fireConfetti();
       playClap();
 
-      verified=0;
-      codeInput.value="";
+      // ✅ Payment Success হলে তবেই Verify Code মুছে যাবে
+      verified = 0;
+      codeInput.value = "";
       localStorage.removeItem("verify_code");
       localStorage.removeItem("first_spin_done");
+
     }
 
   })
   .catch(console.error);
+
   }
 
 function checkMushroomClaim(){
