@@ -694,16 +694,23 @@ function checkPayment(){
   fetch(PAYMENT_API + "?action=status&code=" + encodeURIComponent(code))
   .then(r=>r.json())
   .then(d=>{
-    if(String(d.paid).toUpperCase()=="YES"){
-      if(d.type=="WITHDRAW"){
+
+    const paid = String(d.paid).trim().toUpperCase();
+    const type = String(d.type).trim().toUpperCase();
+
+    if(paid=="YES"){
+
+      if(type=="WITHDRAW"){
         cash=0;
         localStorage.setItem("km_cash",0);
       }
-      if(d.type=="MUSHROOM"){
+
+      if(type=="MUSHROOM"){
         shroom=Math.max(0,shroom-100);
         localStorage.setItem("km_shroom",shroom);
       }
-      if(d.type=="POINTS"){
+
+      if(type=="POINTS"){
         pts=0;
         localStorage.setItem("km_points",0);
       }
@@ -721,9 +728,10 @@ function checkPayment(){
       fireConfetti();
       playClap();
     }
+
   })
-  .catch(()=>{});
-}
+  .catch(console.error);
+  }
 
 function checkMushroomClaim(){
   if(shroom>=100){
