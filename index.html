@@ -359,28 +359,64 @@ function animateValue(e,t,s,a,o="",n="",l=2){
 }
 
 async function verifyCode(){
-  let e=codeInput.value.trim();
-  if(!e)return pop("কোড লিখুন Submit করুন","warning");
-  try{
-    let t=await fetch(VERIFY_API,{method:"POST",body:new URLSearchParams({code:e})}),s=await t.text();
-    if("success"===s){
-      localStorage.setItem("verify_code", codeInput.value.trim());
-verified=1;
-tap.style.display="none";
-playClap();
-fireConfetti();
 
-if(localStorage.getItem("first_spin_done")!="YES"){
-    canSpin=true;
-    openSpinOrder();
-}else{
-    canSpin=false;
+  let e = codeInput.value.trim();
+
+  if(!e){
+    return pop("কোড লিখুন Submit করুন","warning");
   }
-      pop("used"==s?"☑️ কোড টি ব্যবহার হয়েছে":"ভুল কোড দেবেন না ❌","error");
-    }
-  }catch(e){pop("😠 মাশরুম কিনুন, আবার চেষ্টা করুন","error")}
-}
 
+  try{
+
+    let t = await fetch(VERIFY_API,{
+      method:"POST",
+      body:new URLSearchParams({
+        code:e
+      })
+    });
+
+    let s = await t.text();
+
+    if(s==="success"){
+
+      localStorage.setItem("verify_code",e);
+
+      // নতুন কোড মানেই আবার Spin হবে
+      localStorage.removeItem("first_spin_done");
+
+      verified = 1;
+      canSpin = true;
+
+      tap.style.display="none";
+
+      playClap();
+      fireConfetti();
+
+      openSpinOrder();
+
+    }
+
+    else if(s==="used"){
+
+      pop("☑️ কোড টি ব্যবহার হয়েছে","error");
+
+    }
+
+    else{
+
+      pop("❌ ভুল কোড","error");
+
+    }
+
+  }
+
+  catch(err){
+
+    pop("😠 মাশরুম কিনুন, আবার চেষ্টা করুন","error");
+
+  }
+
+  }
 function pAud(e){try{let t=document.getElementById(e);if(t){t.currentTime=0;t.play().catch(()=>{})}}catch(e){}}
 function stopS(){sS.pause();sS.currentTime=0}
 
@@ -603,17 +639,15 @@ function updatePlant(){
 }
 
 function openSpinOrder(){
-  if(canSpin){
+
     document.getElementById("spinModal").style.display="flex";
-    document.getElementById("spinClaimBtn").style.display="none";
     document.getElementById("spinBtn").style.display="block";
-    document.getElementById("spinBtn").disabled=!1;
+    document.getElementById("spinClaimBtn").style.display="none";
+    document.getElementById("spinBtn").disabled=false;
     document.getElementById("spinFinger").style.display="block";
     document.getElementById("spinReward").innerHTML="🎡 SPIN করে পুরস্কার জিতুন";
-  }else{
-    openWithdrawModal();
+
   }
-}
 
 function spinOrderWheel(){
   if(!canSpin)return;
@@ -642,22 +676,43 @@ function showSpinReward(e){
   currentSpinReward=e.includes("₹0.80")?{type:"cash",val:.8}:e.includes("20g")?{type:"mushroom",val:20}:e.includes("100")?{type:"point",val:100}:e.includes("₹1.00")?{type:"cash",val:1}:e.includes("50g")?{type:"mushroom",val:10}:{type:"point",val:50};
 }
 function claimSpinReward(){
+
   if(!currentSpinReward)return;
+
   let e=currentSpinReward;
-  if("cash"==e.type){cash+=Number(e.val);localStorage.setItem("km_cash",cash);speak("অভিনন্দন! ক্যাশ ওয়েলেটে যোগ হয়েছে।")}
-  else if("point"==e.type){pts+=Number(e.val);localStorage.setItem("km_points",pts);speak("চমৎকার! পয়েন্ট ওয়ালেটে যোগ হয়েছে।")}
-  else if("mushroom"==e.type){shroom+=Number(e.val);localStorage.setItem("km_shroom",shroom);speak("অভিনন্দন! মাশরুম ওয়ালেটে যোগ হয়েছে।");checkMushroomClaim()}
+
+  if("cash"==e.type){
+    cash+=Number(e.val);
+    localStorage.setItem("km_cash",cash);
+    speak("অভিনন্দন! ক্যাশ ওয়েলেটে যোগ হয়েছে।");
+  }
+
+  else if("point"==e.type){
+    pts+=Number(e.val);
+    localStorage.setItem("km_points",pts);
+    speak("চমৎকার! পয়েন্ট ওয়ালেটে যোগ হয়েছে।");
+  }
+
+  else if("mushroom"==e.type){
+    shroom+=Number(e.val);
+    localStorage.setItem("km_shroom",shroom);
+    speak("অভিনন্দন! মাশরুম ওয়ালেটে যোগ হয়েছে।");
+    checkMushroomClaim();
+  }
+
   uUI();
 
-localStorage.setItem("first_spin_done","YES");
+  canSpin = false;
 
-pop("🎉 পুরস্কার Wallet-এ যোগ হয়েছে","success");
+  localStorage.setItem("first_spin_done","YES");
 
-document.getElementById("spinModal").style.display="none";
+  pop("🎉 পুরস্কার Wallet-এ যোগ হয়েছে","success");
 
-currentSpinReward=null;
-}
+  document.getElementById("spinModal").style.display="none";
 
+  currentSpinReward = null;
+  }
+  
 function openWithdrawModal(){pAud("cS");document.getElementById("withdrawModal").style.display="flex"}
 function closeWithdrawModal(){document.getElementById("withdrawModal").style.display="none"}
 
