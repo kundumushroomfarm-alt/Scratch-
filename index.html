@@ -514,10 +514,23 @@ function doScr(e){
 function chkScr(){
   if(!isScr){
     let e=cx.getImageData(0,0,cv.width,cv.height).data,t=0;
-    for(let s=0;s<e.length;s+=4)0===e[s+3]&&t++;
+
+    for(let s=0;s<e.length;s+=4){
+      if(e[s+3]==0)t++;
+    }
+
     if(t/(e.length/4)>.45){
-      isScr=!0;isDraw=!1;stopS();clearInterval(sparkleTimer);
-      verified=0;codeInput.value="";cx.clearRect(0,0,cv.width,cv.height);hRew();
+
+      isScr=true;
+      isDraw=false;
+      stopS();
+      clearInterval(sparkleTimer);
+
+      // এখানে আর Verify Code মুছবে না
+
+      cx.clearRect(0,0,cv.width,cv.height);
+
+      hRew();
     }
   }
   }
@@ -762,9 +775,10 @@ function submitWithdraw(){
       console.error(err);
       pop("❌ Request Failed","error");
   });
-  }
+                         }
 
 function checkPayment(){
+
   const code = localStorage.getItem("verify_code") || "";
   if(!code) return;
 
@@ -778,17 +792,17 @@ function checkPayment(){
     if(paid=="YES"){
 
       if(type=="WITHDRAW"){
-        cash=0;
+        cash = 0;
         localStorage.setItem("km_cash",0);
       }
 
       if(type=="MUSHROOM"){
-        shroom=Math.max(0,shroom-100);
+        shroom = Math.max(0, shroom-100);
         localStorage.setItem("km_shroom",shroom);
       }
 
       if(type=="POINTS"){
-        pts=0;
+        pts = 0;
         localStorage.setItem("km_points",0);
       }
 
@@ -804,10 +818,18 @@ function checkPayment(){
 
       fireConfetti();
       playClap();
+
+      // ✅ Payment Success হলে তবেই Verify Code মুছে যাবে
+      verified = 0;
+      codeInput.value = "";
+      localStorage.removeItem("verify_code");
+      localStorage.removeItem("first_spin_done");
+
     }
 
   })
   .catch(console.error);
+
   }
 
 function checkMushroomClaim(){
