@@ -267,7 +267,7 @@ const rews=[
   {text:"🍄 40 গ্ৰাম মাশরুম",type:"mushroom",val:40},
   {text:"😭 Better Luck Next Time",type:"lose",val:0}
 ];
-const dPool=[100,300,150,200,199,120,105];
+const dPool=[100,15,10,25,19,49,99];
 
 function speak(e,t="bn-IN"){
   if("speechSynthesis" in window){
@@ -362,13 +362,17 @@ async function verifyCode(){
     let t=await fetch(VERIFY_API,{method:"POST",body:new URLSearchParams({code:e})}),s=await t.text();
     if("success"===s){
       localStorage.setItem("verify_code", codeInput.value.trim());
-      verified=1;
-      canSpin=true;
-      tap.style.display="none";
-      playClap();
-      fireConfetti();
-      openSpinOrder();
-    }else{
+verified=1;
+tap.style.display="none";
+playClap();
+fireConfetti();
+
+if(localStorage.getItem("first_spin_done")!="YES"){
+    canSpin=true;
+    openSpinOrder();
+}else{
+    canSpin=false;
+  }
       pop("used"==s?"☑️ কোড টি ব্যবহার হয়েছে":"ভুল কোড দেবেন না ❌","error");
     }
   }catch(e){pop("😠 মাশরুম কিনুন, আবার চেষ্টা করুন","error")}
@@ -619,7 +623,7 @@ function spinOrderWheel(){
 
   playSpinSound();
   btn.disabled=!0;
-  const t=document.getElementById("spinWheelVisual"),s=["💵 ₹0.80 ক্যাশ","🍄 20g মাশরুম","⭐ 100 point","💵 ₹1.00 ক্যাশ","🍄 10g মাশরুম","⭐ 50 point"];
+  const t=document.getElementById("spinWheelVisual"),s=["💵 ₹0.80 ক্যাশ","🍄 20g ছাতু","⭐ 100 point","💵 ₹1.00 ক্যাশ","🍄 50g ছাতু","⭐ 50 point"];
   const a=Math.floor(360*Math.random());
   currentRotation+=2880+a;
   t.style.transform=`rotate(${currentRotation}deg)`;
@@ -632,17 +636,23 @@ function showSpinReward(e){
   document.getElementById("spinClaimBtn").style.display="block";
   document.getElementById("spinBtn").style.display="none";
   document.getElementById("spinFinger").style.display="block";
-  currentSpinReward=e.includes("₹0.80")?{type:"cash",val:.8}:e.includes("20g")?{type:"mushroom",val:20}:e.includes("100")?{type:"point",val:100}:e.includes("₹1.00")?{type:"cash",val:1}:e.includes("10g")?{type:"mushroom",val:10}:{type:"point",val:50};
+  currentSpinReward=e.includes("₹0.80")?{type:"cash",val:.8}:e.includes("20g")?{type:"mushroom",val:20}:e.includes("100")?{type:"point",val:100}:e.includes("₹1.00")?{type:"cash",val:1}:e.includes("50g")?{type:"mushroom",val:10}:{type:"point",val:50};
 }
 function claimSpinReward(){
   if(!currentSpinReward)return;
   let e=currentSpinReward;
-  if("cash"==e.type){cash+=Number(e.val);localStorage.setItem("km_cash",cash);speak("অভিনন্দন। ক্যাশ যোগ হয়েছে।")}
-  else if("point"==e.type){pts+=Number(e.val);localStorage.setItem("km_points",pts);speak("অভিনন্দন। পয়েন্ট যোগ হয়েছে।")}
-  else if("mushroom"==e.type){shroom+=Number(e.val);localStorage.setItem("km_shroom",shroom);speak("অভিনন্দন। মাশরুম ওয়ালেটে যোগ হয়েছে।");checkMushroomClaim()}
-  uUI();pop("🎉 পুরস্কার ক্যাশ Wallet-এ যোগ হয়েছে","success");
-  document.getElementById("spinModal").style.display="none";
-  currentSpinReward=null;
+  if("cash"==e.type){cash+=Number(e.val);localStorage.setItem("km_cash",cash);speak("অভিনন্দন! ক্যাশ ওয়েলেটে যোগ হয়েছে।")}
+  else if("point"==e.type){pts+=Number(e.val);localStorage.setItem("km_points",pts);speak("চমৎকার! পয়েন্ট ওয়ালেটে যোগ হয়েছে।")}
+  else if("mushroom"==e.type){shroom+=Number(e.val);localStorage.setItem("km_shroom",shroom);speak("অভিনন্দন! মাশরুম ওয়ালেটে যোগ হয়েছে।");checkMushroomClaim()}
+  uUI();
+
+localStorage.setItem("first_spin_done","YES");
+
+pop("🎉 পুরস্কার Wallet-এ যোগ হয়েছে","success");
+
+document.getElementById("spinModal").style.display="none";
+
+currentSpinReward=null;
 }
 
 function openWithdrawModal(){pAud("cS");document.getElementById("withdrawModal").style.display="flex"}
