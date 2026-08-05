@@ -733,8 +733,9 @@ function confirmWithdraw(){
 }
 
 function submitWithdraw(){
-  let name = document.getElementById("wName").value.trim();
-  let phone = document.getElementById("wPhone").value.trim();
+
+  let name=document.getElementById("wName").value.trim();
+  let phone=document.getElementById("wPhone").value.trim();
 
   fetch(PAYMENT_API,{
     method:"POST",
@@ -751,26 +752,30 @@ function submitWithdraw(){
       mushroom:shroom
     }).toString()
   })
+
   .then(r=>r.text())
+
   .then(res=>{
 
-      console.log(res);
+    console.log(res);
 
-      pop("✅ Withdraw Request পাঠানো হয়েছে","success");
+    pop("✅ Withdraw Request পাঠানো হয়েছে","success");
 
-      // কোড উড়ে যাবে Withdraw Request এর পরে
-      verified = 0;
-      codeInput.value = "";
-      localStorage.removeItem("verify_code");
+    closeWithdrawModal();
 
-      closeWithdrawModal();
+    // এখানে Verify Code মুছবেন না
 
   })
+
   .catch(err=>{
-      console.error(err);
-      pop("❌ Request Failed","error");
+
+    console.error(err);
+
+    pop("❌ Request Failed","error");
+
   });
-                         }
+
+  }
 
 function checkPayment(){
 
