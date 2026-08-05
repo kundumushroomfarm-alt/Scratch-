@@ -359,6 +359,7 @@ function animateValue(e,t,s,a,o="",n="",l=2){
 }
 
 async function verifyCode(){
+async function verifyCode(){
 
   let e = codeInput.value.trim();
 
@@ -381,7 +382,7 @@ async function verifyCode(){
 
       localStorage.setItem("verify_code",e);
 
-      // নতুন কোড মানেই আবার Spin হবে
+      // নতুন কোড হলে আবার Spin হবে
       localStorage.removeItem("first_spin_done");
 
       verified = 1;
@@ -394,29 +395,23 @@ async function verifyCode(){
 
       openSpinOrder();
 
-    }
-
-    else if(s==="used"){
+    }else if(s==="used"){
 
       pop("☑️ কোড টি ব্যবহার হয়েছে","error");
 
-    }
-
-    else{
+    }else{
 
       pop("❌ ভুল কোড","error");
 
     }
 
-  }
-
-  catch(err){
+  }catch(err){
 
     pop("😠 মাশরুম কিনুন, আবার চেষ্টা করুন","error");
 
   }
 
-  }
+} // ← verifyCode এখানেই শেষ
 function pAud(e){try{let t=document.getElementById(e);if(t){t.currentTime=0;t.play().catch(()=>{})}}catch(e){}}
 function stopS(){sS.pause();sS.currentTime=0}
 
@@ -792,17 +787,17 @@ function checkPayment(){
     if(paid=="YES"){
 
       if(type=="WITHDRAW"){
-        cash = 0;
+        cash=0;
         localStorage.setItem("km_cash",0);
       }
 
       if(type=="MUSHROOM"){
-        shroom = Math.max(0, shroom-100);
+        shroom=Math.max(0,shroom-100);
         localStorage.setItem("km_shroom",shroom);
       }
 
       if(type=="POINTS"){
-        pts = 0;
+        pts=0;
         localStorage.setItem("km_points",0);
       }
 
@@ -819,17 +814,14 @@ function checkPayment(){
       fireConfetti();
       playClap();
 
-      // ✅ Payment Success হলে তবেই Verify Code মুছে যাবে
-      verified = 0;
-      codeInput.value = "";
+      verified=0;
+      codeInput.value="";
       localStorage.removeItem("verify_code");
       localStorage.removeItem("first_spin_done");
-
     }
 
   })
   .catch(console.error);
-
   }
 
 function checkMushroomClaim(){
