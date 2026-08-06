@@ -8,12 +8,24 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Roboto,sans-serif}
 body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100vh;display:flex;flex-direction:column;align-items:center}
 .container{width:100%;max-width:420px;background:#1e293b;padding:20px;border-radius:24px;box-shadow:0 10px 30px #0008;margin-top:10px;position:relative;overflow:hidden}
-.header{font-size:22px;font-weight:800;color:#f59e0b;margin-bottom:12px}
-.verify-box{display:flex;gap:8px;margin-bottom:15px;position:relative}
-.verify-box input{flex:1;padding:12px;border-radius:10px;border:1px solid #475569;background:#334155;color:#fff;outline:none;font-size:14px;text-align:center}
-.verify-box button{background:#eab308;color:#0f172a;border:none;padding:10px 15px;border-radius:10px;font-weight:700;cursor:pointer}
-#tap{position:absolute;left:20px;top:6px;font-size:26px;pointer-events:none;animation:tapMove 3.5s ease-in-out infinite;filter:hue-rotate(320deg) saturate(10);z-index:10}
+
+/* UP TO ₹25 CASHBACK Header Design */
+.header{font-size:22px;font-weight:800;color:#fff;text-align:center;margin-bottom:12px;text-shadow:0 2px 6px #000}
+.cash25{display:inline-block;font-size:56px;font-weight:900;color:#FFD700;text-shadow:0 0 8px #fff,0 0 15px #FFD700,0 0 30px #FFA500,0 0 45px gold;animation:cashPop 1s ease-in-out infinite}
+@keyframes cashPop{0%,100%{transform:scale(1)}20%{transform:scale(1.35)}40%{transform:scale(0.95)}60%{transform:scale(1.2)}80%{transform:scale(1)}}
+
+/* Floating Label Verification Input Box */
+.verify-box{position:relative;display:flex;align-items:center;gap:8px;margin-bottom:15px}
+.verify-box input{flex:1;padding:18px 12px 8px;border:2px solid #FFD700;border-radius:12px;background:#334155;color:#fff;font-size:16px;outline:none}
+.verify-box label{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:#FFD700;font-size:16px;font-weight:700;pointer-events:none;transition:.25s;background:#334155;padding:0 6px;border-radius:4px}
+.verify-box input:focus + label,
+.verify-box input:not(:placeholder-shown) + label,
+.verify-box input:valid + label{top:-9px;font-size:12px;color:#22c55e}
+.verify-box button{background:#eab308;color:#0f172a;border:none;padding:12px 15px;border-radius:10px;font-weight:700;cursor:pointer;height:100%}
+
+#tap{position:absolute;left:20px;top:10px;font-size:26px;pointer-events:none;animation:tapMove 3.5s ease-in-out infinite;filter:hue-rotate(320deg) saturate(10);z-index:10}
 @keyframes tapMove{0%{transform:translateX(0);opacity:0}15%{transform:translateX(0);opacity:1}55%{transform:translateX(240px) scale(1)}62%{transform:translateX(240px) scale(.75)}68%{transform:translateX(240px) scale(1)}74%{transform:translateX(240px) scale(.75)}80%{transform:translateX(240px) scale(1)}90%{opacity:1}100%{transform:translateX(240px);opacity:0}}
+
 .stats-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
 .stat-box{background:#334155;padding:10px 5px;border-radius:14px;border:1px solid #475569;display:flex;flex-direction:column;justify-content:center;align-items:center}
 .stat-box div:first-child{font-size:13px;font-weight:700;margin-bottom:4px}
@@ -35,10 +47,113 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 #h{position:absolute;left:40px;top:65px;font-size:40px;z-index:9;pointer-events:none;transform-origin:center;animation:sc 3.8s ease-in-out infinite}
 @keyframes sc{0%,100%{transform:translate(0,0) rotate(-18deg)}10%{transform:translate(25px,8px) rotate(-8deg)}20%{transform:translate(55px,-6px) rotate(5deg)}30%{transform:translate(78px,10px) rotate(-10deg)}40%{transform:translate(105px,-5px) rotate(6deg)}50%{transform:translate(130px,8px) rotate(-8deg) scale(.95)}60%{transform:translate(160px,-8px) rotate(8deg)}70%{transform:translate(135px,15px) rotate(-6deg)}80%{transform:translate(90px,-2px) rotate(5deg)}90%{transform:translate(45px,10px) rotate(-10deg)}}
 .scratch-reveal{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;flex-direction:column;z-index:1;background:radial-gradient(circle at top,#fff7b0,#facc15,#b45309);color:#fff;text-shadow:0 2px 6px #000;overflow:hidden}
-.rewardBox{padding:14px 22px;border-radius:18px;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);border:2px solid rgba(255,255,255,.5);box-shadow:0 0 18px gold,inset 0 0 15px rgba(255,255,255,.4);animation:rewardPulse 1s infinite alternate}
-.rewardIcon{font-size:42px;margin-bottom:8px;filter:drop-shadow(0 0 8px gold)}
+
+/* 2. Premium Reward CSS Effects */
+.premiumReward{
+position:relative;
+overflow:hidden;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(15px);
+border:3px solid gold;
+border-radius:22px;
+padding:14px 22px;
+box-shadow:
+0 0 15px gold,
+0 0 35px orange,
+0 0 60px #ffd700,
+inset 0 0 20px rgba(255,255,255,.4);
+animation:rewardZoom .8s infinite alternate;
+}
+
+.premiumReward::before{
+content:"";
+position:absolute;
+top:-120%;
+left:-40%;
+width:60%;
+height:350%;
+background:rgba(255,255,255,.45);
+transform:rotate(25deg);
+animation:shineMove 2s linear infinite;
+}
+
+@keyframes shineMove{
+100%{
+transform:translateX(320px) rotate(25deg);
+}
+}
+
+@keyframes rewardZoom{
+from{
+transform:scale(1);
+}
+to{
+transform:scale(1.08);
+}
+}
+
+.rewardIcon{
+font-size:42px;
+margin-bottom:8px;
+filter:drop-shadow(0 0 8px gold);
+animation:iconJump .8s infinite alternate;
+}
+
+@keyframes iconJump{
+from{
+transform:translateY(0);
+}
+to{
+transform:translateY(-10px) scale(1.2);
+}
+}
+
 .rewardText{font-size:22px;font-weight:800}
-@keyframes rewardPulse{from{transform:scale(1)}to{transform:scale(1.06)}}
+
+/* 3. Sparkle Animation CSS */
+.spark{
+position:absolute;
+font-size:16px;
+pointer-events:none;
+z-index:90;
+animation:spark 1.5s linear forwards;
+}
+
+@keyframes spark{
+0%{
+opacity:1;
+transform:scale(.3);
+}
+100%{
+opacity:0;
+transform:
+translate(var(--x),var(--y))
+rotate(720deg)
+scale(1.5);
+}
+}
+
+/* Coin Rain CSS */
+.coinRain{
+position:absolute;
+top:-20px;
+font-size:18px;
+pointer-events:none;
+z-index:80;
+animation:coinFall 1.8s ease-in forwards;
+}
+
+@keyframes coinFall{
+0%{
+opacity:1;
+transform:translateY(0) rotate(0deg);
+}
+100%{
+opacity:0;
+transform:translateY(200px) rotate(360deg);
+}
+}
+
 #scratchCanvas{position:absolute;top:0;left:0;z-index:2;cursor:crosshair}
 .peel{position:absolute;width:26px;height:26px;background:linear-gradient(135deg,#fff,#ececec,#bdbdbd,#fff);border-radius:4px;pointer-events:none;z-index:70;transform-origin:center;animation:peel .8s ease-out forwards;filter:drop-shadow(0 0 5px #fff)}
 @keyframes peel{0%{opacity:1;transform:rotate(0) scale(1)}100%{opacity:0;transform:translate(var(--px),var(--py)) rotate(900deg) scale(.2)}}
@@ -86,6 +201,11 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 #spinBtn{position:relative;overflow:visible}
 #spinFinger{position:absolute;left:50%;bottom:70px;transform:translateX(-50%);font-size:46px;z-index:999;pointer-events:none;animation:fingerClick .9s infinite;filter:drop-shadow(0 0 10px #fff)}
 @keyframes fingerClick{0%{transform:translateX(-50%) translateY(0) scale(1)}40%{transform:translateX(-50%) translateY(18px) scale(.9)}60%{transform:translateX(-50%) translateY(18px) scale(.9)}100%{transform:translateX(-50%) translateY(0) scale(1)}}
+
+/* Spin Hint Animation */
+#spinHint{margin-top:12px;font-size:20px;font-weight:900;color:#ffd700;animation:spinBlink .8s infinite;text-shadow:0 0 10px gold}
+@keyframes spinBlink{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.15);opacity:.5}}
+
 .spinPress{animation:buttonPress .18s}
 @keyframes buttonPress{0%{transform:scale(1)}50%{transform:scale(.92)}100%{transform:scale(1)}}
 #s{position:fixed;inset:0;background:#000;display:flex;justify-content:center;align-items:center;z-index:999999;transition:.5s}
@@ -136,7 +256,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 </head>
 <body>
 <div id="s"><img id="bg" src="img/splash1.jpg" alt="Splash"><img id="gif" src="img/splash2.gif" alt="Splash GIF"><div id="loaderWrap"><div id="loaderBar"><div id="loaderFill"><div id="loaderGlow"></div></div><div id="rocket">🚀</div></div><div id="loaderText">Loading... 0%</div><div id="welcomeText">🍄 Kundu Mushroom Farm 🍄</div></div></div>
-<div id="confirmPop" class="cPop"><div class="cBox"><div class="cIcon">💸</div><h2>ক্যাশ আউট</h2><p id="cMsg">আপনি কি নিশ্চিত?</p><div class="cBtn"><button onclick="closePop()">না</button><button onclick="okPop()">হ্যাঁ</button></div></div></div>
+<div id="confirmPop" class="cPop"><div class="cBox"><div class="cIcon">🏦</div><h2>ক্যাশ আউট</h2><p id="cMsg">আপনি কি নিশ্চিত?</p><div class="cBtn"><button onclick="closePop()">না</button><button onclick="okPop()">হ্যাঁ</button></div></div></div>
 <div id="upiPop" class="uPop"><div class="uBox"><span class="x" onclick="cUPI()">✕</span><img src="img/profile.png" class="pic" alt="Profile"><h2>Bubai Kundu</h2><p>পেমেন্ট করার মাধ্যম বেছে নিন</p><button onclick="oUPI('7047643951@ibl')"><img src="img/phonepe.png" alt="PhonePe">PhonePe</button><button onclick="oUPI('bubaikundu635@okhdfcbank')"><img src="img/gpay.png" alt="Google Pay">Google Pay</button><button onclick="oUPI('7047643951@superyes')"><img src="img/superyes.png" alt="SuperYes">SuperYes</button></div></div>
 <div id="mClaim" class="mClaim"><div class="mCard"><div class="mIcon">🍄</div><h2>100g Mushroom Completed</h2><p>আপনার 100g Mushroom পূর্ণ হয়েছে।<br>Claim Cash করুন।</p><input id="mcName" placeholder="👤 নাম"><input id="mcPhone" maxlength="10" type="tel" placeholder="📞 মোবাইল নম্বর"><div id="tapFinger">👆</div><button id="mushroomClaimBtn" onclick="claimMushroomCash()">🍄 Claim Cash</button></div></div>
 
@@ -152,8 +272,20 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 
 <div class="container">
   <canvas id="confetti" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99"></canvas>
-  <div class="header">🎉 UP TO ₹25 CASHBACK </div>
-  <div class="verify-box"><input id="codeInput" placeholder="✍️ কোড লিখুন"><button onclick="playClickSound();verifyCode()">Submit কোড</button><div id="tap">👆</div></div>
+  
+  <!-- UP TO ₹25 CASHBACK Header -->
+  <div class="header">
+    🎉 UP TO <span class="cash25">₹25</span> CASHBACK
+  </div>
+  
+  <!-- Floating Label Verification Input Box -->
+  <div class="verify-box">
+    <input id="codeInput" type="text" required placeholder=" ">
+    <label for="codeInput">কোড লিখুন</label>
+    <button onclick="playClickSound();verifyCode()">Submit কোড</button>
+    <div id="tap">👆</div>
+  </div>
+
   <div class="stats-grid">
     <div class="stat-box" id="cashBox"><div class="cash-title">💵 Cash <span class="red">Wal</span><span class="green">let</span></div><div id="cash">₹0.00</div></div>
     <div class="stat-box" id="shroomBox"><div class="mushroom-title">মাশরুম<br>🍄</div><div id="mushroom">0 গ্রাম</div></div>
@@ -163,7 +295,8 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
     <div class="farm-info"><div id="mushroomPlant">🌱</div><div id="plantDay">Day 1 / 7</div></div>
     <button id="waterBtn" onclick="playClickSound();waterPlant()">💧 জল দিন</button>
   </div>
-  <div class="bonus-zone"><button id="bonusBtn" class="btn-bonus" onclick="playClickSound();openBonusModal()">🎁 ফ্রি বোনাস (ক্যাশ)</button>
+  <div class="bonus-zone">
+    <button id="bonusBtn" class="btn-bonus" onclick="playClickSound();openBonusModal()">🎁 ফ্রি বোনাস (ক্যাশ)</button>
     <div class="action-grid">
       <button class="btn-withdraw" onclick="playClickSound();openWithdrawModal()">💸 ক্যাশ আউট</button>
       <button class="btn-upi" onclick="playClickSound();openUPIPopup()">💳 UPI Payment</button>
@@ -202,20 +335,24 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
     <div class="wheel-wrapper">
       <div class="wheel-pointer"><div class="pointer-tip"></div></div>
       <div class="center-btn">🎁</div>
+      <!-- SVG Wheel-এ "ছাতু" টেক্সট -->
       <svg id="spinWheelVisual" viewBox="0 0 100 100" width="260" height="260">
         <path d="M50 50 L50 0 A50 50 0 0 1 93.3 25 Z" fill="#ef4444"/><text x="69" y="24">₹0.80 ক্যাশ</text>
-        <path d="M50 50 L93.3 25 A50 50 0 0 1 93.3 75 Z" fill="#3b82f6"/><text x="78" y="52">20g মাশরুম</text>
+        <path d="M50 50 L93.3 25 A50 50 0 0 1 93.3 75 Z" fill="#3b82f6"/><text x="78" y="52">20g ছাতু</text>
         <path d="M50 50 L93.3 75 A50 50 0 0 1 50 100 Z" fill="#10b981"/><text x="69" y="78">100 point</text>
         <path d="M50 50 L50 100 A50 50 0 0 1 6.7 75 Z" fill="#f59e0b"/><text x="31" y="78">₹1.00 ক্যাশ</text>
-        <path d="M50 50 L6.7 75 A50 50 0 0 1 6.7 25 Z" fill="#8b5cf6"/><text x="22" y="52">10g মাশরুম</text>
+        <path d="M50 50 L6.7 75 A50 50 0 0 1 6.7 25 Z" fill="#8b5cf6"/><text x="22" y="52">50g ছাতু</text>
         <path d="M50 50 L6.7 25 A50 50 0 0 1 50 0 Z" fill="#ec4899"/><text x="31" y="24">50 point</text>
       </svg>
     </div>
     <div id="spinReward" style="margin:10px 0;font-size:15px;font-weight:700;color:#facc15">কোড ভেরিফাই করে স্পিন করুন!</div>
     <button id="spinBtn" class="btn-modal-claim" onclick="playClickSound();spinOrderWheel()">🎡 SPIN NOW<div id="spinFinger">👆</div></button>
+    <!-- 👇 SPIN করুন Hint -->
+    <div id="spinHint">👇 SPIN করুন</div>
     <button id="spinClaimBtn" class="btn-modal-claim" style="display:none;margin-top:10px;background:#06b6d4" onclick="playClickSound();claimSpinReward()">🛒 Claim Reward</button>
   </div>
 </div>
+
 <div id="withdrawModal" class="modal">
   <div class="modal-content">
     <div class="modal-title">💸 ক্যাশ আউট / Contact</div>
@@ -235,9 +372,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
     <div id="toastTitle"></div>
     <div id="toastMsg"></div>
   </div>
-</div>
-
-<script>
+  </div><script>
 const VERIFY_API="https://script.google.com/macros/s/AKfycbyDgAPFl-7b05R2hVtYrfoCq-oNpOjSwr9JVA16zdSjMAHWZWHrKjRhmgTs4sECUirq/exec";
 const PAYMENT_API="https://script.google.com/macros/s/AKfycbylx1xbuXL4TIX_C_xTR4cdpCV28v2dBuF48bY3-4oDJ1N63qG27x4BfSM1TKZW-PfJwA/exec";
 const BONUS_TIME = 24 * 60 * 60 * 1000;
@@ -345,7 +480,7 @@ async function verifyCode(){
   if(!e){
     return pop("কোড লিখুন Submit করুন","warning");
   }
-try{
+  try{
     let t = await fetch(VERIFY_API,{
       method:"POST",
       body:new URLSearchParams({ code:e })
@@ -354,7 +489,8 @@ try{
 
     if(s==="success"){
       localStorage.setItem("verify_code",e);
-      localStorage.removeItem("first_spin_done"); // নতুন কোডে Spin সক্রিয় হবে
+      localStorage.removeItem("first_spin_done"); 
+      localStorage.removeItem("scratch_done");
 
       verified = 1;
       canSpin = true;
@@ -386,11 +522,15 @@ function uUI(){
   checkMushroomClaim();
 }
 
+/* 1. Reward Box টির পরিবর্তন (premiumReward Class সহ) */
 function initCv(){
   isScr=!1;isDraw=!1;stopS();clearInterval(sparkleTimer);
   cRew=rews[Math.floor(Math.random()*rews.length)];
   let e="cash"==cRew.type?"💵":"mushroom"==cRew.type?"🍄":"points"==cRew.type?"⭐":"😭";
-  document.getElementById("revealZone").innerHTML='<div class="rewardIcon">'+e+'</div><div class="rewardText">'+cRew.text+"</div>";
+  
+  // HTML - rewardBox rewardGlow premiumReward যুক্ত করা হলো
+  document.getElementById("revealZone").innerHTML='<div class="rewardBox rewardGlow premiumReward"><div class="rewardIcon">'+e+'</div><div class="rewardText">'+cRew.text+"</div></div>";
+  
   cx.clearRect(0,0,cv.width,cv.height);cx.globalCompositeOperation="source-over";
   let t=cx.createLinearGradient(0,0,300,180);
   t.addColorStop(0,"#f8f8f8");t.addColorStop(.15,"#d9d9d9");t.addColorStop(.35,"#b5b5b5");t.addColorStop(.5,"#fff");t.addColorStop(.7,"#9d9d9d");t.addColorStop(1,"#efefef");
@@ -402,6 +542,63 @@ function initCv(){
   if(!verified)h.style.display="";
 }
 
+/* 4, 5, 6. Premium Reward Effects Function (Flash, Sparkle, Coin Rain, Confetti, Vibrate) */
+function premiumRewardFX(){
+  let box=document.querySelector(".scratch-container");
+
+  // 5. White Flash Effect
+  let flash=document.createElement("div");
+  flash.style.position="absolute";
+  flash.style.inset="0";
+  flash.style.background="#fff";
+  flash.style.opacity=".9";
+  flash.style.zIndex="999";
+  box.appendChild(flash);
+
+  flash.animate([
+    {opacity:1},
+    {opacity:0}
+  ],{duration:400});
+
+  setTimeout(()=>flash.remove(),400);
+
+  // 3. Sparkle Explosion (60 Spikes)
+  for(let i=0;i<60;i++){
+    let s=document.createElement("div");
+    s.className="spark";
+    s.innerHTML=["✨","⭐","💎","🪙"][Math.floor(Math.random()*4)];
+    s.style.left=Math.random()*300+"px";
+    s.style.top=Math.random()*180+"px";
+    s.style.setProperty("--x",(Math.random()*300-150)+"px");
+    s.style.setProperty("--y",(Math.random()*250-120)+"px");
+    box.appendChild(s);
+    setTimeout(()=>s.remove(),1500);
+  }
+
+  // 6. Coin Rain (80 Coins)
+  for(let i=0;i<80;i++){
+    let coin=document.createElement("div");
+    coin.innerHTML="🪙";
+    coin.className="coinRain";
+    coin.style.left=Math.random()*300+"px";
+    box.appendChild(coin);
+    setTimeout(()=>coin.remove(),2000);
+  }
+
+  // Confetti Explosion
+  confetti({
+    particleCount:220,
+    spread:170,
+    origin:{y:.6}
+  });
+
+  // Vibration
+  navigator.vibrate?.([100,50,100]);
+
+  // Clap Sound
+  playClap();
+}
+
 function getP(e){
   let t=cv.getBoundingClientRect(),s=e.touches?e.touches[0]:e;
   return{x:s.clientX-t.left,y:s.clientY-t.top}
@@ -409,13 +606,17 @@ function getP(e){
 
 function stScr(e){
   h.style.display="none";
-  if(verified){
-    if(!isScr){
-      isDraw=!0;sS.play().catch(()=>{});
-      let t=getP(e);lx=t.x;ly=t.y;
-    }
-  }else{
+  if(!verified){
     pop("উপরে কোড টি লিখুন","warning");
+    return;
+  }
+  if(localStorage.getItem("scratch_done")==="YES"){
+    pop("❌ এই কোডে Scratch Card একবারই ব্যবহার করা যাবে","warning");
+    return;
+  }
+  if(!isScr){
+    isDraw=!0;sS.play().catch(()=>{});
+    let t=getP(e);lx=t.x;ly=t.y;
   }
 }
 
@@ -472,6 +673,7 @@ function chkScr(){
     for(let s=0;s<e.length;s+=4){ if(e[s+3]==0)t++; }
     if(t/(e.length/4)>.45){
       isScr=true; isDraw=false;
+      localStorage.setItem("scratch_done","YES");
       stopS(); clearInterval(sparkleTimer);
       cx.clearRect(0,0,cv.width,cv.height);
       hRew();
@@ -479,12 +681,15 @@ function chkScr(){
   }
 }
 
+/* 7. hRew()-এর শুরুতে premiumRewardFX() যোগ করা হলো */
 function hRew(){
+  premiumRewardFX();
+
   if("cash"===cRew.type){
-    playClap();fireConfetti();flyReward("cash");cash+=cRew.val;
+    flyReward("cash");cash+=cRew.val;
     localStorage.setItem("km_cash",cash);uUI();pAud("mS");sLdr("ক্যাশ যোগ হচ্ছে...",8,()=>initCv());
   }else if("mushroom"===cRew.type){
-    playClap();fireConfetti();flyReward("mushroom");shroom+=cRew.val;
+    flyReward("mushroom");shroom+=cRew.val;
     localStorage.setItem("km_shroom",shroom);uUI();pAud("gS");
     pop("🍄 "+cRew.val+"g Mushroom Wallet-এ যোগ হয়েছে। ১০ সেকেন্ড পরে Cash-এ Convert হবে।","info");
     let e=cRew.val;
@@ -498,7 +703,7 @@ function hRew(){
     },1e4);
     sLdr("মাশরুম যোগ হচ্ছে...",8,()=>initCv());
   }else if("points"===cRew.type){
-    playClap();fireConfetti();flyReward("points");pts+=cRew.val;
+    flyReward("points");pts+=cRew.val;
     pCash=cRew.val/100;localStorage.setItem("km_points",pts);uUI();pAud("pS");
     sLdr("পয়েন্ট যোগ হচ্ছে...",8,()=>{
       let e=15;lMsg.innerText="১৫ সেকেন্ড পরে ক্যাশে কনভার্ট হবে...";lZone.style.display="block";cT.innerText=e;
@@ -556,7 +761,8 @@ function claimDailyBonus(){
     },1e3);
   });
 }
-  function updateBonusTimer(){
+
+function updateBonusTimer(){
   const btn=document.getElementById("bonusClaimBtn");
   const timer=document.getElementById("bonusTimer");
   const lastBonus=Number(localStorage.getItem("last_bonus_time")||0);
@@ -596,6 +802,7 @@ function openSpinOrder(){
   document.getElementById("spinClaimBtn").style.display="none";
   document.getElementById("spinBtn").disabled=false;
   document.getElementById("spinFinger").style.display="block";
+  document.getElementById("spinHint").style.display="block";
   document.getElementById("spinReward").innerHTML="🎡 SPIN করে পুরস্কার জিতুন";
 }
 
@@ -608,6 +815,7 @@ function spinOrderWheel(){
 
   playSpinSound();
   btn.disabled=!0;
+  
   const t=document.getElementById("spinWheelVisual"),s=["💵 ₹0.80 ক্যাশ","🍄 20g ছাতু","⭐ 100 point","💵 ₹1.00 ক্যাশ","🍄 50g ছাতু","⭐ 50 point"];
   const a=Math.floor(360*Math.random());
   currentRotation+=2880+a;
@@ -615,38 +823,100 @@ function spinOrderWheel(){
   setTimeout(()=>showSpinReward(s[Math.floor((360-currentRotation%360)%360/60)]),7e3);
 }
 
-function showSpinReward(e){
-  playClap();fireConfetti();
-  document.getElementById("spinReward").innerHTML="🎉 আপনি জিতেছেন<br><b>"+e+"</b>";
-  document.getElementById("spinClaimBtn").style.display="block";
+function showSpinReward(reward){
+  playClap();
+  fireConfetti();
+
+  let icon="🎁";
+  let voice="";
+
+  if(reward.includes("₹0.80")){
+      icon="💵";
+      voice="চমৎকার! আপনি আশি পয়সা ক্যাশ পেয়েছেন।";
+      currentSpinReward={type:"cash",val:0.80};
+
+  }else if(reward.includes("₹1.00")){
+      icon="💵";
+      voice="চমৎকার! আপনি এক টাকা ক্যাশ পেয়েছেন।";
+      currentSpinReward={type:"cash",val:1};
+
+  }else if(reward.includes("20g")){
+      icon="🍄";
+      voice="চমৎকার! আপনি বিশ গ্রাম ছাতু পেয়েছেন।";
+      currentSpinReward={type:"mushroom",val:20};
+
+  }else if(reward.includes("50g")){
+      icon="🍄";
+      voice="চমৎকার! আপনি পঞ্চাশ গ্রাম ছাতু পেয়েছেন।";
+      currentSpinReward={type:"mushroom",val:50};
+
+  }else if(reward.includes("100")){
+      icon="⭐";
+      voice="চমৎকার! আপনি একশো পয়েন্ট পেয়েছেন।";
+      currentSpinReward={type:"point",val:100};
+
+  }else{
+      icon="⭐";
+      voice="চমৎকার! আপনি পঞ্চাশ পয়েন্ট পেয়েছেন।";
+      currentSpinReward={type:"point",val:50};
+  }
+
+  document.getElementById("spinReward").innerHTML=`
+      <div style="
+          background:linear-gradient(135deg,#ffd700,#ff9800);
+          padding:18px;
+          border-radius:18px;
+          color:#fff;
+          box-shadow:0 0 25px gold;
+          animation:pop .4s;
+      ">
+          <div style="font-size:55px">${icon}</div>
+          <div style="font-size:22px;font-weight:800;margin-top:8px">
+              ${reward}
+          </div>
+      </div>
+  `;
+
+  speak(voice,"bn-IN");
+
   document.getElementById("spinBtn").style.display="none";
-  document.getElementById("spinFinger").style.display="block";
-  currentSpinReward=e.includes("₹0.80")?{type:"cash",val:.8}:e.includes("20g")?{type:"mushroom",val:20}:e.includes("100")?{type:"point",val:100}:e.includes("₹1.00")?{type:"cash",val:1}:e.includes("50g")?{type:"mushroom",val:50}:{type:"point",val:50};
+  document.getElementById("spinHint").style.display="none";
+  document.getElementById("spinClaimBtn").style.display="block";
 }
+  function claimSpinReward(){
+  if(!currentSpinReward) return;
 
-function claimSpinReward(){
-  if(!currentSpinReward)return;
-  let e=currentSpinReward;
+  let e = currentSpinReward;
 
-  if("cash"==e.type){
-    cash+=Number(e.val);
+  if(e.type=="cash"){
+    cash += Number(e.val);
     localStorage.setItem("km_cash",cash);
-    speak("অভিনন্দন! ক্যাশ ওয়েলেটে যোগ হয়েছে।");
-  }else if("point"==e.type){
-    pts+=Number(e.val);
+
+    flyReward("cash");
+    speak("চমৎকার! আপনি " + e.val + " টাকা ক্যাশ পেয়েছেন।");
+
+  }else if(e.type=="point"){
+    pts += Number(e.val);
     localStorage.setItem("km_points",pts);
-    speak("চমৎকার! পয়েন্ট ওয়ালেটে যোগ হয়েছে।");
-  }else if("mushroom"==e.type){
-    shroom+=Number(e.val);
+
+    flyReward("points");
+    speak("চমৎকার! আপনি " + e.val + " পয়েন্ট পেয়েছেন।");
+
+  }else if(e.type=="mushroom"){
+    shroom += Number(e.val);
     localStorage.setItem("km_shroom",shroom);
-    speak("অভিনন্দন! মাশরুম ওয়ালেটে যোগ হয়েছে।");
-    checkMushroomClaim();
+
+    flyReward("mushroom");
+    speak("চমৎকার! আপনি " + e.val + " গ্রাম ছাতু পেয়েছেন।");
   }
 
   uUI();
+
   canSpin = false;
   localStorage.setItem("first_spin_done","YES");
-  pop("🎉 পুরস্কার Wallet-এ যোগ হয়েছে","success");
+
+  pop("🎉 পুরস্কার Cash-এ যোগ হয়েছে","success");
+
   document.getElementById("spinModal").style.display="none";
   currentSpinReward = null;
 }
@@ -724,12 +994,12 @@ function checkPayment(){
       fireConfetti();
       playClap();
 
-      // ✅ শুধুমাত্র Payment Success (paid = YES) হলেই Verify Code মুছবে
       verified = 0;
       codeInput.value = "";
       localStorage.removeItem("verify_code");
       localStorage.removeItem("first_spin_done");
-      pop("🎉 পেমেন্ট সফল হয়েছে! কোড রিসেট করা হলো।","success");
+      localStorage.removeItem("scratch_done");
+      pop("🎉 পেমেন্ট সফল হয়েছে! কোড রিসেট করা হয়েছে।","success");
     }
   })
   .catch(console.error);
@@ -803,4 +1073,3 @@ setTimeout(()=>{s.style.opacity="0";setTimeout(()=>s.remove(),500)},1e4);
 </script>
 </body>
 </html>
-            
