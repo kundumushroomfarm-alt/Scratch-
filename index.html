@@ -114,10 +114,10 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
   border:none;
   cursor:pointer;
   transition:.2s;
-}
+}#tap{position:absolute;left:20px;top:10px;font-size:26px;pointer-events:none;animation:tapMove 3.5s ease-in-out infinite;filter:hue-rotate(320deg) saturate(10);z-index:10}
+@keyframes tapMove{0%{transform:translateX(0);opacity:0}15%{transform:translateX(0);opacity:1}55%{transform:translateX(240px) scale(1)}62%{transform:translateX(240px) scale(.75)}68%{transform:translateX(240px) scale(1)}74%{transform:translateX(240px) scale(.75)}80%{transform:translateX(240px) scale(1)}90%{opacity:1}100%{transform:translateX(240px);opacity:0}}
 
-#tap{position:absolute;left:20px;top:10px;font-size:26px;pointer-events:none;animation:tapMove 3.5s ease-in-out infinite;filter:hue-rotate(320deg) saturate(10);z-index:10}
-@keyframes tapMove{0%{transform:translateX(0);opacity:0}15%{transform:translateX(0);opacity:1}55%{transform:translateX(240px) scale(1)}62%{transform:translateX(240px) scale(.75)}68%{transform:translateX(240px) scale(1)}74%{transform:translateX(240px) scale(.75)}80%{transform:translateX(240px) scale(1)}90%{opacity:1}100%{transform:translateX(240px);opacity:0}}.stats-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
 .stat-box{background:#334155;padding:10px 5px;border-radius:14px;border:1px solid #475569;display:flex;flex-direction:column;justify-content:center;align-items:center}
 .stat-box div:first-child{font-size:13px;font-weight:700;margin-bottom:4px}
 .stat-box div:last-child{font-size:18px;font-weight:700;color:#f8fafc}
@@ -202,12 +202,12 @@ animation:fadeIn .4s;
 
 #guideHand{
     position:fixed;
-    width:75px;
+    width:70px;
+    z-index:999999;
     left:-150px;
     top:-150px;
-    z-index:99999999;
     pointer-events:none;
-    transition: left .8s cubic-bezier(.25,1,.5,1), top .8s cubic-bezier(.25,1,.5,1), transform .12s ease;
+    transition:.5s;
     filter: drop-shadow(2px 10px 10px rgba(0,0,0,0.5)) drop-shadow(0 0 8px #fff) drop-shadow(0 0 18px gold);
     animation:handPulse 1.3s infinite;
 }
@@ -263,7 +263,9 @@ animation:wave .7s forwards;
 @keyframes wave{0%{ width:20px; height:20px; opacity:1; }100%{ width:120px; height:120px; margin-left:-50px; margin-top:-50px; opacity:0; }}
 
 .tutorialGlow{animation:premiumGlow 1s infinite !important;}
-@keyframes premiumGlow{0%{ box-shadow:0 0 0 gold; transform:scale(1); }50%{ box-shadow:0 0 18px gold, 0 0 35px #fff, 0 0 55px #ff0; transform:scale(1.05); }100%{ box-shadow:0 0 0 gold; transform:scale(1); }}#scratchCanvas{position:absolute;top:0;left:0;z-index:2;cursor:crosshair}
+@keyframes premiumGlow{0%{ box-shadow:0 0 0 gold; transform:scale(1); }50%{ box-shadow:0 0 18px gold, 0 0 35px #fff, 0 0 55px #ff0; transform:scale(1.05); }100%{ box-shadow:0 0 0 gold; transform:scale(1); }}
+
+#scratchCanvas{position:absolute;top:0;left:0;z-index:2;cursor:crosshair}
 .peel{position:absolute;width:26px;height:26px;background:linear-gradient(135deg,#fff,#ececec,#bdbdbd,#fff);border-radius:4px;pointer-events:none;z-index:70;transform-origin:center;animation:peel .8s ease-out forwards;filter:drop-shadow(0 0 5px #fff)}
 @keyframes peel{0%{opacity:1;transform:rotate(0) scale(1)}100%{opacity:0;transform:translate(var(--px),var(--py)) rotate(900deg) scale(.2)}}
 .powder{position:absolute;width:6px;height:6px;border-radius:50%;z-index:50;pointer-events:none;animation:powderFly .8s ease-out forwards;box-shadow:0 0 4px #fff}
@@ -297,14 +299,14 @@ animation:wave .7s forwards;
 .btn-modal-claim{background:#22c55e;color:#fff;padding:12px 25px;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-size:16px;width:100%}
 .btn-modal-claim:disabled{background:#64748b;cursor:not-allowed}
 #closeSpin{position:absolute;top:12px;right:12px;width:34px;height:34px;border:none;border-radius:50%;background:#ef4444;color:#fff;font-size:18px;cursor:pointer;z-index:110;box-shadow:0 0 10px rgba(0,0,0,.5)}
-.wheel-wrapper{position:relative;width:260px;height:260px;margin:15px auto;border-radius:50%;padding:8px;background:radial-gradient(circle,#ffe66d,#facc15,#d97706);box-shadow:0 0 15px #facc15,0 0 30px rgba(250,204,21,.8),0 0 60px rgba(250,204,21,.4),inset 0 0 18px rgba(255,255,255,.5),inset 0 -8px 18px rgba(0,0,0,.45);animation:wheelGlow 2.2s ease-in-out infinite}
-#spinWheelVisual{width:100%;height:100%;border-radius:50%;box-shadow:inset 0 0 20px rgba(255,255,255,.25),inset 0 -10px 20px rgba(0,0,0,.4),0 12px 25px rgba(0,0,0,.45);transition:transform 8s cubic-bezier(.08,.82,.17,1)}
+.wheel-wrapper{position:relative;width:260px;height:260px;margin:15px auto;border-radius:50%;padding:8px;background:radial-gradient(circle,#ffe66d,#facc15,#d97706);box-shadow:0 0 15px #facc15,0 0 30px rgba(250,204,21,.8),0 0 60px rgba(250,204,21,.4),inset 0 0 18px rgba(255,255,255,.5),inset 0 -8px 18px rgba(0,0,0,.45);animation:wheelGlow 2.2s ease-in-out infinite}#spinWheelVisual{width:100%;height:100%;border-radius:50%;box-shadow:inset 0 0 20px rgba(255,255,255,.25),inset 0 -10px 20px rgba(0,0,0,.4),0 12px 25px rgba(0,0,0,.45);transition:transform 8s cubic-bezier(.08,.82,.17,1)}
 #spinWheelVisual text{font-size:6.8px;font-weight:900;fill:#fff;paint-order:stroke;stroke:#000;stroke-width:.45;text-anchor:middle;dominant-baseline:middle;letter-spacing:.3px}
 .wheel-pointer{position:absolute;top:-8px;left:50%;transform:translateX(-50%);z-index:200;animation:pointerPulse 1s infinite}
 .pointer-tip{width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-top:45px solid #ffd700;filter:drop-shadow(0 0 10px gold) drop-shadow(0 0 18px orange)}
 .pointer-tip::after{content:"";position:absolute;left:-8px;top:-43px;width:16px;height:16px;background:#fff;border:4px solid #ffd700;border-radius:50%;box-shadow:0 0 12px gold,0 0 20px orange}
 @keyframes pointerPulse{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.08)}}
-.center-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;background:radial-gradient(circle,#fff,#ffd700,#ff9800);border:5px solid #fff;box-shadow:0 0 20px gold,inset 0 4px 8px rgba(255,255,255,.8),inset 0 -6px 8px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-size:34px;z-index:105}@keyframes wheelGlow{0%,100%{box-shadow:0 0 18px gold,0 0 35px orange,0 0 55px gold}50%{box-shadow:0 0 28px #fff176,0 0 50px gold,0 0 80px orange}}
+.center-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;background:radial-gradient(circle,#fff,#ffd700,#ff9800);border:5px solid #fff;box-shadow:0 0 20px gold,inset 0 4px 8px rgba(255,255,255,.8),inset 0 -6px 8px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-size:34px;z-index:105}
+@keyframes wheelGlow{0%,100%{box-shadow:0 0 18px gold,0 0 35px orange,0 0 55px gold}50%{box-shadow:0 0 28px #fff176,0 0 50px gold,0 0 80px orange}}
 #spinBtn{position:relative;overflow:visible}
 #spinFinger{position:absolute;left:50%;bottom:70px;transform:translateX(-50%);font-size:46px;z-index:999;pointer-events:none;animation:fingerClick .9s infinite;filter:drop-shadow(0 0 10px #fff)}
 @keyframes fingerClick{0%{transform:translateX(-50%) translateY(0) scale(1)}40%{transform:translateX(-50%) translateY(18px) scale(.9)}60%{transform:translateX(-50%) translateY(18px) scale(.9)}100%{transform:translateX(-50%) translateY(0) scale(1)}}
@@ -341,8 +343,7 @@ animation:wave .7s forwards;
 #tapFinger{position:absolute;right:35px;bottom:78px;font-size:48px;z-index:99999;animation:tapAnim .7s infinite;filter:drop-shadow(0 0 8px #fff);pointer-events:none}
 @keyframes tapAnim{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(12px) scale(.9)}}
 #claimBtn,#mushroomClaimBtn{width:100%;padding:15px;margin-top:18px;border:none;border-radius:16px;background:linear-gradient(135deg,#16a34a,#22c55e,#4ade80);background-size:200% 200%;color:#fff;font-size:18px;font-weight:700;letter-spacing:.5px;cursor:pointer;box-shadow:0 10px 25px rgba(34,197,94,.45);position:relative;overflow:hidden;animation:btnGlow 2s linear infinite;transition:.25s}
-#claimBtn:active,#mushroomClaimBtn:active{transform:scale(.96)}
-#claimBtn::before,#mushroomClaimBtn::before{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;background:rgba(255,255,255,.45);transform:skewX(-25deg);animation:shine 2s infinite}
+#claimBtn:active,#mushroomClaimBtn:active{transform:scale(.96)}#claimBtn::before,#mushroomClaimBtn::before{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;background:rgba(255,255,255,.45);transform:skewX(-25deg);animation:shine 2s infinite}
 @keyframes shine{100%{left:150%}}
 @keyframes btnGlow{0%,100%{background-position:0 50%;box-shadow:0 0 10px #22c55e}50%{background-position:100% 50%;box-shadow:0 0 22px #4ade80}}
 #toast{position:fixed;top:25px;left:50%;transform:translateX(-50%) translateY(-80px);min-width:320px;max-width:92%;padding:16px;border-radius:24px;background:rgba(30,41,59,.97);backdrop-filter:blur(20px);display:flex;gap:15px;align-items:center;box-shadow:0 10px 40px rgba(0,0,0,.5);opacity:0;transition:.45s;z-index:999999}
@@ -392,8 +393,9 @@ animation:wave .7s forwards;
     <div class="stat-box" id="cashBox"><div class="cash-title">💵 Cash <span class="red">Wal</span><span class="green">let</span></div><div id="cash">₹0.00</div></div>
     <div class="stat-box" id="shroomBox"><div class="mushroom-title">মাশরুম<br>🍄</div><div id="mushroom">0 গ্রাম</div></div>
     <div class="stat-box" id="pointBox"><div class="point-title">পয়েন্ট<br>⭐</div><div id="points">0 Pts</div></div>
-                                                                                             </div>
-    <div class="bonus-zone">
+  </div>
+
+  <div class="bonus-zone">
     <button id="bonusBtn" class="btn-bonus" onclick="playClickSound();openBonusModal()">🎁 ফ্রি বোনাস (ক্যাশ)</button>
     <div class="action-grid">
       <button class="btn-withdraw" onclick="playClickSound();openWithdrawModal()">💸 ক্যাশ আউট</button>
@@ -458,7 +460,7 @@ animation:wave .7s forwards;
     </div>
     <button class="btn-modal-claim" style="margin-top:10px;background:#2563eb" onclick="playClickSound();checkPayment()">✅ Payment Status</button>
   </div>
-        </div><div id="toast">
+    </div><div id="toast">
   <div id="toastIcon">🎉</div>
   <div>
     <div id="toastTitle"></div>
@@ -600,14 +602,12 @@ async function verifyCode(){
     let s = await t.text();
 
     if(s==="success"){
-      localStorage.setItem("verify_code",e);
-      localStorage.setItem("verified","1");
       localStorage.removeItem("first_spin_done"); 
       localStorage.removeItem("scratch_done");
 
       verified = 1;
       canSpin = true;
-      tutorialStep = 1; // টিউটোরিয়াল পরবর্তী ধাপে স্পিনে যাবে
+      tutorialStep = 1; // টিউটোরিয়াল পরের ধাপে নিয়ে যাওয়ার নির্দেশক
       tap.style.display="none";
 
       playClap();
@@ -721,9 +721,7 @@ function stScr(e){
     isDraw=!0;sS.play().catch(()=>{});
     let t=getP(e);lx=t.x;ly=t.y;
   }
-}
-
-function peelFoil(e,t){
+    }function peelFoil(e,t){
   let s=document.querySelector(".scratch-container");
   for(let a=0;a<4;a++){
     let o=document.createElement("div");
@@ -731,7 +729,9 @@ function peelFoil(e,t){
     o.style.setProperty("--px",120*Math.random()-60+"px");o.style.setProperty("--py",100*Math.random()-50+"px");
     s.appendChild(o);setTimeout(()=>o.remove(),800);
   }
-    }function scratchEdge(e,t){
+}
+
+function scratchEdge(e,t){
   cx.save();cx.globalCompositeOperation="source-over";
   let s=cx.createRadialGradient(e,t,2,e,t,22);
   s.addColorStop(0,"rgba(255,255,255,.35)");s.addColorStop(.4,"rgba(220,220,220,.18)");s.addColorStop(1,"rgba(255,255,255,0)");
@@ -784,7 +784,7 @@ function chkScr(){
 }
 
 function hRew(){
-  tutorialStep = 4; // স্ক্র্যাচ সম্পন্ন, পরবর্তী ক্যাশআউট ধাপে নেওয়া হলো
+  tutorialStep = 4;
   premiumRewardFX();
 
   if("cash"===cRew.type){
@@ -821,7 +821,9 @@ function hRew(){
   }else{
     pAud("eS");sLdr("ফলাফল চোখ রাখুন...",8,()=>initCv());
   }
-    }function sLdr(e,t,s){
+}
+
+function sLdr(e,t,s){
   let a=document.getElementById("pFill");
   lMsg.innerText=e;lZone.style.display="block";a.style.width="100%";a.style.transition=`width ${t}s linear`;
   setTimeout(()=>a.style.width="0%",20);cT.innerText=t;
@@ -842,7 +844,7 @@ function claimDailyBonus(){
   document.getElementById("bonusModal").style.display="none";
   localStorage.setItem("last_bonus_time",Date.now());
   localStorage.setItem("bonusDone","1");
-  tutorialStep = 3; // টিউটোরিয়াল পরবর্তী ধাপে স্ক্র্যাচ কার্ডে যাবে
+  tutorialStep = 3;
   let reward=dPool[Math.floor(Math.random()*dPool.length)];
   pts+=reward;
   pCash=+(reward/100).toFixed(2);
@@ -862,8 +864,7 @@ function claimDailyBonus(){
       }
     },1e3);
   });
-}
-function updateBonusTimer(){
+    }function updateBonusTimer(){
   const btn=document.getElementById("bonusClaimBtn");
   const timer=document.getElementById("bonusTimer");
   const lastBonus=Number(localStorage.getItem("last_bonus_time")||0);
@@ -1000,7 +1001,7 @@ function claimSpinReward(){
   canSpin = false;
   localStorage.setItem("first_spin_done","YES");
   localStorage.setItem("spinDone","1");
-  tutorialStep = 2; // টিউটোরিয়াল পরবর্তী ধাপে বোনাসে যাবে
+  tutorialStep = 2;
 
   pop("🎉 Reward Wallet-এ যোগ হয়েছে","success");
 
@@ -1047,7 +1048,7 @@ function submitWithdraw(){
 }
 
 function checkPayment(){
-  const code = localStorage.getItem("verify_code") || codeInput.value.trim();
+  const code = codeInput.value.trim();
   if(!code) return;
 
   fetch(PAYMENT_API + "?action=status&code=" + encodeURIComponent(code))
@@ -1083,8 +1084,6 @@ function checkPayment(){
 
       verified = 0;
       codeInput.value = "";
-      localStorage.removeItem("verify_code");
-      localStorage.removeItem("verified");
       localStorage.removeItem("first_spin_done");
       localStorage.removeItem("spinDone");
       localStorage.removeItem("scratch_done");
@@ -1100,8 +1099,9 @@ function checkMushroomClaim(){
     mClaim.style.display="flex";tapFinger.style.display="block";
     speak("অভিনন্দন! আপনার ১০০ গ্রাম মাশরুম সম্পূর্ণ হয়েছে! বাটনে ক্লিক করে! এখনই ক্যাশ করুন।।");
   }
-    }
-    function claimMushroomCash(){
+}
+
+function claimMushroomCash(){
   let e=document.getElementById("mcName").value.trim();
   let t=document.getElementById("mcPhone").value.trim();
 
@@ -1169,9 +1169,7 @@ function sparkle(x,y){
     document.body.appendChild(s);
     setTimeout(()=>s.remove(),900);
   }
-}
-
-function showFlash(x,y){
+    }function showFlash(x,y){
   if(!flash) return;
   flash.style.left=(x-35)+"px";
   flash.style.top=(y-35)+"px";
@@ -1191,9 +1189,11 @@ function wave(x,y){
 
 function moveHand(target){
   if(!target || !hand) return;
-  
-  document.querySelectorAll(".tutorialGlow").forEach(el=>el.classList.remove("tutorialGlow"));
-  
+
+  document.querySelectorAll(".tutorialGlow").forEach(el=>{
+    el.classList.remove("tutorialGlow");
+  });
+
   target.scrollIntoView({
     behavior:"smooth",
     block:"center"
@@ -1201,10 +1201,13 @@ function moveHand(target){
 
   setTimeout(()=>{
     const r = target.getBoundingClientRect();
-    hand.style.left = (r.left + r.width/2 - 35) + "px";
-    hand.style.top  = (r.top + r.height/2 - 20) + "px";
+
+    hand.style.position = "fixed";
+    hand.style.left = (r.left + r.width/2 - 28) + "px";
+    hand.style.top  = (r.top + r.height/2 - 55) + "px";
+
     target.classList.add("tutorialGlow");
-  }, 500);
+  }, 700);
 }
 
 function tapHand(target){
@@ -1234,17 +1237,9 @@ function tapHand(target){
 }
 
 function hideHand(){
-  if(!hand) return;
-  hand.style.transition = ".5s";
-  hand.style.opacity = "0";
-  hand.style.transform = "scale(.7)";
-  setTimeout(()=>{
-    hand.style.left = "-150px";
-    hand.style.top = "-150px";
-    hand.style.opacity = "1";
-    hand.style.transform = "scale(1)";
-    document.querySelectorAll(".tutorialGlow").forEach(el=>el.classList.remove("tutorialGlow"));
-  }, 600);
+    hand.style.left="-150px";
+    hand.style.top="-150px";
+    document.querySelectorAll(".tutorialGlow").forEach(e=>e.classList.remove("tutorialGlow"));
 }
 
 setInterval(()=>{
@@ -1266,7 +1261,7 @@ const tutorialSteps = [
   {
     text: "প্রথমে কোড লিখে সাবমিট করুন।",
     target: () => document.querySelector(".verify-box button"),
-    check: () => localStorage.getItem("verified") == "1"
+    check: () => verified === 1
   },
   {
     text: "এখন স্পিন করুন।",
@@ -1298,43 +1293,29 @@ function startTutorial(){
 
 function runStep(){
   clearInterval(tutorialTimer);
+
   if(tutorialStep >= tutorialSteps.length){
-    tutorialFinish();
-    return;
+      tutorialFinish();
+      return;
   }
 
   let step = tutorialSteps[tutorialStep];
-
-  if(step.check()){
-    tutorialStep++;
-    runStep();
-    return;
-  }
-
   let target = step.target();
+
   if(target){
-    moveHand(target);
-    setTimeout(()=>{
-      tapHand(target);
-      speakBN(step.text);
-    }, 1000);
+      moveHand(target);
+      setTimeout(()=>{
+          speakBN(step.text);
+          tapHand(target);
+      }, 1200);
   }
 
   tutorialTimer = setInterval(()=>{
-    if(step.check()){
-      tutorialStep++;
-      runStep();
-    }else{
-      let target = step.target();
-      if(target){
-        moveHand(target);
-        setTimeout(()=>{
-          tapHand(target);
-          speakBN(step.text);
-        }, 1000);
+      if(step.check()){
+          tutorialStep++;
+          runStep();
       }
-    }
-  }, 5000);
+  }, 1000);
 }
 
 function tutorialFinish(){
@@ -1350,9 +1331,7 @@ function tutorialFinish(){
 }
 
 window.onload = () => {
-  codeInput.value = localStorage.getItem("verify_code") || "";
-
-  // শুরুতে টিউটোরিয়ালের জন্য verified false থাকবে
+  codeInput.value = "";
   verified = 0;
 
   initApp();
@@ -1372,12 +1351,10 @@ window.onload = () => {
 
   setInterval(checkPayment, 5000);
 
-  // ১০ম সেকেণ্ডে Splash শেষ হলে অফার পপআপ
   setTimeout(() => {
     showPromoSequence();
   }, 11000);
 
-  // অফার পপআপের পর ১৭তম সেকেণ্ডে টিউটোরিয়াল নিখুঁতভাবে শুরু হবে
   setTimeout(() => {
     startTutorial();
   }, 17000);
@@ -1390,5 +1367,3 @@ setTimeout(()=>{s.style.opacity="0";setTimeout(()=>s.remove(),500)},1e4);
 </script>
 </body>
 </html>
-
-
