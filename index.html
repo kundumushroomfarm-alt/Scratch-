@@ -201,20 +201,20 @@ animation:fadeIn .4s;
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 
 #guideHand{
-    position:fixed;
-    width:70px;
-    z-index:999999;
+    position:absolute;
+    width:75px;
     left:-150px;
     top:-150px;
+    z-index:99999999;
     pointer-events:none;
-    transition:.5s;
+    transition: left .6s cubic-bezier(.25,1,.5,1), top .6s cubic-bezier(.25,1,.5,1), transform .12s ease;
     filter: drop-shadow(2px 10px 10px rgba(0,0,0,0.5)) drop-shadow(0 0 8px #fff) drop-shadow(0 0 18px gold);
     animation:handPulse 1.3s infinite;
 }
 @keyframes handPulse{0%{ transform:scale(1); }50%{ transform:scale(1.08); }100%{ transform:scale(1); }}
 
 #tapRipple{
-    position:fixed;
+    position:absolute;
     width:20px;
     height:20px;
     border-radius:50%;
@@ -227,7 +227,7 @@ animation:fadeIn .4s;
 @keyframes ripple{0%{ transform:scale(.2); opacity:1; }100%{ transform:scale(5); opacity:0; }}
 
 .handTrail{
-position:fixed;
+position:absolute;
 width:14px;
 height:14px;
 border-radius:50%;
@@ -240,7 +240,7 @@ animation:trailFade .8s linear forwards;
 @keyframes trailFade{0%{ opacity:1; transform:scale(1); }100%{ opacity:0; transform:scale(.2); }}
 
 #tapFlash{
-position:fixed;
+position:absolute;
 width:70px;
 height:70px;
 border-radius:50%;
@@ -253,7 +253,7 @@ background:radial-gradient(circle, rgba(255,255,255,.95), rgba(255,255,255,0));
 @keyframes flash{0%{ opacity:1; transform:scale(.2); }100%{ opacity:0; transform:scale(2.5); }}
 
 .wave{
-position:fixed;
+position:absolute;
 border-radius:50%;
 border:3px solid gold;
 pointer-events:none;
@@ -282,8 +282,7 @@ animation:wave .7s forwards;
 .cBtn{display:flex;gap:10px}
 .cBtn button{flex:1;border:0;padding:12px;border-radius:12px;font-weight:700;color:#fff;cursor:pointer}
 .cBtn button:first-child{background:#ef4444}
-.cBtn button:last-child{background:#22c55e}
-@keyframes pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.cBtn button:last-child{background:#22c55e}@keyframes pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
 @keyframes bounce{50%{transform:translateY(-8px)}}
 .loader-container{margin:15px 0;display:none}
 .progress-bar{width:100%;height:8px;background:#334155;border-radius:4px;overflow:hidden}
@@ -292,14 +291,16 @@ animation:wave .7s forwards;
 .action-grid{display:flex;gap:10px;width:100%}
 .btn-withdraw{flex:1;background:#ef4444;padding:12px;font-size:14px;font-weight:700;border:none;border-radius:12px;color:#fff;cursor:pointer;box-shadow:0 4px 10px rgba(239,68,68,.3)}
 .btn-upi{flex:1;background:linear-gradient(135deg,#22c55e,#16a34a);padding:12px;font-size:14px;font-weight:700;border:none;border-radius:12px;color:#fff;cursor:pointer;box-shadow:0 4px 10px rgba(34,197,94,.3)}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000c;z-index:100;justify-content:center;align-items:center;padding:20px}.modal-content{background:#1e293b;padding:20px;border-radius:20px;width:100%;max-width:360px;border:2px solid #eab308;text-align:center;position:relative}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000c;z-index:100;justify-content:center;align-items:center;padding:20px}
+.modal-content{background:#1e293b;padding:20px;border-radius:20px;width:100%;max-width:360px;border:2px solid #eab308;text-align:center;position:relative}
 .modal-title{font-size:20px;color:#eab308;font-weight:700;margin-bottom:10px}
 .modal-text{font-size:14px;margin-bottom:15px;color:#cbd5e1}
 .modal-input{width:100%;padding:12px;margin-bottom:10px;border-radius:8px;border:1px solid #475569;background:#334155;color:#fff;outline:none;text-align:left;font-size:14px}
 .btn-modal-claim{background:#22c55e;color:#fff;padding:12px 25px;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-size:16px;width:100%}
 .btn-modal-claim:disabled{background:#64748b;cursor:not-allowed}
 #closeSpin{position:absolute;top:12px;right:12px;width:34px;height:34px;border:none;border-radius:50%;background:#ef4444;color:#fff;font-size:18px;cursor:pointer;z-index:110;box-shadow:0 0 10px rgba(0,0,0,.5)}
-.wheel-wrapper{position:relative;width:260px;height:260px;margin:15px auto;border-radius:50%;padding:8px;background:radial-gradient(circle,#ffe66d,#facc15,#d97706);box-shadow:0 0 15px #facc15,0 0 30px rgba(250,204,21,.8),0 0 60px rgba(250,204,21,.4),inset 0 0 18px rgba(255,255,255,.5),inset 0 -8px 18px rgba(0,0,0,.45);animation:wheelGlow 2.2s ease-in-out infinite}#spinWheelVisual{width:100%;height:100%;border-radius:50%;box-shadow:inset 0 0 20px rgba(255,255,255,.25),inset 0 -10px 20px rgba(0,0,0,.4),0 12px 25px rgba(0,0,0,.45);transition:transform 8s cubic-bezier(.08,.82,.17,1)}
+.wheel-wrapper{position:relative;width:260px;height:260px;margin:15px auto;border-radius:50%;padding:8px;background:radial-gradient(circle,#ffe66d,#facc15,#d97706);box-shadow:0 0 15px #facc15,0 0 30px rgba(250,204,21,.8),0 0 60px rgba(250,204,21,.4),inset 0 0 18px rgba(255,255,255,.5),inset 0 -8px 18px rgba(0,0,0,.45);animation:wheelGlow 2.2s ease-in-out infinite}
+#spinWheelVisual{width:100%;height:100%;border-radius:50%;box-shadow:inset 0 0 20px rgba(255,255,255,.25),inset 0 -10px 20px rgba(0,0,0,.4),0 12px 25px rgba(0,0,0,.45);transition:transform 8s cubic-bezier(.08,.82,.17,1)}
 #spinWheelVisual text{font-size:6.8px;font-weight:900;fill:#fff;paint-order:stroke;stroke:#000;stroke-width:.45;text-anchor:middle;dominant-baseline:middle;letter-spacing:.3px}
 .wheel-pointer{position:absolute;top:-8px;left:50%;transform:translateX(-50%);z-index:200;animation:pointerPulse 1s infinite}
 .pointer-tip{width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-top:45px solid #ffd700;filter:drop-shadow(0 0 10px gold) drop-shadow(0 0 18px orange)}
@@ -358,12 +359,11 @@ animation:wave .7s forwards;
 </style>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
-<body><div id="s"><img id="bg" src="img/splash1.jpg" alt="Splash"><img id="gif" src="img/splash2.gif" alt="Splash GIF"><div id="loaderWrap"><div id="loaderBar"><div id="loaderFill"><div id="loaderGlow"></div></div><div id="rocket">🚀</div></div><div id="loaderText">Loading... 0%</div><div id="welcomeText">🍄 Kundu Mushroom Farm 🍄</div></div></div>
+<body>
+<div id="s"><img id="bg" src="img/splash1.jpg" alt="Splash"><img id="gif" src="img/splash2.gif" alt="Splash GIF"><div id="loaderWrap"><div id="loaderBar"><div id="loaderFill"><div id="loaderGlow"></div></div><div id="rocket">🚀</div></div><div id="loaderText">Loading... 0%</div><div id="welcomeText">🍄 Kundu Mushroom Farm 🍄</div></div></div>
 <div id="confirmPop" class="cPop"><div class="cBox"><div class="cIcon">🏦</div><h2>ক্যাশ আউট</h2><p id="cMsg">আপনি কি নিশ্চিত?</p><div class="cBtn"><button onclick="closePop()">না</button><button onclick="okPop()">হ্যাঁ</button></div></div></div>
 <div id="upiPop" class="uPop"><div class="uBox"><span class="x" onclick="cUPI()">✕</span><img src="img/profile.png" class="pic" alt="Profile"><h2>Bubai Kundu</h2><p>পেমেন্ট করার মাধ্যম বেছে নিন</p><button onclick="oUPI('7047643951@ibl')"><img src="img/phonepe.png" alt="PhonePe">PhonePe</button><button onclick="oUPI('bubaikundu635@okhdfcbank')"><img src="img/gpay.png" alt="Google Pay">Google Pay</button><button onclick="oUPI('7047643951@superyes')"><img src="img/superyes.png" alt="SuperYes">SuperYes</button></div></div>
-<div id="mClaim" class="mClaim"><div class="mCard"><div class="mIcon">🍄</div><h2>100g Mushroom Completed</h2><p>আপনার 100g Mushroom পূর্ণ হয়েছে।<br>Claim Cash করুন।</p><input id="mcName" placeholder="👤 নাম"><input id="mcPhone" maxlength="10" type="tel" placeholder="📞 মোবাইল নম্বর"><div id="tapFinger">👆</div><button id="mushroomClaimBtn" onclick="claimMushroomCash()">🍄 Claim Cash</button></div></div>
-
-<audio id="sS" src="https://files.catbox.moe/po27od.mp3" loop preload="auto"></audio>
+<div id="mClaim" class="mClaim"><div class="mCard"><div class="mIcon">🍄</div><h2>100g Mushroom Completed</h2><p>আপনার 100g Mushroom পূর্ণ হয়েছে।<br>Claim Cash করুন।</p><input id="mcName" placeholder="👤 নাম"><input id="mcPhone" maxlength="10" type="tel" placeholder="📞 মোবাইল নম্বর"><div id="tapFinger">👆</div><button id="mushroomClaimBtn" onclick="claimMushroomCash()">🍄 Claim Cash</button></div></div><audio id="sS" src="https://files.catbox.moe/po27od.mp3" loop preload="auto"></audio>
 <audio id="cS" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" preload="auto"></audio>
 <audio id="mS" src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3" preload="auto"></audio>
 <audio id="pS" src="https://assets.mixkit.co/active_storage/sfx/270/270-preview.mp3" preload="auto"></audio>
@@ -393,9 +393,7 @@ animation:wave .7s forwards;
     <div class="stat-box" id="cashBox"><div class="cash-title">💵 Cash <span class="red">Wal</span><span class="green">let</span></div><div id="cash">₹0.00</div></div>
     <div class="stat-box" id="shroomBox"><div class="mushroom-title">মাশরুম<br>🍄</div><div id="mushroom">0 গ্রাম</div></div>
     <div class="stat-box" id="pointBox"><div class="point-title">পয়েন্ট<br>⭐</div><div id="points">0 Pts</div></div>
-  </div>
-
-  <div class="bonus-zone">
+    </div><div class="bonus-zone">
     <button id="bonusBtn" class="btn-bonus" onclick="playClickSound();openBonusModal()">🎁 ফ্রি বোনাস (ক্যাশ)</button>
     <div class="action-grid">
       <button class="btn-withdraw" onclick="playClickSound();openWithdrawModal()">💸 ক্যাশ আউট</button>
@@ -449,6 +447,7 @@ animation:wave .7s forwards;
     <button id="spinClaimBtn" class="btn-modal-claim" style="display:none;margin-top:10px;background:#06b6d4" onclick="playClickSound();claimSpinReward()">🛒 Claim Reward</button>
   </div>
 </div>
+
 <div id="withdrawModal" class="modal">
   <div class="modal-content">
     <div class="modal-title">💸 ক্যাশ আউট / Contact</div>
@@ -460,7 +459,9 @@ animation:wave .7s forwards;
     </div>
     <button class="btn-modal-claim" style="margin-top:10px;background:#2563eb" onclick="playClickSound();checkPayment()">✅ Payment Status</button>
   </div>
-    </div><div id="toast">
+</div>
+
+<div id="toast">
   <div id="toastIcon">🎉</div>
   <div>
     <div id="toastTitle"></div>
@@ -523,9 +524,7 @@ function speakBN(text){
     u.volume=1;
     speechSynthesis.speak(u);
   }
-}
-
-function pop(msg,type="info"){
+}function pop(msg,type="info"){
   let toast=document.getElementById("toast");
   let icon=document.getElementById("toastIcon");
   let title=document.getElementById("toastTitle");
@@ -555,7 +554,7 @@ function oUPI(e){
     localStorage.setItem("km_cash",0);localStorage.setItem("km_shroom",0);localStorage.setItem("km_points",0);
     uUI();upiPop.style.display="none";pop("✅ UPI Request পাঠানো হয়েছে","success");
   },1500);
-}function fireConfetti(){confetti({particleCount:200,spread:90,origin:{y:.6}})}
+    }function fireConfetti(){confetti({particleCount:200,spread:90,origin:{y:.6}})}
 function playClap(){pAud("clapS")}
 
 function flyReward(e){
@@ -602,12 +601,14 @@ async function verifyCode(){
     let s = await t.text();
 
     if(s==="success"){
+      localStorage.setItem("verify_code",e);
+      localStorage.setItem("verified","1");
       localStorage.removeItem("first_spin_done"); 
       localStorage.removeItem("scratch_done");
 
       verified = 1;
+      tutorialStep = 1;
       canSpin = true;
-      tutorialStep = 1; // টিউটোরিয়াল পরের ধাপে নিয়ে যাওয়ার নির্দেশক
       tap.style.display="none";
 
       playClap();
@@ -692,7 +693,8 @@ function premiumRewardFX(){
     box.appendChild(coin);
     setTimeout(()=>coin.remove(),2000);
   }
-confetti({
+
+  confetti({
     particleCount:220,
     spread:170,
     origin:{y:.6}
@@ -721,7 +723,9 @@ function stScr(e){
     isDraw=!0;sS.play().catch(()=>{});
     let t=getP(e);lx=t.x;ly=t.y;
   }
-    }function peelFoil(e,t){
+}
+
+function peelFoil(e,t){
   let s=document.querySelector(".scratch-container");
   for(let a=0;a<4;a++){
     let o=document.createElement("div");
@@ -756,9 +760,7 @@ function silverFoil(e,t){
     o.style.setProperty("--fx",100*Math.random()-50+"px");o.style.setProperty("--fy",100*Math.random()-50+"px");
     s.appendChild(o);setTimeout(()=>o.remove(),900);
   }
-}
-
-function doScr(e){
+    }function doScr(e){
   if(isDraw&&!isScr){
     let t=getP(e);
     cx.globalCompositeOperation="destination-out";cx.beginPath();cx.lineCap="round";
@@ -774,6 +776,7 @@ function chkScr(){
     for(let s=0;s<e.length;s+=4){ if(e[s+3]==0)t++; }
     if(t/(e.length/4)>.45){
       isScr=true; isDraw=false;
+      tutorialStep = 4;
       localStorage.setItem("scratch_done","YES");
       localStorage.setItem("scratchDone","1");
       stopS(); clearInterval(sparkleTimer);
@@ -784,7 +787,6 @@ function chkScr(){
 }
 
 function hRew(){
-  tutorialStep = 4;
   premiumRewardFX();
 
   if("cash"===cRew.type){
@@ -864,7 +866,9 @@ function claimDailyBonus(){
       }
     },1e3);
   });
-    }function updateBonusTimer(){
+}
+
+function updateBonusTimer(){
   const btn=document.getElementById("bonusClaimBtn");
   const timer=document.getElementById("bonusTimer");
   const lastBonus=Number(localStorage.getItem("last_bonus_time")||0);
@@ -999,9 +1003,9 @@ function claimSpinReward(){
   uUI();
 
   canSpin = false;
+  tutorialStep = 2;
   localStorage.setItem("first_spin_done","YES");
   localStorage.setItem("spinDone","1");
-  tutorialStep = 2;
 
   pop("🎉 Reward Wallet-এ যোগ হয়েছে","success");
 
@@ -1045,10 +1049,8 @@ function submitWithdraw(){
   .catch(err=>{
     pop("❌ Request Failed","error");
   });
-}
-
-function checkPayment(){
-  const code = codeInput.value.trim();
+    }function checkPayment(){
+  const code = localStorage.getItem("verify_code") || codeInput.value.trim();
   if(!code) return;
 
   fetch(PAYMENT_API + "?action=status&code=" + encodeURIComponent(code))
@@ -1084,6 +1086,8 @@ function checkPayment(){
 
       verified = 0;
       codeInput.value = "";
+      localStorage.removeItem("verify_code");
+      localStorage.removeItem("verified");
       localStorage.removeItem("first_spin_done");
       localStorage.removeItem("spinDone");
       localStorage.removeItem("scratch_done");
@@ -1136,10 +1140,13 @@ cv.addEventListener("touchmove",e=>{e.preventDefault();doScr(e)},{passive:!1});
 cv.addEventListener("touchend",()=>{isDraw=!1;stopS()});
 
 /* Promo Sequence System */
-function showPromoSequence(){
+function showPromoSequence(onComplete){
   const popup = document.getElementById("promoPopup");
   const media = document.getElementById("promoMedia");
-  if(!popup || !media) return;
+  if(!popup || !media){
+    if(onComplete) onComplete();
+    return;
+  }
 
   popup.style.display = "flex";
   media.src = "img/offer.jpg";
@@ -1150,9 +1157,10 @@ function showPromoSequence(){
       media.src = "img/offer2.gif";
       setTimeout(()=>{
         popup.style.display = "none";
-      }, 2000);
-    }, 2000);
-  }, 2000);
+        if(onComplete) onComplete();
+      }, 4000);
+    }, 6000);
+  }, 5000);
 }
 
 /* Premium Hand Controller & Tutorial System */
@@ -1169,7 +1177,9 @@ function sparkle(x,y){
     document.body.appendChild(s);
     setTimeout(()=>s.remove(),900);
   }
-    }function showFlash(x,y){
+}
+
+function showFlash(x,y){
   if(!flash) return;
   flash.style.left=(x-35)+"px";
   flash.style.top=(y-35)+"px";
@@ -1202,17 +1212,18 @@ function moveHand(target){
   setTimeout(()=>{
     const r = target.getBoundingClientRect();
 
-    hand.style.position = "fixed";
-    hand.style.left = (r.left + r.width/2 - 28) + "px";
-    hand.style.top  = (r.top + r.height/2 - 55) + "px";
+    hand.style.left = `${window.scrollX + r.left + r.width/2 - hand.offsetWidth/2}px`;
+    hand.style.top  = `${window.scrollY + r.top + r.height/2 - hand.offsetHeight/2}px`;
 
     target.classList.add("tutorialGlow");
-  }, 700);
+  },500);
 }
 
 function tapHand(target){
   if(!target || !hand) return;
   const r = target.getBoundingClientRect();
+  const absX = window.scrollX + r.left + r.width/2;
+  const absY = window.scrollY + r.top + r.height/2;
 
   hand.style.transition = "transform .12s";
   hand.style.transform = "scale(.88) rotate(2deg)";
@@ -1221,25 +1232,33 @@ function tapHand(target){
   }, 120);
 
   if(ripple){
-    ripple.style.left = (r.left + r.width/2 - 10) + "px";
-    ripple.style.top  = (r.top + r.height/2 - 10) + "px";
+    ripple.style.left = (absX - 10) + "px";
+    ripple.style.top  = (absY - 10) + "px";
     ripple.classList.remove("ripple");
     void ripple.offsetWidth;
     ripple.classList.add("ripple");
   }
 
-  showFlash(r.left + r.width/2, r.top + r.height/2);
-  sparkle(r.left + r.width/2, r.top + r.height/2);
-  wave(r.left + r.width/2, r.top + r.height/2);
+  showFlash(absX, absY);
+  sparkle(absX, absY);
+  wave(absX, absY);
 
   playClickSound?.();
   if(navigator.vibrate) navigator.vibrate(25);
 }
 
 function hideHand(){
-    hand.style.left="-150px";
-    hand.style.top="-150px";
-    document.querySelectorAll(".tutorialGlow").forEach(e=>e.classList.remove("tutorialGlow"));
+  if(!hand) return;
+  hand.style.transition = ".5s";
+  hand.style.opacity = "0";
+  hand.style.transform = "scale(.7)";
+  setTimeout(()=>{
+    hand.style.left = "-150px";
+    hand.style.top = "-150px";
+    hand.style.opacity = "1";
+    hand.style.transform = "scale(1)";
+    document.querySelectorAll(".tutorialGlow").forEach(el=>el.classList.remove("tutorialGlow"));
+  }, 600);
 }
 
 setInterval(()=>{
@@ -1257,65 +1276,74 @@ setInterval(()=>{
 let tutorialStep = 0;
 let tutorialTimer = null;
 
-const tutorialSteps = [
+const tutorialSteps=[
   {
-    text: "প্রথমে কোড লিখে সাবমিট করুন।",
-    target: () => document.querySelector(".verify-box button"),
-    check: () => verified === 1
+    text:"প্রথমে কোড লিখে সাবমিট করুন।",
+    target:()=>document.querySelector(".verify-box button"),
+    check:()=>localStorage.getItem("verified")=="1"
   },
   {
-    text: "এখন স্পিন করুন।",
-    target: () => document.getElementById("spinBtn"),
-    check: () => localStorage.getItem("spinDone") == "1"
+    text:"এখন স্পিন করুন।",
+    target:()=>document.getElementById("spinBtn"),
+    check:()=>localStorage.getItem("spinDone")=="1"
   },
   {
-    text: "এখন ফ্রি বোনাস নিন।",
-    target: () => document.getElementById("bonusBtn"),
-    check: () => localStorage.getItem("bonusDone") == "1"
+    text:"এখন ফ্রি বোনাস নিন।",
+    target:()=>document.getElementById("bonusBtn"),
+    check:()=>localStorage.getItem("bonusDone")=="1"
   },
   {
-    text: "এখন স্ক্র্যাচ কার্ড ঘষুন।",
-    target: () => document.getElementById("scratchCard"),
-    check: () => localStorage.getItem("scratchDone") == "1"
+    text:"এখন স্ক্র্যাচ কার্ড ঘষুন।",
+    target:()=>document.getElementById("scratchCard"),
+    check:()=>localStorage.getItem("scratchDone")=="1"
   },
   {
-    text: "এখন ক্যাশ আউট করুন।",
-    target: () => document.querySelector(".btn-withdraw"),
-    check: () => false
+    text:"এখন ক্যাশ আউট করুন।",
+    target:()=>document.querySelector(".btn-withdraw"),
+    check:()=>false
   }
 ];
 
 function startTutorial(){
-  tutorialStep = 0;
-  verified = 0;
   runStep();
 }
 
 function runStep(){
   clearInterval(tutorialTimer);
 
-  if(tutorialStep >= tutorialSteps.length){
-      tutorialFinish();
-      return;
+  if(tutorialStep>=tutorialSteps.length){
+    tutorialFinish();
+    return;
   }
 
-  let step = tutorialSteps[tutorialStep];
-  let target = step.target();
+  let step=tutorialSteps[tutorialStep];
 
-  if(target){
+  if(step.check()){
+    tutorialStep++;
+    runStep();
+    return;
+  }
+
+  let target=step.target();
+  moveHand(target);
+
+  setTimeout(()=>{
+    tapHand(target);
+    speakBN(step.text);
+  },1000);
+
+  tutorialTimer=setInterval(()=>{
+    if(step.check()){
+      tutorialStep++;
+      runStep();
+    }else{
       moveHand(target);
       setTimeout(()=>{
-          speakBN(step.text);
-          tapHand(target);
-      }, 1200);
-  }
-
-  tutorialTimer = setInterval(()=>{
-      if(step.check()){
-          tutorialStep++;
-          runStep();
-      }
-  }, 1000);
+        tapHand(target);
+        speakBN(step.text);
+      },1000);
+    }
+  },5000);
 }
 
 function tutorialFinish(){
@@ -1331,39 +1359,63 @@ function tutorialFinish(){
 }
 
 window.onload = () => {
-  codeInput.value = "";
+
+  codeInput.value = localStorage.getItem("verify_code") || "";
+
+  // প্রথমে verified FALSE থাকবে
   verified = 0;
 
   initApp();
 
   let p = 0;
+
   let loader = setInterval(() => {
-    p++;
-    document.getElementById("loaderFill").style.width = p + "%";
-    document.getElementById("loaderText").innerHTML = "Loading... " + p + "%";
-    document.getElementById("rocket").style.left = "calc(" + p + "% - 12px)";
-    if (p == 100) {
-      clearInterval(loader);
-      document.getElementById("loaderText").innerHTML = "✅ Ready";
-      speak("Welcome to Kundu Mushroom Farm", "en-IN");
-    }
-  }, 100);
 
-  setInterval(checkPayment, 5000);
+      p++;
+
+      document.getElementById("loaderFill").style.width = p + "%";
+
+      document.getElementById("loaderText").innerHTML = "Loading... " + p + "%";
+
+      document.getElementById("rocket").style.left =
+      "calc(" + p + "% - 12px)";
+
+      if (p == 100) {
+
+          clearInterval(loader);
+
+          document.getElementById("loaderText").innerHTML = "✅ Ready";
+
+      }
+
+  },100);
+
+  setInterval(checkPayment,5000);
+
+  // Splash শেষ হওয়ার পর Tutorial
+  setTimeout(() => {
+
+      showPromoSequence();
+
+  },11000);
 
   setTimeout(() => {
-    showPromoSequence();
-  }, 11000);
 
-  setTimeout(() => {
-    startTutorial();
-  }, 17000);
+      startTutorial();
+
+  },17000);
+
 };
 
 const bg=document.getElementById("bg"),gif=document.getElementById("gif"),s=document.getElementById("s");
 setTimeout(()=>{bg.style.display="none";gif.style.display="block";gif.src="img/splash2.gif"},3e3);
 setTimeout(()=>{gif.src="img/splash3.gif"},7e3);
-setTimeout(()=>{s.style.opacity="0";setTimeout(()=>s.remove(),500)},1e4);
+setTimeout(()=>{
+  s.style.opacity="0";
+  setTimeout(()=>{
+    s.remove();
+  },500);
+},1e4);
 </script>
 </body>
 </html>
