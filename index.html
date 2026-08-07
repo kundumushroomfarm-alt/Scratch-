@@ -117,9 +117,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 }
 
 #tap{position:absolute;left:20px;top:10px;font-size:26px;pointer-events:none;animation:tapMove 3.5s ease-in-out infinite;filter:hue-rotate(320deg) saturate(10);z-index:10}
-@keyframes tapMove{0%{transform:translateX(0);opacity:0}15%{transform:translateX(0);opacity:1}55%{transform:translateX(240px) scale(1)}62%{transform:translateX(240px) scale(.75)}68%{transform:translateX(240px) scale(1)}74%{transform:translateX(240px) scale(.75)}80%{transform:translateX(240px) scale(1)}90%{opacity:1}100%{transform:translateX(240px);opacity:0}}
-
-.stats-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
+@keyframes tapMove{0%{transform:translateX(0);opacity:0}15%{transform:translateX(0);opacity:1}55%{transform:translateX(240px) scale(1)}62%{transform:translateX(240px) scale(.75)}68%{transform:translateX(240px) scale(1)}74%{transform:translateX(240px) scale(.75)}80%{transform:translateX(240px) scale(1)}90%{opacity:1}100%{transform:translateX(240px);opacity:0}}.stats-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
 .stat-box{background:#334155;padding:10px 5px;border-radius:14px;border:1px solid #475569;display:flex;flex-direction:column;justify-content:center;align-items:center}
 .stat-box div:first-child{font-size:13px;font-weight:700;margin-bottom:4px}
 .stat-box div:last-child{font-size:18px;font-weight:700;color:#f8fafc}
@@ -203,20 +201,20 @@ animation:fadeIn .4s;
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 
 #guideHand{
-    position:absolute;
+    position:fixed;
     width:75px;
     left:-150px;
     top:-150px;
     z-index:99999999;
     pointer-events:none;
-    transition: left .6s cubic-bezier(.25,1,.5,1), top .6s cubic-bezier(.25,1,.5,1), transform .12s ease;
+    transition: left .8s cubic-bezier(.25,1,.5,1), top .8s cubic-bezier(.25,1,.5,1), transform .12s ease;
     filter: drop-shadow(2px 10px 10px rgba(0,0,0,0.5)) drop-shadow(0 0 8px #fff) drop-shadow(0 0 18px gold);
     animation:handPulse 1.3s infinite;
 }
 @keyframes handPulse{0%{ transform:scale(1); }50%{ transform:scale(1.08); }100%{ transform:scale(1); }}
 
 #tapRipple{
-    position:absolute;
+    position:fixed;
     width:20px;
     height:20px;
     border-radius:50%;
@@ -229,7 +227,7 @@ animation:fadeIn .4s;
 @keyframes ripple{0%{ transform:scale(.2); opacity:1; }100%{ transform:scale(5); opacity:0; }}
 
 .handTrail{
-position:absolute;
+position:fixed;
 width:14px;
 height:14px;
 border-radius:50%;
@@ -242,7 +240,7 @@ animation:trailFade .8s linear forwards;
 @keyframes trailFade{0%{ opacity:1; transform:scale(1); }100%{ opacity:0; transform:scale(.2); }}
 
 #tapFlash{
-position:absolute;
+position:fixed;
 width:70px;
 height:70px;
 border-radius:50%;
@@ -255,7 +253,7 @@ background:radial-gradient(circle, rgba(255,255,255,.95), rgba(255,255,255,0));
 @keyframes flash{0%{ opacity:1; transform:scale(.2); }100%{ opacity:0; transform:scale(2.5); }}
 
 .wave{
-position:absolute;
+position:fixed;
 border-radius:50%;
 border:3px solid gold;
 pointer-events:none;
@@ -265,9 +263,7 @@ animation:wave .7s forwards;
 @keyframes wave{0%{ width:20px; height:20px; opacity:1; }100%{ width:120px; height:120px; margin-left:-50px; margin-top:-50px; opacity:0; }}
 
 .tutorialGlow{animation:premiumGlow 1s infinite !important;}
-@keyframes premiumGlow{0%{ box-shadow:0 0 0 gold; transform:scale(1); }50%{ box-shadow:0 0 18px gold, 0 0 35px #fff, 0 0 55px #ff0; transform:scale(1.05); }100%{ box-shadow:0 0 0 gold; transform:scale(1); }}
-
-#scratchCanvas{position:absolute;top:0;left:0;z-index:2;cursor:crosshair}
+@keyframes premiumGlow{0%{ box-shadow:0 0 0 gold; transform:scale(1); }50%{ box-shadow:0 0 18px gold, 0 0 35px #fff, 0 0 55px #ff0; transform:scale(1.05); }100%{ box-shadow:0 0 0 gold; transform:scale(1); }}#scratchCanvas{position:absolute;top:0;left:0;z-index:2;cursor:crosshair}
 .peel{position:absolute;width:26px;height:26px;background:linear-gradient(135deg,#fff,#ececec,#bdbdbd,#fff);border-radius:4px;pointer-events:none;z-index:70;transform-origin:center;animation:peel .8s ease-out forwards;filter:drop-shadow(0 0 5px #fff)}
 @keyframes peel{0%{opacity:1;transform:rotate(0) scale(1)}100%{opacity:0;transform:translate(var(--px),var(--py)) rotate(900deg) scale(.2)}}
 .powder{position:absolute;width:6px;height:6px;border-radius:50%;z-index:50;pointer-events:none;animation:powderFly .8s ease-out forwards;box-shadow:0 0 4px #fff}
@@ -294,8 +290,7 @@ animation:wave .7s forwards;
 .action-grid{display:flex;gap:10px;width:100%}
 .btn-withdraw{flex:1;background:#ef4444;padding:12px;font-size:14px;font-weight:700;border:none;border-radius:12px;color:#fff;cursor:pointer;box-shadow:0 4px 10px rgba(239,68,68,.3)}
 .btn-upi{flex:1;background:linear-gradient(135deg,#22c55e,#16a34a);padding:12px;font-size:14px;font-weight:700;border:none;border-radius:12px;color:#fff;cursor:pointer;box-shadow:0 4px 10px rgba(34,197,94,.3)}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000c;z-index:100;justify-content:center;align-items:center;padding:20px}
-.modal-content{background:#1e293b;padding:20px;border-radius:20px;width:100%;max-width:360px;border:2px solid #eab308;text-align:center;position:relative}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000c;z-index:100;justify-content:center;align-items:center;padding:20px}.modal-content{background:#1e293b;padding:20px;border-radius:20px;width:100%;max-width:360px;border:2px solid #eab308;text-align:center;position:relative}
 .modal-title{font-size:20px;color:#eab308;font-weight:700;margin-bottom:10px}
 .modal-text{font-size:14px;margin-bottom:15px;color:#cbd5e1}
 .modal-input{width:100%;padding:12px;margin-bottom:10px;border-radius:8px;border:1px solid #475569;background:#334155;color:#fff;outline:none;text-align:left;font-size:14px}
@@ -309,8 +304,7 @@ animation:wave .7s forwards;
 .pointer-tip{width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-top:45px solid #ffd700;filter:drop-shadow(0 0 10px gold) drop-shadow(0 0 18px orange)}
 .pointer-tip::after{content:"";position:absolute;left:-8px;top:-43px;width:16px;height:16px;background:#fff;border:4px solid #ffd700;border-radius:50%;box-shadow:0 0 12px gold,0 0 20px orange}
 @keyframes pointerPulse{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.08)}}
-.center-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;background:radial-gradient(circle,#fff,#ffd700,#ff9800);border:5px solid #fff;box-shadow:0 0 20px gold,inset 0 4px 8px rgba(255,255,255,.8),inset 0 -6px 8px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-size:34px;z-index:105}
-@keyframes wheelGlow{0%,100%{box-shadow:0 0 18px gold,0 0 35px orange,0 0 55px gold}50%{box-shadow:0 0 28px #fff176,0 0 50px gold,0 0 80px orange}}
+.center-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;background:radial-gradient(circle,#fff,#ffd700,#ff9800);border:5px solid #fff;box-shadow:0 0 20px gold,inset 0 4px 8px rgba(255,255,255,.8),inset 0 -6px 8px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-size:34px;z-index:105}@keyframes wheelGlow{0%,100%{box-shadow:0 0 18px gold,0 0 35px orange,0 0 55px gold}50%{box-shadow:0 0 28px #fff176,0 0 50px gold,0 0 80px orange}}
 #spinBtn{position:relative;overflow:visible}
 #spinFinger{position:absolute;left:50%;bottom:70px;transform:translateX(-50%);font-size:46px;z-index:999;pointer-events:none;animation:fingerClick .9s infinite;filter:drop-shadow(0 0 10px #fff)}
 @keyframes fingerClick{0%{transform:translateX(-50%) translateY(0) scale(1)}40%{transform:translateX(-50%) translateY(18px) scale(.9)}60%{transform:translateX(-50%) translateY(18px) scale(.9)}100%{transform:translateX(-50%) translateY(0) scale(1)}}
@@ -398,7 +392,8 @@ animation:wave .7s forwards;
     <div class="stat-box" id="cashBox"><div class="cash-title">💵 Cash <span class="red">Wal</span><span class="green">let</span></div><div id="cash">₹0.00</div></div>
     <div class="stat-box" id="shroomBox"><div class="mushroom-title">মাশরুম<br>🍄</div><div id="mushroom">0 গ্রাম</div></div>
     <div class="stat-box" id="pointBox"><div class="point-title">পয়েন্ট<br>⭐</div><div id="points">0 Pts</div></div>
-                                                                                                                                                                                                                       </div><div class="bonus-zone">
+                                                                                             </div>
+    <div class="bonus-zone">
     <button id="bonusBtn" class="btn-bonus" onclick="playClickSound();openBonusModal()">🎁 ফ্রি বোনাস (ক্যাশ)</button>
     <div class="action-grid">
       <button class="btn-withdraw" onclick="playClickSound();openWithdrawModal()">💸 ক্যাশ আউট</button>
@@ -451,7 +446,8 @@ animation:wave .7s forwards;
     <button id="spinBtn" class="btn-modal-claim" onclick="playClickSound();spinOrderWheel()">🎡 SPIN NOW<div id="spinFinger">👆</div></button>
     <button id="spinClaimBtn" class="btn-modal-claim" style="display:none;margin-top:10px;background:#06b6d4" onclick="playClickSound();claimSpinReward()">🛒 Claim Reward</button>
   </div>
-    </div><div id="withdrawModal" class="modal">
+</div>
+<div id="withdrawModal" class="modal">
   <div class="modal-content">
     <div class="modal-title">💸 ক্যাশ আউট / Contact</div>
     <input id="wName" class="modal-input" placeholder="আপনার 👤 নাম লিখুন">
@@ -462,9 +458,7 @@ animation:wave .7s forwards;
     </div>
     <button class="btn-modal-claim" style="margin-top:10px;background:#2563eb" onclick="playClickSound();checkPayment()">✅ Payment Status</button>
   </div>
-</div>
-
-<div id="toast">
+        </div><div id="toast">
   <div id="toastIcon">🎉</div>
   <div>
     <div id="toastTitle"></div>
@@ -559,9 +553,7 @@ function oUPI(e){
     localStorage.setItem("km_cash",0);localStorage.setItem("km_shroom",0);localStorage.setItem("km_points",0);
     uUI();upiPop.style.display="none";pop("✅ UPI Request পাঠানো হয়েছে","success");
   },1500);
-}
-
-function fireConfetti(){confetti({particleCount:200,spread:90,origin:{y:.6}})}
+}function fireConfetti(){confetti({particleCount:200,spread:90,origin:{y:.6}})}
 function playClap(){pAud("clapS")}
 
 function flyReward(e){
@@ -577,7 +569,8 @@ function flyReward(e){
   }
   playClap();
 }
- function playSpinSound(){spinSound.currentTime=0;spinSound.play().catch(()=>{})}
+
+function playSpinSound(){spinSound.currentTime=0;spinSound.play().catch(()=>{})}
 function closeSpinModal(){document.getElementById("spinModal").style.display="none"}
 
 window.onclick=e=>{if(e.target==document.getElementById("spinModal"))closeSpinModal();if(e.target==upiPop)cUPI()}
@@ -614,6 +607,7 @@ async function verifyCode(){
 
       verified = 1;
       canSpin = true;
+      tutorialStep = 1; // টিউটোরিয়াল পরবর্তী ধাপে স্পিনে যাবে
       tap.style.display="none";
 
       playClap();
@@ -688,7 +682,9 @@ function premiumRewardFX(){
     s.style.setProperty("--y",(Math.random()*250-120)+"px");
     box.appendChild(s);
     setTimeout(()=>s.remove(),1500);
-    }for(let i=0;i<80;i++){
+  }
+
+  for(let i=0;i<80;i++){
     let coin=document.createElement("div");
     coin.innerHTML="🪙";
     coin.className="coinRain";
@@ -696,8 +692,7 @@ function premiumRewardFX(){
     box.appendChild(coin);
     setTimeout(()=>coin.remove(),2000);
   }
-
-  confetti({
+confetti({
     particleCount:220,
     spread:170,
     origin:{y:.6}
@@ -736,9 +731,7 @@ function peelFoil(e,t){
     o.style.setProperty("--px",120*Math.random()-60+"px");o.style.setProperty("--py",100*Math.random()-50+"px");
     s.appendChild(o);setTimeout(()=>o.remove(),800);
   }
-}
-
-function scratchEdge(e,t){
+    }function scratchEdge(e,t){
   cx.save();cx.globalCompositeOperation="source-over";
   let s=cx.createRadialGradient(e,t,2,e,t,22);
   s.addColorStop(0,"rgba(255,255,255,.35)");s.addColorStop(.4,"rgba(220,220,220,.18)");s.addColorStop(1,"rgba(255,255,255,0)");
@@ -791,6 +784,7 @@ function chkScr(){
 }
 
 function hRew(){
+  tutorialStep = 4; // স্ক্র্যাচ সম্পন্ন, পরবর্তী ক্যাশআউট ধাপে নেওয়া হলো
   premiumRewardFX();
 
   if("cash"===cRew.type){
@@ -827,9 +821,7 @@ function hRew(){
   }else{
     pAud("eS");sLdr("ফলাফল চোখ রাখুন...",8,()=>initCv());
   }
-}
-
-function sLdr(e,t,s){
+    }function sLdr(e,t,s){
   let a=document.getElementById("pFill");
   lMsg.innerText=e;lZone.style.display="block";a.style.width="100%";a.style.transition=`width ${t}s linear`;
   setTimeout(()=>a.style.width="0%",20);cT.innerText=t;
@@ -850,6 +842,7 @@ function claimDailyBonus(){
   document.getElementById("bonusModal").style.display="none";
   localStorage.setItem("last_bonus_time",Date.now());
   localStorage.setItem("bonusDone","1");
+  tutorialStep = 3; // টিউটোরিয়াল পরবর্তী ধাপে স্ক্র্যাচ কার্ডে যাবে
   let reward=dPool[Math.floor(Math.random()*dPool.length)];
   pts+=reward;
   pCash=+(reward/100).toFixed(2);
@@ -870,7 +863,6 @@ function claimDailyBonus(){
     },1e3);
   });
 }
-
 function updateBonusTimer(){
   const btn=document.getElementById("bonusClaimBtn");
   const timer=document.getElementById("bonusTimer");
@@ -897,7 +889,9 @@ function openSpinOrder(){
   document.getElementById("spinBtn").disabled=false;
   document.getElementById("spinFinger").style.display="block";
   document.getElementById("spinReward").innerHTML="🎡 SPIN করে পুরস্কার জিতুন";
-    }function spinOrderWheel(){
+}
+
+function spinOrderWheel(){
   if(!canSpin)return;
   const btn=document.getElementById("spinBtn");
   btn.classList.add("spinPress");
@@ -1006,6 +1000,7 @@ function claimSpinReward(){
   canSpin = false;
   localStorage.setItem("first_spin_done","YES");
   localStorage.setItem("spinDone","1");
+  tutorialStep = 2; // টিউটোরিয়াল পরবর্তী ধাপে বোনাসে যাবে
 
   pop("🎉 Reward Wallet-এ যোগ হয়েছে","success");
 
@@ -1049,7 +1044,9 @@ function submitWithdraw(){
   .catch(err=>{
     pop("❌ Request Failed","error");
   });
-    }function checkPayment(){
+}
+
+function checkPayment(){
   const code = localStorage.getItem("verify_code") || codeInput.value.trim();
   if(!code) return;
 
@@ -1103,9 +1100,8 @@ function checkMushroomClaim(){
     mClaim.style.display="flex";tapFinger.style.display="block";
     speak("অভিনন্দন! আপনার ১০০ গ্রাম মাশরুম সম্পূর্ণ হয়েছে! বাটনে ক্লিক করে! এখনই ক্যাশ করুন।।");
   }
-}
-
-function claimMushroomCash(){
+    }
+    function claimMushroomCash(){
   let e=document.getElementById("mcName").value.trim();
   let t=document.getElementById("mcPhone").value.trim();
 
@@ -1140,13 +1136,10 @@ cv.addEventListener("touchmove",e=>{e.preventDefault();doScr(e)},{passive:!1});
 cv.addEventListener("touchend",()=>{isDraw=!1;stopS()});
 
 /* Promo Sequence System */
-function showPromoSequence(onComplete){
+function showPromoSequence(){
   const popup = document.getElementById("promoPopup");
   const media = document.getElementById("promoMedia");
-  if(!popup || !media){
-    if(onComplete) onComplete();
-    return;
-  }
+  if(!popup || !media) return;
 
   popup.style.display = "flex";
   media.src = "img/offer.jpg";
@@ -1157,10 +1150,9 @@ function showPromoSequence(onComplete){
       media.src = "img/offer2.gif";
       setTimeout(()=>{
         popup.style.display = "none";
-        if(onComplete) onComplete();
-      }, 4000);
-    }, 6000);
-  }, 5000);
+      }, 2000);
+    }, 2000);
+  }, 2000);
 }
 
 /* Premium Hand Controller & Tutorial System */
@@ -1199,11 +1191,9 @@ function wave(x,y){
 
 function moveHand(target){
   if(!target || !hand) return;
-
-  document.querySelectorAll(".tutorialGlow").forEach(el=>{
-    el.classList.remove("tutorialGlow");
-  });
-
+  
+  document.querySelectorAll(".tutorialGlow").forEach(el=>el.classList.remove("tutorialGlow"));
+  
   target.scrollIntoView({
     behavior:"smooth",
     block:"center"
@@ -1211,19 +1201,15 @@ function moveHand(target){
 
   setTimeout(()=>{
     const r = target.getBoundingClientRect();
-
-    hand.style.left = `${window.scrollX + r.left + r.width/2 - hand.offsetWidth/2}px`;
-    hand.style.top  = `${window.scrollY + r.top + r.height/2 - hand.offsetHeight/2}px`;
-
+    hand.style.left = (r.left + r.width/2 - 35) + "px";
+    hand.style.top  = (r.top + r.height/2 - 20) + "px";
     target.classList.add("tutorialGlow");
-  },500);
+  }, 500);
 }
 
 function tapHand(target){
   if(!target || !hand) return;
   const r = target.getBoundingClientRect();
-  const absX = window.scrollX + r.left + r.width/2;
-  const absY = window.scrollY + r.top + r.height/2;
 
   hand.style.transition = "transform .12s";
   hand.style.transform = "scale(.88) rotate(2deg)";
@@ -1232,30 +1218,19 @@ function tapHand(target){
   }, 120);
 
   if(ripple){
-    ripple.style.left = (absX - 10) + "px";
-    ripple.style.top  = (absY - 10) + "px";
+    ripple.style.left = (r.left + r.width/2 - 10) + "px";
+    ripple.style.top  = (r.top + r.height/2 - 10) + "px";
     ripple.classList.remove("ripple");
     void ripple.offsetWidth;
     ripple.classList.add("ripple");
   }
 
-  showFlash(absX, absY);
-  sparkle(absX, absY);
-  wave(absX, absY);
+  showFlash(r.left + r.width/2, r.top + r.height/2);
+  sparkle(r.left + r.width/2, r.top + r.height/2);
+  wave(r.left + r.width/2, r.top + r.height/2);
 
   playClickSound?.();
   if(navigator.vibrate) navigator.vibrate(25);
-}
-
-function doubleTap(target){
-  if(!target) return;
-  moveHand(target);
-  setTimeout(()=>{
-    tapHand(target);
-    setTimeout(()=>{
-      tapHand(target);
-    }, 350);
-  }, 900);
 }
 
 function hideHand(){
@@ -1289,33 +1264,35 @@ let tutorialTimer = null;
 
 const tutorialSteps = [
   {
-    text:"প্রথমে কোড লিখে Submit করুন।",
-    target:()=>document.querySelector(".verify-box button"),
-    check:()=>localStorage.getItem("verified")=="1"
+    text: "প্রথমে কোড লিখে সাবমিট করুন।",
+    target: () => document.querySelector(".verify-box button"),
+    check: () => localStorage.getItem("verified") == "1"
   },
   {
-    text:"এখন Spin করুন।",
-    target:()=>document.getElementById("spinBtn"),
-    check:()=>localStorage.getItem("spinDone")=="1"
+    text: "এখন স্পিন করুন।",
+    target: () => document.getElementById("spinBtn"),
+    check: () => localStorage.getItem("spinDone") == "1"
   },
   {
-    text:"এখন ফ্রি বোনাস নিন।",
-    target:()=>document.getElementById("bonusBtn"),
-    check:()=>localStorage.getItem("bonusDone")=="1"
+    text: "এখন ফ্রি বোনাস নিন।",
+    target: () => document.getElementById("bonusBtn"),
+    check: () => localStorage.getItem("bonusDone") == "1"
   },
   {
-    text:"এখন Scratch Card ঘষুন।",
-    target:()=>document.getElementById("scratchCard"),
-    check:()=>localStorage.getItem("scratchDone")=="1"
+    text: "এখন স্ক্র্যাচ কার্ড ঘষুন।",
+    target: () => document.getElementById("scratchCard"),
+    check: () => localStorage.getItem("scratchDone") == "1"
   },
   {
-    text:"এখন Cash Out করুন। ৩০ মিনিটের মধ্যে আপনার UPI-তে টাকা পাঠানো হবে।",
-    target:()=>document.querySelector(".btn-withdraw"),
-    check:()=>false
+    text: "এখন ক্যাশ আউট করুন।",
+    target: () => document.querySelector(".btn-withdraw"),
+    check: () => false
   }
 ];
 
 function startTutorial(){
+  tutorialStep = 0;
+  verified = 0;
   runStep();
 }
 
@@ -1327,11 +1304,20 @@ function runStep(){
   }
 
   let step = tutorialSteps[tutorialStep];
-  let targetEl = step.target();
 
-  if(targetEl){
-    speakBN(step.text);
-    doubleTap(targetEl);
+  if(step.check()){
+    tutorialStep++;
+    runStep();
+    return;
+  }
+
+  let target = step.target();
+  if(target){
+    moveHand(target);
+    setTimeout(()=>{
+      tapHand(target);
+      speakBN(step.text);
+    }, 1000);
   }
 
   tutorialTimer = setInterval(()=>{
@@ -1339,15 +1325,19 @@ function runStep(){
       tutorialStep++;
       runStep();
     }else{
-      let targetEl = step.target();
-      if(targetEl){
-        speakBN(step.text);
-        doubleTap(targetEl);
+      let target = step.target();
+      if(target){
+        moveHand(target);
+        setTimeout(()=>{
+          tapHand(target);
+          speakBN(step.text);
+        }, 1000);
       }
     }
-  }, 4000);
-    }
-    function tutorialFinish(){
+  }, 5000);
+}
+
+function tutorialFinish(){
   hideHand();
   confetti({
     particleCount: 300,
@@ -1359,38 +1349,46 @@ function runStep(){
   speakBN("অভিনন্দন। এখন আপনি সম্পূর্ণ প্রস্তুত। শুভকামনা।");
 }
 
-window.onload=()=>{
+window.onload = () => {
   codeInput.value = localStorage.getItem("verify_code") || "";
-  if(codeInput.value){
-    verified = 1;
-  }
+
+  // শুরুতে টিউটোরিয়ালের জন্য verified false থাকবে
+  verified = 0;
+
   initApp();
-  let e=0,t=setInterval(()=>{
-    e++;
-    document.getElementById("loaderFill").style.width=e+"%";
-    document.getElementById("loaderText").innerHTML="Loading... "+e+"%";
-    document.getElementById("rocket").style.left="calc("+e+"% - 12px)";
-    if(100==e){
-      clearInterval(t);
-      document.getElementById("loaderText").innerHTML="✅ Ready";
-      speak("Welcome to কুন্ডু মাশরুম ফার্ম","en-IN");
+
+  let p = 0;
+  let loader = setInterval(() => {
+    p++;
+    document.getElementById("loaderFill").style.width = p + "%";
+    document.getElementById("loaderText").innerHTML = "Loading... " + p + "%";
+    document.getElementById("rocket").style.left = "calc(" + p + "% - 12px)";
+    if (p == 100) {
+      clearInterval(loader);
+      document.getElementById("loaderText").innerHTML = "✅ Ready";
+      speak("Welcome to Kundu Mushroom Farm", "en-IN");
     }
-  },100);
-  setInterval(checkPayment,5000);
+  }, 100);
+
+  setInterval(checkPayment, 5000);
+
+  // ১০ম সেকেণ্ডে Splash শেষ হলে অফার পপআপ
+  setTimeout(() => {
+    showPromoSequence();
+  }, 11000);
+
+  // অফার পপআপের পর ১৭তম সেকেণ্ডে টিউটোরিয়াল নিখুঁতভাবে শুরু হবে
+  setTimeout(() => {
+    startTutorial();
+  }, 17000);
 };
 
 const bg=document.getElementById("bg"),gif=document.getElementById("gif"),s=document.getElementById("s");
 setTimeout(()=>{bg.style.display="none";gif.style.display="block";gif.src="img/splash2.gif"},3e3);
 setTimeout(()=>{gif.src="img/splash3.gif"},7e3);
-setTimeout(()=>{
-  s.style.opacity="0";
-  setTimeout(()=>{
-    s.remove();
-    showPromoSequence(()=>{
-      startTutorial();
-    });
-  },500);
-},1e4);
+setTimeout(()=>{s.style.opacity="0";setTimeout(()=>s.remove(),500)},1e4);
 </script>
 </body>
 </html>
+
+
