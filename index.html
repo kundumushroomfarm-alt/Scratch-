@@ -10,42 +10,16 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 .container{width:100%;max-width:420px;background:#1e293b;padding:20px;border-radius:24px;box-shadow:0 10px 30px #0008;margin-top:10px;position:relative;overflow:hidden}
 
 /* Header Design */
-.cashTitle{
-    text-align:center;
-    line-height:1.05;
-    margin:12px 0 18px;
-}
-.cashTitle .top{
-    font-size:22px;
-    font-weight:900;
-    color:#fff;
-    letter-spacing:1px;
-}
+.cashTitle{text-align:center;line-height:1.05;margin:12px 0 18px;}
+.cashTitle .top{font-size:22px;font-weight:900;color:#fff;letter-spacing:1px;}
 .cashTitle .price{
-    display:inline-block;
-    font-size:68px;
-    font-weight:900;
+    display:inline-block;font-size:68px;font-weight:900;
     background:linear-gradient(45deg,#ff4fd8,#ffffff,#ff8adf);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    text-shadow:0 0 18px rgba(255,80,220,.7);
-    animation:pricePulse 2s infinite;
-    position:relative;
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    text-shadow:0 0 18px rgba(255,80,220,.7);animation:pricePulse 2s infinite;position:relative;
 }
-.cashTitle .bottom{
-    font-size:24px;
-    font-weight:900;
-    color:#fff;
-    letter-spacing:2px;
-}
-
-.cashTitle .price::before,
-.cashTitle .price::after{
-    content:"✨";
-    position:absolute;
-    font-size:18px;
-    animation:spark 1.5s infinite;
-}
+.cashTitle .bottom{font-size:24px;font-weight:900;color:#fff;letter-spacing:2px;}
+.cashTitle .price::before, .cashTitle .price::after{content:"✨";position:absolute;font-size:18px;animation:spark 1.5s infinite;}
 .cashTitle .price::before{ left:-22px; top:5px; }
 .cashTitle .price::after{ right:-22px; bottom:5px; animation-delay:.8s; }
 
@@ -59,61 +33,25 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 }
 
 /* Verification Input Box */
-.verify-box{
-  position:relative;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:15px;
-}
+.verify-box{position:relative;display:flex;align-items:center;gap:10px;margin-bottom:15px;}
 .verify-box input{
-  flex:1;
-  height:54px;
-  padding:18px 12px 8px;
-  border:2px solid #FFD700;
-  border-radius:12px;
-  background:#334155;
-  color:#fff;
-  font-size:16px;
-  outline:none;
+  flex:1;height:54px;padding:18px 12px 8px;border:2px solid #FFD700;
+  border-radius:12px;background:#334155;color:#fff;font-size:16px;outline:none;
 }
 .verify-box label{
-  position:absolute;
-  left:15px;
-  top:50%;
-  transform:translateY(-50%);
-  color:#FFD700;
-  font-size:16px;
-  font-weight:700;
-  pointer-events:none;
-  transition:.25s;
-  background:#334155;
-  padding:0 6px;
-  border-radius:4px;
+  position:absolute;left:15px;top:50%;transform:translateY(-50%);
+  color:#FFD700;font-size:16px;font-weight:700;pointer-events:none;
+  transition:.25s;background:#334155;padding:0 6px;border-radius:4px;
 }
 .verify-box input:focus + label,
 .verify-box input:not(:placeholder-shown) + label,
 .verify-box input:valid + label{
-  top:-9px;
-  font-size:12px;
-  color:#22c55e;
+  top:-9px;font-size:12px;color:#22c55e;
 }
 .verify-box button{
-  width:90px;
-  height:54px;
-  padding:0;
-  font-size:16px;
-  font-weight:700;
-  border-radius:14px;
-  line-height:1.15;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#ffc107;
-  color:#222;
-  border:none;
-  cursor:pointer;
-  transition:.2s;
+  width:90px;height:54px;padding:0;font-size:16px;font-weight:700;
+  border-radius:14px;line-height:1.15;display:flex;align-items:center;
+  justify-content:center;background:#ffc107;color:#222;border:none;cursor:pointer;transition:.2s;
 }
 
 #tap{position:absolute;left:20px;top:10px;font-size:26px;pointer-events:none;animation:tapMove 3.5s ease-in-out infinite;filter:hue-rotate(320deg) saturate(10);z-index:10}
@@ -138,26 +76,14 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 .scratch-reveal{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;flex-direction:column;z-index:1;background:radial-gradient(circle at top,#fff7b0,#facc15,#b45309);color:#fff;text-shadow:0 2px 6px #000;overflow:hidden}
 
 .premiumReward{
-position:relative;
-overflow:hidden;
-background:rgba(255,255,255,.15);
-backdrop-filter:blur(15px);
-border:3px solid gold;
-border-radius:22px;
-padding:14px 22px;
+position:relative;overflow:hidden;background:rgba(255,255,255,.15);backdrop-filter:blur(15px);
+border:3px solid gold;border-radius:22px;padding:14px 22px;
 box-shadow:0 0 15px gold,0 0 35px orange,0 0 60px #ffd700,inset 0 0 20px rgba(255,255,255,.4);
 animation:rewardZoom .8s infinite alternate;
 }
 .premiumReward::before{
-content:"";
-position:absolute;
-top:-120%;
-left:-40%;
-width:60%;
-height:350%;
-background:rgba(255,255,255,.45);
-transform:rotate(25deg);
-animation:shineMove 2s linear infinite;
+content:"";position:absolute;top:-120%;left:-40%;width:60%;height:350%;
+background:rgba(255,255,255,.45);transform:rotate(25deg);animation:shineMove 2s linear infinite;
 }
 @keyframes shineMove{100%{transform:translateX(320px) rotate(25deg);}}
 @keyframes rewardZoom{from{transform:scale(1);}to{transform:scale(1.08);}}
@@ -167,100 +93,48 @@ animation:shineMove 2s linear infinite;
 .rewardText{font-size:22px;font-weight:800}
 
 .spark{
-position:fixed;
-width:6px;
-height:6px;
-border-radius:50%;
-background:white;
-box-shadow:0 0 8px gold, 0 0 18px white;
-pointer-events:none;
-z-index:99999996;
+position:fixed;width:6px;height:6px;border-radius:50%;background:white;
+box-shadow:0 0 8px gold, 0 0 18px white;pointer-events:none;z-index:99999996;
 animation:sparkFx .9s linear forwards;
 }
 @keyframes sparkFx{0%{opacity:1;transform:translateY(0) scale(1);}100%{opacity:0;transform:translateY(-35px) scale(.2);}}
 
-.coinRain{
-position:absolute;
-top:-20px;
-font-size:18px;
-pointer-events:none;
-z-index:80;
-animation:coinFall 1.8s ease-in forwards;
-}
+.coinRain{position:absolute;top:-20px;font-size:18px;pointer-events:none;z-index:80;animation:coinFall 1.8s ease-in forwards;}
 @keyframes coinFall{0%{opacity:1;transform:translateY(0) rotate(0deg);}100%{opacity:0;transform:translateY(200px) rotate(360deg);}}
 
 #promoPopup{
-position:fixed;
-inset:0;
-display:none;
-justify-content:center;
-align-items:center;
-background:rgba(0,0,0,.75);
-z-index:999999;
-animation:fadeIn .4s;
+position:fixed;inset:0;display:none;justify-content:center;align-items:center;
+background:rgba(0,0,0,.75);z-index:999999;animation:fadeIn .4s;
 }
 #promoMedia{max-width:95%;max-height:95%;border-radius:18px;box-shadow:0 0 30px gold;}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 
 #guideHand{
-    position:fixed;
-    width:75px;
-    left:-150px;
-    top:-150px;
-    z-index:99999999;
-    pointer-events:none;
+    position:fixed;width:75px;left:-150px;top:-150px;z-index:99999999;pointer-events:none;
     transition: left .8s cubic-bezier(.25,1,.5,1), top .8s cubic-bezier(.25,1,.5,1), transform .12s ease;
     filter: drop-shadow(2px 10px 10px rgba(0,0,0,0.5)) drop-shadow(0 0 8px #fff) drop-shadow(0 0 18px gold);
     animation:handPulse 1.3s infinite;
 }
 @keyframes handPulse{0%{ transform:scale(1); }50%{ transform:scale(1.08); }100%{ transform:scale(1); }}
-#tapRipple{
-    position:fixed;
-    width:20px;
-    height:20px;
-    border-radius:50%;
-    border:3px solid #fff;
-    opacity:0;
-    pointer-events:none;
-    z-index:99999998;
-}
+#tapRipple{position:fixed;width:20px;height:20px;border-radius:50%;border:3px solid #fff;opacity:0;pointer-events:none;z-index:99999998;}
 .ripple{animation:ripple .8s forwards;}
 @keyframes ripple{0%{ transform:scale(.2); opacity:1; }100%{ transform:scale(5); opacity:0; }}
 
 .handTrail{
-position:fixed;
-width:14px;
-height:14px;
-border-radius:50%;
-pointer-events:none;
-z-index:99999997;
-background:radial-gradient(circle,#fff,#ffd700,#ff9800);
-box-shadow:0 0 15px gold;
+position:fixed;width:14px;height:14px;border-radius:50%;pointer-events:none;z-index:99999997;
+background:radial-gradient(circle,#fff,#ffd700,#ff9800);box-shadow:0 0 15px gold;
 animation:trailFade .8s linear forwards;
 }
 @keyframes trailFade{0%{ opacity:1; transform:scale(1); }100%{ opacity:0; transform:scale(.2); }}
 
 #tapFlash{
-position:fixed;
-width:70px;
-height:70px;
-border-radius:50%;
-pointer-events:none;
-opacity:0;
-z-index:99999995;
+position:fixed;width:70px;height:70px;border-radius:50%;pointer-events:none;opacity:0;z-index:99999995;
 background:radial-gradient(circle, rgba(255,255,255,.95), rgba(255,255,255,0));
 }
 .flash{animation:flash .35s;}
 @keyframes flash{0%{ opacity:1; transform:scale(.2); }100%{ opacity:0; transform:scale(2.5); }}
 
-.wave{
-position:fixed;
-border-radius:50%;
-border:3px solid gold;
-pointer-events:none;
-z-index:99999994;
-animation:wave .7s forwards;
-}
+.wave{position:fixed;border-radius:50%;border:3px solid gold;pointer-events:none;z-index:99999994;animation:wave .7s forwards;}
 @keyframes wave{0%{ width:20px; height:20px; opacity:1; }100%{ width:120px; height:120px; margin-left:-50px; margin-top:-50px; opacity:0; }}
 
 .tutorialGlow{animation:premiumGlow 1s infinite !important;}
@@ -322,7 +196,7 @@ animation:wave .7s forwards;
 .uBox{position:relative;width:92%;max-width:340px;padding:22px;background:#1e293b;border:2px solid #facc15;border-radius:22px;text-align:center;box-shadow:0 0 35px gold;animation:pop .25s}
 .pic{width:80px;height:80px;border-radius:50%;border:3px solid #fff;object-fit:cover}
 .uBox h2{color:#fff;margin:10px 0 5px;font-size:20px}
-.uBox p{color:#facc15;margin-bottom:15px;font-size:14px}
+.uBoxp{color:#facc15;margin-bottom:15px;font-size:14px}
 .uBox button{width:100%;margin:8px 0;padding:12px;border:0;border-radius:12px;background:#334155;color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:.2s}
 .uBox button img{width:24px;height:24px}
 .x{position:absolute;top:12px;right:12px;background:#ef4444;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-weight:700;display:flex;align-items:center;justify-content:center}
@@ -360,7 +234,8 @@ animation:wave .7s forwards;
 </style>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
-<body><div id="s"><img id="bg" src="img/splash1.jpg" alt="Splash"><img id="gif" src="img/splash2.gif" alt="Splash GIF"><div id="loaderWrap"><div id="loaderBar"><div id="loaderFill"><div id="loaderGlow"></div></div><div id="rocket">🚀</div></div><div id="loaderText">Loading... 0%</div><div id="welcomeText">🍄 Kundu Mushroom Farm 🍄</div></div></div>
+<body>
+<div id="s"><img id="bg" src="img/splash1.jpg" alt="Splash"><img id="gif" src="img/splash2.gif" alt="Splash GIF"><div id="loaderWrap"><div id="loaderBar"><div id="loaderFill"><div id="loaderGlow"></div></div><div id="rocket">🚀</div></div><div id="loaderText">Loading... 0%</div><div id="welcomeText">🍄 Kundu Mushroom Farm 🍄</div></div></div>
 <div id="confirmPop" class="cPop"><div class="cBox"><div class="cIcon">🏦</div><h2>ক্যাশ আউট</h2><p id="cMsg">আপনি কি নিশ্চিত?</p><div class="cBtn"><button onclick="closePop()">না</button><button onclick="okPop()">হ্যাঁ</button></div></div></div>
 <div id="upiPop" class="uPop"><div class="uBox"><span class="x" onclick="cUPI()">✕</span><img src="img/profile.png" class="pic" alt="Profile"><h2>Bubai Kundu</h2><p>পেমেন্ট করার মাধ্যম বেছে নিন</p><button onclick="oUPI('7047643951@ibl')"><img src="img/phonepe.png" alt="PhonePe">PhonePe</button><button onclick="oUPI('bubaikundu635@okhdfcbank')"><img src="img/gpay.png" alt="Google Pay">Google Pay</button><button onclick="oUPI('7047643951@superyes')"><img src="img/superyes.png" alt="SuperYes">SuperYes</button></div></div>
 <div id="mClaim" class="mClaim"><div class="mCard"><div class="mIcon">🍄</div><h2>100g Mushroom Completed</h2><p>আপনার 100g Mushroom পূর্ণ হয়েছে।<br>Claim Cash করুন।</p><input id="mcName" placeholder="👤 নাম"><input id="mcPhone" maxlength="10" type="tel" placeholder="📞 মোবাইল নম্বর"><div id="tapFinger">👆</div><button id="mushroomClaimBtn" onclick="claimMushroomCash()">🍄 Claim Cash</button></div></div>
@@ -611,8 +486,7 @@ async function verifyCode(){
       localStorage.setItem("verified","1");
       localStorage.removeItem("first_spin_done"); 
       localStorage.removeItem("scratch_done");
-
-      verified = 1;
+    verified = 1;
       canSpin = true;
       tap.style.display="none";
 
@@ -910,7 +784,9 @@ function openSpinOrder(){
   document.getElementById("spinBtn").disabled=false;
   document.getElementById("spinFinger").style.display="block";
   document.getElementById("spinReward").innerHTML="🎡 SPIN করে পুরস্কার জিতুন";
-}function spinOrderWheel(){
+}
+
+function spinOrderWheel(){
   if(!canSpin)return;
   const btn=document.getElementById("spinBtn");
   btn.classList.add("spinPress");
@@ -1026,6 +902,7 @@ function claimSpinReward(){
   tutorialStep = 2;
   setTimeout(runTutorial,1000);
 }
+
 function openWithdrawModal(){pAud("cS");document.getElementById("withdrawModal").style.display="flex"}
 function closeWithdrawModal(){document.getElementById("withdrawModal").style.display="none"}
 
@@ -1252,17 +1129,6 @@ function tapHand(target){
   if(navigator.vibrate) navigator.vibrate(25);
 }
 
-function doubleTap(target){
-  if(!target) return;
-  moveHand(target);
-  setTimeout(()=>{
-    tapHand(target);
-    setTimeout(()=>{
-      tapHand(target);
-    }, 350);
-  }, 900);
-}
-
 function hideHand(){
   if(!hand) return;
   hand.style.transition = ".5s";
@@ -1288,7 +1154,7 @@ setInterval(()=>{
   }
 }, 40);
 
-/* ===== Human Demo Scratch ===== */
+/* Human Demo Scratch */
 let demoRun = false;
 let demoTimer = null;
 
@@ -1296,7 +1162,6 @@ function startScratchDemo(){
   if(demoRun) return;
   demoRun = true;
 
-  const hand = document.getElementById("guideHand");
   const card = document.getElementById("scratchCard");
 
   if(!hand || !card) return;
@@ -1500,8 +1365,6 @@ setTimeout(()=>{gif.src="img/splash3.gif"},7e3);
 setTimeout(()=>{s.style.opacity="0";setTimeout(()=>s.remove(),500)},1e4);
 </script>
 </body>
-</html>                                                                                                                                                                                                                                                                                                                  
-  
+</html>                                                                                                                                                                                                                                                                                                   
 
-
-        
+   
