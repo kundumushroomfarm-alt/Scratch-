@@ -203,7 +203,7 @@ animation:fadeIn .4s;
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 
 #guideHand{
-    position:fixed;
+    position:absolute;
     width:75px;
     left:-150px;
     top:-150px;
@@ -216,7 +216,7 @@ animation:fadeIn .4s;
 @keyframes handPulse{0%{ transform:scale(1); }50%{ transform:scale(1.08); }100%{ transform:scale(1); }}
 
 #tapRipple{
-    position:fixed;
+    position:absolute;
     width:20px;
     height:20px;
     border-radius:50%;
@@ -224,12 +224,11 @@ animation:fadeIn .4s;
     opacity:0;
     pointer-events:none;
     z-index:99999998;
-}
-.ripple{animation:ripple .8s forwards;}
+}.ripple{animation:ripple .8s forwards;}
 @keyframes ripple{0%{ transform:scale(.2); opacity:1; }100%{ transform:scale(5); opacity:0; }}
 
 .handTrail{
-position:fixed;
+position:absolute;
 width:14px;
 height:14px;
 border-radius:50%;
@@ -242,7 +241,7 @@ animation:trailFade .8s linear forwards;
 @keyframes trailFade{0%{ opacity:1; transform:scale(1); }100%{ opacity:0; transform:scale(.2); }}
 
 #tapFlash{
-position:fixed;
+position:absolute;
 width:70px;
 height:70px;
 border-radius:50%;
@@ -255,7 +254,7 @@ background:radial-gradient(circle, rgba(255,255,255,.95), rgba(255,255,255,0));
 @keyframes flash{0%{ opacity:1; transform:scale(.2); }100%{ opacity:0; transform:scale(2.5); }}
 
 .wave{
-position:fixed;
+position:absolute;
 border-radius:50%;
 border:3px solid gold;
 pointer-events:none;
@@ -294,7 +293,8 @@ animation:wave .7s forwards;
 .action-grid{display:flex;gap:10px;width:100%}
 .btn-withdraw{flex:1;background:#ef4444;padding:12px;font-size:14px;font-weight:700;border:none;border-radius:12px;color:#fff;cursor:pointer;box-shadow:0 4px 10px rgba(239,68,68,.3)}
 .btn-upi{flex:1;background:linear-gradient(135deg,#22c55e,#16a34a);padding:12px;font-size:14px;font-weight:700;border:none;border-radius:12px;color:#fff;cursor:pointer;box-shadow:0 4px 10px rgba(34,197,94,.3)}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000c;z-index:100;justify-content:center;align-items:center;padding:20px}.modal-content{background:#1e293b;padding:20px;border-radius:20px;width:100%;max-width:360px;border:2px solid #eab308;text-align:center;position:relative}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000c;z-index:100;justify-content:center;align-items:center;padding:20px}
+.modal-content{background:#1e293b;padding:20px;border-radius:20px;width:100%;max-width:360px;border:2px solid #eab308;text-align:center;position:relative}
 .modal-title{font-size:20px;color:#eab308;font-weight:700;margin-bottom:10px}
 .modal-text{font-size:14px;margin-bottom:15px;color:#cbd5e1}
 .modal-input{width:100%;padding:12px;margin-bottom:10px;border-radius:8px;border:1px solid #475569;background:#334155;color:#fff;outline:none;text-align:left;font-size:14px}
@@ -362,8 +362,7 @@ animation:wave .7s forwards;
 </style>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
-<body>
-<div id="s"><img id="bg" src="img/splash1.jpg" alt="Splash"><img id="gif" src="img/splash2.gif" alt="Splash GIF"><div id="loaderWrap"><div id="loaderBar"><div id="loaderFill"><div id="loaderGlow"></div></div><div id="rocket">🚀</div></div><div id="loaderText">Loading... 0%</div><div id="welcomeText">🍄 Kundu Mushroom Farm 🍄</div></div></div>
+<body><div id="s"><img id="bg" src="img/splash1.jpg" alt="Splash"><img id="gif" src="img/splash2.gif" alt="Splash GIF"><div id="loaderWrap"><div id="loaderBar"><div id="loaderFill"><div id="loaderGlow"></div></div><div id="rocket">🚀</div></div><div id="loaderText">Loading... 0%</div><div id="welcomeText">🍄 Kundu Mushroom Farm 🍄</div></div></div>
 <div id="confirmPop" class="cPop"><div class="cBox"><div class="cIcon">🏦</div><h2>ক্যাশ আউট</h2><p id="cMsg">আপনি কি নিশ্চিত?</p><div class="cBtn"><button onclick="closePop()">না</button><button onclick="okPop()">হ্যাঁ</button></div></div></div>
 <div id="upiPop" class="uPop"><div class="uBox"><span class="x" onclick="cUPI()">✕</span><img src="img/profile.png" class="pic" alt="Profile"><h2>Bubai Kundu</h2><p>পেমেন্ট করার মাধ্যম বেছে নিন</p><button onclick="oUPI('7047643951@ibl')"><img src="img/phonepe.png" alt="PhonePe">PhonePe</button><button onclick="oUPI('bubaikundu635@okhdfcbank')"><img src="img/gpay.png" alt="Google Pay">Google Pay</button><button onclick="oUPI('7047643951@superyes')"><img src="img/superyes.png" alt="SuperYes">SuperYes</button></div></div>
 <div id="mClaim" class="mClaim"><div class="mCard"><div class="mIcon">🍄</div><h2>100g Mushroom Completed</h2><p>আপনার 100g Mushroom পূর্ণ হয়েছে।<br>Claim Cash করুন।</p><input id="mcName" placeholder="👤 নাম"><input id="mcPhone" maxlength="10" type="tel" placeholder="📞 মোবাইল নম্বর"><div id="tapFinger">👆</div><button id="mushroomClaimBtn" onclick="claimMushroomCash()">🍄 Claim Cash</button></div></div>
@@ -454,7 +453,8 @@ animation:wave .7s forwards;
     <button id="spinClaimBtn" class="btn-modal-claim" style="display:none;margin-top:10px;background:#06b6d4" onclick="playClickSound();claimSpinReward()">🛒 Claim Reward</button>
   </div>
 </div>
- <div id="withdrawModal" class="modal">
+
+<div id="withdrawModal" class="modal">
   <div class="modal-content">
     <div class="modal-title">💸 ক্যাশ আউট / Contact</div>
     <input id="wName" class="modal-input" placeholder="আপনার 👤 নাম লিখুন">
@@ -580,7 +580,7 @@ function flyReward(e){
   }
   playClap();
 }
-
+                                                                                               
 function playSpinSound(){spinSound.currentTime=0;spinSound.play().catch(()=>{})}
 function closeSpinModal(){document.getElementById("spinModal").style.display="none"}
 
@@ -702,7 +702,8 @@ function premiumRewardFX(){
     box.appendChild(coin);
     setTimeout(()=>coin.remove(),2000);
   }
-confetti({
+
+  confetti({
     particleCount:220,
     spread:170,
     origin:{y:.6}
@@ -874,7 +875,9 @@ function claimDailyBonus(){
       }
     },1e3);
   });
-}function updateBonusTimer(){
+}
+
+function updateBonusTimer(){
   const btn=document.getElementById("bonusClaimBtn");
   const timer=document.getElementById("bonusTimer");
   const lastBonus=Number(localStorage.getItem("last_bonus_time")||0);
@@ -1054,9 +1057,8 @@ function submitWithdraw(){
   .catch(err=>{
     pop("❌ Request Failed","error");
   });
-}
-
-function checkPayment(){
+    }
+    function checkPayment(){
   const code = localStorage.getItem("verify_code") || codeInput.value.trim();
   if(!code) return;
 
@@ -1202,9 +1204,11 @@ function wave(x,y){
 
 function moveHand(target){
   if(!target || !hand) return;
-  
-  document.querySelectorAll(".tutorialGlow").forEach(el=>el.classList.remove("tutorialGlow"));
-  
+
+  document.querySelectorAll(".tutorialGlow").forEach(el=>{
+    el.classList.remove("tutorialGlow");
+  });
+
   target.scrollIntoView({
     behavior:"smooth",
     block:"center"
@@ -1212,15 +1216,19 @@ function moveHand(target){
 
   setTimeout(()=>{
     const r = target.getBoundingClientRect();
-    hand.style.left = (r.left + r.width/2 - 20) + "px";
-    hand.style.top  = (r.top + r.height/2 - 10) + "px";
+
+    hand.style.left = `${window.scrollX + r.left + r.width/2 - hand.offsetWidth/2}px`;
+    hand.style.top  = `${window.scrollY + r.top + r.height/2 - hand.offsetHeight/2}px`;
+
     target.classList.add("tutorialGlow");
-  }, 500);
+  },500);
 }
 
 function tapHand(target){
   if(!target || !hand) return;
   const r = target.getBoundingClientRect();
+  const absX = window.scrollX + r.left + r.width/2;
+  const absY = window.scrollY + r.top + r.height/2;
 
   hand.style.transition = "transform .12s";
   hand.style.transform = "scale(.88) rotate(2deg)";
@@ -1229,16 +1237,16 @@ function tapHand(target){
   }, 120);
 
   if(ripple){
-    ripple.style.left = (r.left + r.width/2 - 10) + "px";
-    ripple.style.top  = (r.top + r.height/2 - 10) + "px";
+    ripple.style.left = (absX - 10) + "px";
+    ripple.style.top  = (absY - 10) + "px";
     ripple.classList.remove("ripple");
     void ripple.offsetWidth;
     ripple.classList.add("ripple");
   }
 
-  showFlash(r.left + r.width/2, r.top + r.height/2);
-  sparkle(r.left + r.width/2, r.top + r.height/2);
-  wave(r.left + r.width/2, r.top + r.height/2);
+  showFlash(absX, absY);
+  sparkle(absX, absY);
+  wave(absX, absY);
 
   playClickSound?.();
   if(navigator.vibrate) navigator.vibrate(25);
@@ -1286,24 +1294,29 @@ let tutorialTimer = null;
 
 const tutorialSteps = [
   {
-    text: "প্রথমে আপনার কোড লিখুন। তারপর সাবমিট করুন।",
-    target: () => document.querySelector(".verify-box button"),
-    check: () => localStorage.getItem("verified") == "1"
+    text:"প্রথমে কোড লিখে Submit করুন।",
+    target:()=>document.querySelector(".verify-box button"),
+    check:()=>localStorage.getItem("verified")=="1"
   },
   {
-    text: "এখন স্পিন করুন।",
-    target: () => document.getElementById("spinBtn"),
-    check: () => localStorage.getItem("spinDone") == "1"
+    text:"এখন Spin করুন।",
+    target:()=>document.getElementById("spinBtn"),
+    check:()=>localStorage.getItem("spinDone")=="1"
   },
   {
-    text: "এখন ফ্রি বোনাস নিন।",
-    target: () => document.getElementById("bonusBtn"),
-    check: () => localStorage.getItem("bonusDone") == "1"
+    text:"এখন ফ্রি বোনাস নিন।",
+    target:()=>document.getElementById("bonusBtn"),
+    check:()=>localStorage.getItem("bonusDone")=="1"
   },
   {
-    text: "এখন পুরো স্ক্র্যাচ কার্ডটি ঘষুন।",
-    target: () => document.getElementById("scratchCard"),
-    check: () => localStorage.getItem("scratchDone") == "1"
+    text:"এখন Scratch Card ঘষুন।",
+    target:()=>document.getElementById("scratchCard"),
+    check:()=>localStorage.getItem("scratchDone")=="1"
+  },
+  {
+    text:"এখন Cash Out করুন। ৩০ মিনিটের মধ্যে আপনার UPI-তে টাকা পাঠানো হবে।",
+    target:()=>document.querySelector(".btn-withdraw"),
+    check:()=>false
   }
 ];
 
@@ -1374,6 +1387,7 @@ window.onload=()=>{
   setTimeout(showPromoSequence, 6000);
   setTimeout(startTutorial, 6000);
 };
+
 const bg=document.getElementById("bg"),gif=document.getElementById("gif"),s=document.getElementById("s");
 setTimeout(()=>{bg.style.display="none";gif.style.display="block";gif.src="img/splash2.gif"},3e3);
 setTimeout(()=>{gif.src="img/splash3.gif"},7e3);
@@ -1381,5 +1395,3 @@ setTimeout(()=>{s.style.opacity="0";setTimeout(()=>s.remove(),500)},1e4);
 </script>
 </body>
 </html>
-    
-
