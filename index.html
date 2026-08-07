@@ -209,7 +209,7 @@ animation:fadeIn .4s;
     top:-150px;
     z-index:99999999;
     pointer-events:none;
-    transition: left .8s cubic-bezier(.25,1,.5,1), top .8s cubic-bezier(.25,1,.5,1), transform .12s ease;
+    transition: left .6s cubic-bezier(.25,1,.5,1), top .6s cubic-bezier(.25,1,.5,1), transform .12s ease;
     filter: drop-shadow(2px 10px 10px rgba(0,0,0,0.5)) drop-shadow(0 0 8px #fff) drop-shadow(0 0 18px gold);
     animation:handPulse 1.3s infinite;
 }
@@ -224,7 +224,8 @@ animation:fadeIn .4s;
     opacity:0;
     pointer-events:none;
     z-index:99999998;
-}.ripple{animation:ripple .8s forwards;}
+}
+.ripple{animation:ripple .8s forwards;}
 @keyframes ripple{0%{ transform:scale(.2); opacity:1; }100%{ transform:scale(5); opacity:0; }}
 
 .handTrail{
@@ -397,9 +398,7 @@ animation:wave .7s forwards;
     <div class="stat-box" id="cashBox"><div class="cash-title">💵 Cash <span class="red">Wal</span><span class="green">let</span></div><div id="cash">₹0.00</div></div>
     <div class="stat-box" id="shroomBox"><div class="mushroom-title">মাশরুম<br>🍄</div><div id="mushroom">0 গ্রাম</div></div>
     <div class="stat-box" id="pointBox"><div class="point-title">পয়েন্ট<br>⭐</div><div id="points">0 Pts</div></div>
-  </div>
-
-  <div class="bonus-zone">
+                                                                                                                                                                                                                       </div><div class="bonus-zone">
     <button id="bonusBtn" class="btn-bonus" onclick="playClickSound();openBonusModal()">🎁 ফ্রি বোনাস (ক্যাশ)</button>
     <div class="action-grid">
       <button class="btn-withdraw" onclick="playClickSound();openWithdrawModal()">💸 ক্যাশ আউট</button>
@@ -452,9 +451,7 @@ animation:wave .7s forwards;
     <button id="spinBtn" class="btn-modal-claim" onclick="playClickSound();spinOrderWheel()">🎡 SPIN NOW<div id="spinFinger">👆</div></button>
     <button id="spinClaimBtn" class="btn-modal-claim" style="display:none;margin-top:10px;background:#06b6d4" onclick="playClickSound();claimSpinReward()">🛒 Claim Reward</button>
   </div>
-</div>
-
-<div id="withdrawModal" class="modal">
+    </div><div id="withdrawModal" class="modal">
   <div class="modal-content">
     <div class="modal-title">💸 ক্যাশ আউট / Contact</div>
     <input id="wName" class="modal-input" placeholder="আপনার 👤 নাম লিখুন">
@@ -580,8 +577,7 @@ function flyReward(e){
   }
   playClap();
 }
-                                                                                               
-function playSpinSound(){spinSound.currentTime=0;spinSound.play().catch(()=>{})}
+ function playSpinSound(){spinSound.currentTime=0;spinSound.play().catch(()=>{})}
 function closeSpinModal(){document.getElementById("spinModal").style.display="none"}
 
 window.onclick=e=>{if(e.target==document.getElementById("spinModal"))closeSpinModal();if(e.target==upiPop)cUPI()}
@@ -692,9 +688,7 @@ function premiumRewardFX(){
     s.style.setProperty("--y",(Math.random()*250-120)+"px");
     box.appendChild(s);
     setTimeout(()=>s.remove(),1500);
-  }
-
-  for(let i=0;i<80;i++){
+    }for(let i=0;i<80;i++){
     let coin=document.createElement("div");
     coin.innerHTML="🪙";
     coin.className="coinRain";
@@ -903,9 +897,7 @@ function openSpinOrder(){
   document.getElementById("spinBtn").disabled=false;
   document.getElementById("spinFinger").style.display="block";
   document.getElementById("spinReward").innerHTML="🎡 SPIN করে পুরস্কার জিতুন";
-}
-
-function spinOrderWheel(){
+    }function spinOrderWheel(){
   if(!canSpin)return;
   const btn=document.getElementById("spinBtn");
   btn.classList.add("spinPress");
@@ -1057,8 +1049,7 @@ function submitWithdraw(){
   .catch(err=>{
     pop("❌ Request Failed","error");
   });
-    }
-    function checkPayment(){
+    }function checkPayment(){
   const code = localStorage.getItem("verify_code") || codeInput.value.trim();
   if(!code) return;
 
@@ -1149,10 +1140,13 @@ cv.addEventListener("touchmove",e=>{e.preventDefault();doScr(e)},{passive:!1});
 cv.addEventListener("touchend",()=>{isDraw=!1;stopS()});
 
 /* Promo Sequence System */
-function showPromoSequence(){
+function showPromoSequence(onComplete){
   const popup = document.getElementById("promoPopup");
   const media = document.getElementById("promoMedia");
-  if(!popup || !media) return;
+  if(!popup || !media){
+    if(onComplete) onComplete();
+    return;
+  }
 
   popup.style.display = "flex";
   media.src = "img/offer.jpg";
@@ -1163,6 +1157,7 @@ function showPromoSequence(){
       media.src = "img/offer2.gif";
       setTimeout(()=>{
         popup.style.display = "none";
+        if(onComplete) onComplete();
       }, 4000);
     }, 6000);
   }, 5000);
@@ -1351,9 +1346,8 @@ function runStep(){
       }
     }
   }, 4000);
-}
-
-function tutorialFinish(){
+    }
+    function tutorialFinish(){
   hideHand();
   confetti({
     particleCount: 300,
@@ -1383,15 +1377,20 @@ window.onload=()=>{
     }
   },100);
   setInterval(checkPayment,5000);
-
-  setTimeout(showPromoSequence, 6000);
-  setTimeout(startTutorial, 6000);
 };
 
 const bg=document.getElementById("bg"),gif=document.getElementById("gif"),s=document.getElementById("s");
 setTimeout(()=>{bg.style.display="none";gif.style.display="block";gif.src="img/splash2.gif"},3e3);
 setTimeout(()=>{gif.src="img/splash3.gif"},7e3);
-setTimeout(()=>{s.style.opacity="0";setTimeout(()=>s.remove(),500)},1e4);
+setTimeout(()=>{
+  s.style.opacity="0";
+  setTimeout(()=>{
+    s.remove();
+    showPromoSequence(()=>{
+      startTutorial();
+    });
+  },500);
+},1e4);
 </script>
 </body>
 </html>
