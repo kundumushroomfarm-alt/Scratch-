@@ -10,16 +10,42 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 .container{width:100%;max-width:420px;background:#1e293b;padding:20px;border-radius:24px;box-shadow:0 10px 30px #0008;margin-top:10px;position:relative;overflow:hidden}
 
 /* Header Design */
-.cashTitle{text-align:center;line-height:1.05;margin:12px 0 18px;}
-.cashTitle .top{font-size:22px;font-weight:900;color:#fff;letter-spacing:1px;}
-.cashTitle .price{
-    display:inline-block;font-size:68px;font-weight:900;
-    background:linear-gradient(45deg,#ff4fd8,#ffffff,#ff8adf);
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    text-shadow:0 0 18px rgba(255,80,220,.7);animation:pricePulse 2s infinite;position:relative;
+.cashTitle{
+    text-align:center;
+    line-height:1.05;
+    margin:12px 0 18px;
 }
-.cashTitle .bottom{font-size:24px;font-weight:900;color:#fff;letter-spacing:2px;}
-.cashTitle .price::before, .cashTitle .price::after{content:"✨";position:absolute;font-size:18px;animation:spark 1.5s infinite;}
+.cashTitle .top{
+    font-size:22px;
+    font-weight:900;
+    color:#fff;
+    letter-spacing:1px;
+}
+.cashTitle .price{
+    display:inline-block;
+    font-size:68px;
+    font-weight:900;
+    background:linear-gradient(45deg,#ff4fd8,#ffffff,#ff8adf);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    text-shadow:0 0 18px rgba(255,80,220,.7);
+    animation:pricePulse 2s infinite;
+    position:relative;
+}
+.cashTitle .bottom{
+    font-size:24px;
+    font-weight:900;
+    color:#fff;
+    letter-spacing:2px;
+}
+
+.cashTitle .price::before,
+.cashTitle .price::after{
+    content:"✨";
+    position:absolute;
+    font-size:18px;
+    animation:spark 1.5s infinite;
+}
 .cashTitle .price::before{ left:-22px; top:5px; }
 .cashTitle .price::after{ right:-22px; bottom:5px; animation-delay:.8s; }
 
@@ -33,25 +59,61 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 }
 
 /* Verification Input Box */
-.verify-box{position:relative;display:flex;align-items:center;gap:10px;margin-bottom:15px;}
+.verify-box{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:15px;
+}
 .verify-box input{
-  flex:1;height:54px;padding:18px 12px 8px;border:2px solid #FFD700;
-  border-radius:12px;background:#334155;color:#fff;font-size:16px;outline:none;
+  flex:1;
+  height:54px;
+  padding:18px 12px 8px;
+  border:2px solid #FFD700;
+  border-radius:12px;
+  background:#334155;
+  color:#fff;
+  font-size:16px;
+  outline:none;
 }
 .verify-box label{
-  position:absolute;left:15px;top:50%;transform:translateY(-50%);
-  color:#FFD700;font-size:16px;font-weight:700;pointer-events:none;
-  transition:.25s;background:#334155;padding:0 6px;border-radius:4px;
+  position:absolute;
+  left:15px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#FFD700;
+  font-size:16px;
+  font-weight:700;
+  pointer-events:none;
+  transition:.25s;
+  background:#334155;
+  padding:0 6px;
+  border-radius:4px;
 }
 .verify-box input:focus + label,
 .verify-box input:not(:placeholder-shown) + label,
 .verify-box input:valid + label{
-  top:-9px;font-size:12px;color:#22c55e;
+  top:-9px;
+  font-size:12px;
+  color:#22c55e;
 }
 .verify-box button{
-  width:90px;height:54px;padding:0;font-size:16px;font-weight:700;
-  border-radius:14px;line-height:1.15;display:flex;align-items:center;
-  justify-content:center;background:#ffc107;color:#222;border:none;cursor:pointer;transition:.2s;
+  width:90px;
+  height:54px;
+  padding:0;
+  font-size:16px;
+  font-weight:700;
+  border-radius:14px;
+  line-height:1.15;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#ffc107;
+  color:#222;
+  border:none;
+  cursor:pointer;
+  transition:.2s;
 }
 
 #tap{position:absolute;left:20px;top:10px;font-size:26px;pointer-events:none;animation:tapMove 3.5s ease-in-out infinite;filter:hue-rotate(320deg) saturate(10);z-index:10}
@@ -76,14 +138,26 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 .scratch-reveal{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;flex-direction:column;z-index:1;background:radial-gradient(circle at top,#fff7b0,#facc15,#b45309);color:#fff;text-shadow:0 2px 6px #000;overflow:hidden}
 
 .premiumReward{
-position:relative;overflow:hidden;background:rgba(255,255,255,.15);backdrop-filter:blur(15px);
-border:3px solid gold;border-radius:22px;padding:14px 22px;
+position:relative;
+overflow:hidden;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(15px);
+border:3px solid gold;
+border-radius:22px;
+padding:14px 22px;
 box-shadow:0 0 15px gold,0 0 35px orange,0 0 60px #ffd700,inset 0 0 20px rgba(255,255,255,.4);
 animation:rewardZoom .8s infinite alternate;
 }
 .premiumReward::before{
-content:"";position:absolute;top:-120%;left:-40%;width:60%;height:350%;
-background:rgba(255,255,255,.45);transform:rotate(25deg);animation:shineMove 2s linear infinite;
+content:"";
+position:absolute;
+top:-120%;
+left:-40%;
+width:60%;
+height:350%;
+background:rgba(255,255,255,.45);
+transform:rotate(25deg);
+animation:shineMove 2s linear infinite;
 }
 @keyframes shineMove{100%{transform:translateX(320px) rotate(25deg);}}
 @keyframes rewardZoom{from{transform:scale(1);}to{transform:scale(1.08);}}
@@ -93,48 +167,101 @@ background:rgba(255,255,255,.45);transform:rotate(25deg);animation:shineMove 2s 
 .rewardText{font-size:22px;font-weight:800}
 
 .spark{
-position:fixed;width:6px;height:6px;border-radius:50%;background:white;
-box-shadow:0 0 8px gold, 0 0 18px white;pointer-events:none;z-index:99999996;
+position:fixed;
+width:6px;
+height:6px;
+border-radius:50%;
+background:white;
+box-shadow:0 0 8px gold, 0 0 18px white;
+pointer-events:none;
+z-index:99999996;
 animation:sparkFx .9s linear forwards;
 }
 @keyframes sparkFx{0%{opacity:1;transform:translateY(0) scale(1);}100%{opacity:0;transform:translateY(-35px) scale(.2);}}
 
-.coinRain{position:absolute;top:-20px;font-size:18px;pointer-events:none;z-index:80;animation:coinFall 1.8s ease-in forwards;}
+.coinRain{
+position:absolute;
+top:-20px;
+font-size:18px;
+pointer-events:none;
+z-index:80;
+animation:coinFall 1.8s ease-in forwards;
+}
 @keyframes coinFall{0%{opacity:1;transform:translateY(0) rotate(0deg);}100%{opacity:0;transform:translateY(200px) rotate(360deg);}}
 
 #promoPopup{
-position:fixed;inset:0;display:none;justify-content:center;align-items:center;
-background:rgba(0,0,0,.75);z-index:999999;animation:fadeIn .4s;
+position:fixed;
+inset:0;
+display:none;
+justify-content:center;
+align-items:center;
+background:rgba(0,0,0,.75);
+z-index:999999;
+animation:fadeIn .4s;
 }
 #promoMedia{max-width:95%;max-height:95%;border-radius:18px;box-shadow:0 0 30px gold;}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 
 #guideHand{
-    position:fixed;width:75px;left:-150px;top:-150px;z-index:99999999;pointer-events:none;
+    position:fixed;
+    width:75px;
+    left:-150px;
+    top:-150px;
+    z-index:99999999;
+    pointer-events:none;
     transition: left .8s cubic-bezier(.25,1,.5,1), top .8s cubic-bezier(.25,1,.5,1), transform .12s ease;
     filter: drop-shadow(2px 10px 10px rgba(0,0,0,0.5)) drop-shadow(0 0 8px #fff) drop-shadow(0 0 18px gold);
     animation:handPulse 1.3s infinite;
 }
 @keyframes handPulse{0%{ transform:scale(1); }50%{ transform:scale(1.08); }100%{ transform:scale(1); }}
-#tapRipple{position:fixed;width:20px;height:20px;border-radius:50%;border:3px solid #fff;opacity:0;pointer-events:none;z-index:99999998;}
+
+#tapRipple{
+    position:fixed;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    border:3px solid #fff;
+    opacity:0;
+    pointer-events:none;
+    z-index:99999998;
+}
 .ripple{animation:ripple .8s forwards;}
 @keyframes ripple{0%{ transform:scale(.2); opacity:1; }100%{ transform:scale(5); opacity:0; }}
 
 .handTrail{
-position:fixed;width:14px;height:14px;border-radius:50%;pointer-events:none;z-index:99999997;
-background:radial-gradient(circle,#fff,#ffd700,#ff9800);box-shadow:0 0 15px gold;
+position:fixed;
+width:14px;
+height:14px;
+border-radius:50%;
+pointer-events:none;
+z-index:99999997;
+background:radial-gradient(circle,#fff,#ffd700,#ff9800);
+box-shadow:0 0 15px gold;
 animation:trailFade .8s linear forwards;
 }
 @keyframes trailFade{0%{ opacity:1; transform:scale(1); }100%{ opacity:0; transform:scale(.2); }}
 
 #tapFlash{
-position:fixed;width:70px;height:70px;border-radius:50%;pointer-events:none;opacity:0;z-index:99999995;
+position:fixed;
+width:70px;
+height:70px;
+border-radius:50%;
+pointer-events:none;
+opacity:0;
+z-index:99999995;
 background:radial-gradient(circle, rgba(255,255,255,.95), rgba(255,255,255,0));
 }
 .flash{animation:flash .35s;}
 @keyframes flash{0%{ opacity:1; transform:scale(.2); }100%{ opacity:0; transform:scale(2.5); }}
 
-.wave{position:fixed;border-radius:50%;border:3px solid gold;pointer-events:none;z-index:99999994;animation:wave .7s forwards;}
+.wave{
+position:fixed;
+border-radius:50%;
+border:3px solid gold;
+pointer-events:none;
+z-index:99999994;
+animation:wave .7s forwards;
+}
 @keyframes wave{0%{ width:20px; height:20px; opacity:1; }100%{ width:120px; height:120px; margin-left:-50px; margin-top:-50px; opacity:0; }}
 
 .tutorialGlow{animation:premiumGlow 1s infinite !important;}
@@ -167,21 +294,22 @@ background:radial-gradient(circle, rgba(255,255,255,.95), rgba(255,255,255,0));
 .action-grid{display:flex;gap:10px;width:100%}
 .btn-withdraw{flex:1;background:#ef4444;padding:12px;font-size:14px;font-weight:700;border:none;border-radius:12px;color:#fff;cursor:pointer;box-shadow:0 4px 10px rgba(239,68,68,.3)}
 .btn-upi{flex:1;background:linear-gradient(135deg,#22c55e,#16a34a);padding:12px;font-size:14px;font-weight:700;border:none;border-radius:12px;color:#fff;cursor:pointer;box-shadow:0 4px 10px rgba(34,197,94,.3)}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000c;z-index:100;justify-content:center;align-items:center;padding:20px}
-.modal-content{background:#1e293b;padding:20px;border-radius:20px;width:100%;max-width:360px;border:2px solid #eab308;text-align:center;position:relative}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000c;z-index:100;justify-content:center;align-items:center;padding:20px}.modal-content{background:#1e293b;padding:20px;border-radius:20px;width:100%;max-width:360px;border:2px solid #eab308;text-align:center;position:relative}
 .modal-title{font-size:20px;color:#eab308;font-weight:700;margin-bottom:10px}
 .modal-text{font-size:14px;margin-bottom:15px;color:#cbd5e1}
 .modal-input{width:100%;padding:12px;margin-bottom:10px;border-radius:8px;border:1px solid #475569;background:#334155;color:#fff;outline:none;text-align:left;font-size:14px}
 .btn-modal-claim{background:#22c55e;color:#fff;padding:12px 25px;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-size:16px;width:100%}
 .btn-modal-claim:disabled{background:#64748b;cursor:not-allowed}
 #closeSpin{position:absolute;top:12px;right:12px;width:34px;height:34px;border:none;border-radius:50%;background:#ef4444;color:#fff;font-size:18px;cursor:pointer;z-index:110;box-shadow:0 0 10px rgba(0,0,0,.5)}
-.wheel-wrapper{position:relative;width:260px;height:260px;margin:15px auto;border-radius:50%;padding:8px;background:radial-gradient(circle,#ffe66d,#facc15,#d97706);box-shadow:0 0 15px #facc15,0 0 30px rgba(250,204,21,.8),0 0 60px rgba(250,204,21,.4),inset 0 0 18px rgba(255,255,255,.5),inset 0 -8px 18px rgba(0,0,0,.45);animation:wheelGlow 2.2s ease-in-out infinite}#spinWheelVisual{width:100%;height:100%;border-radius:50%;box-shadow:inset 0 0 20px rgba(255,255,255,.25),inset 0 -10px 20px rgba(0,0,0,.4),0 12px 25px rgba(0,0,0,.45);transition:transform 8s cubic-bezier(.08,.82,.17,1)}
+.wheel-wrapper{position:relative;width:260px;height:260px;margin:15px auto;border-radius:50%;padding:8px;background:radial-gradient(circle,#ffe66d,#facc15,#d97706);box-shadow:0 0 15px #facc15,0 0 30px rgba(250,204,21,.8),0 0 60px rgba(250,204,21,.4),inset 0 0 18px rgba(255,255,255,.5),inset 0 -8px 18px rgba(0,0,0,.45);animation:wheelGlow 2.2s ease-in-out infinite}
+#spinWheelVisual{width:100%;height:100%;border-radius:50%;box-shadow:inset 0 0 20px rgba(255,255,255,.25),inset 0 -10px 20px rgba(0,0,0,.4),0 12px 25px rgba(0,0,0,.45);transition:transform 8s cubic-bezier(.08,.82,.17,1)}
 #spinWheelVisual text{font-size:6.8px;font-weight:900;fill:#fff;paint-order:stroke;stroke:#000;stroke-width:.45;text-anchor:middle;dominant-baseline:middle;letter-spacing:.3px}
 .wheel-pointer{position:absolute;top:-8px;left:50%;transform:translateX(-50%);z-index:200;animation:pointerPulse 1s infinite}
 .pointer-tip{width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-top:45px solid #ffd700;filter:drop-shadow(0 0 10px gold) drop-shadow(0 0 18px orange)}
 .pointer-tip::after{content:"";position:absolute;left:-8px;top:-43px;width:16px;height:16px;background:#fff;border:4px solid #ffd700;border-radius:50%;box-shadow:0 0 12px gold,0 0 20px orange}
 @keyframes pointerPulse{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.08)}}
-.center-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;background:radial-gradient(circle,#fff,#ffd700,#ff9800);border:5px solid #fff;box-shadow:0 0 20px gold,inset 0 4px 8px rgba(255,255,255,.8),inset 0 -6px 8px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-size:34px;z-index:105}@keyframes wheelGlow{0%,100%{box-shadow:0 0 18px gold,0 0 35px orange,0 0 55px gold}50%{box-shadow:0 0 28px #fff176,0 0 50px gold,0 0 80px orange}}
+.center-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;background:radial-gradient(circle,#fff,#ffd700,#ff9800);border:5px solid #fff;box-shadow:0 0 20px gold,inset 0 4px 8px rgba(255,255,255,.8),inset 0 -6px 8px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-size:34px;z-index:105}
+@keyframes wheelGlow{0%,100%{box-shadow:0 0 18px gold,0 0 35px orange,0 0 55px gold}50%{box-shadow:0 0 28px #fff176,0 0 50px gold,0 0 80px orange}}
 #spinBtn{position:relative;overflow:visible}
 #spinFinger{position:absolute;left:50%;bottom:70px;transform:translateX(-50%);font-size:46px;z-index:999;pointer-events:none;animation:fingerClick .9s infinite;filter:drop-shadow(0 0 10px #fff)}
 @keyframes fingerClick{0%{transform:translateX(-50%) translateY(0) scale(1)}40%{transform:translateX(-50%) translateY(18px) scale(.9)}60%{transform:translateX(-50%) translateY(18px) scale(.9)}100%{transform:translateX(-50%) translateY(0) scale(1)}}
@@ -196,7 +324,7 @@ background:radial-gradient(circle, rgba(255,255,255,.95), rgba(255,255,255,0));
 .uBox{position:relative;width:92%;max-width:340px;padding:22px;background:#1e293b;border:2px solid #facc15;border-radius:22px;text-align:center;box-shadow:0 0 35px gold;animation:pop .25s}
 .pic{width:80px;height:80px;border-radius:50%;border:3px solid #fff;object-fit:cover}
 .uBox h2{color:#fff;margin:10px 0 5px;font-size:20px}
-.uBoxp{color:#facc15;margin-bottom:15px;font-size:14px}
+.uBox p{color:#facc15;margin-bottom:15px;font-size:14px}
 .uBox button{width:100%;margin:8px 0;padding:12px;border:0;border-radius:12px;background:#334155;color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:.2s}
 .uBox button img{width:24px;height:24px}
 .x{position:absolute;top:12px;right:12px;background:#ef4444;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-weight:700;display:flex;align-items:center;justify-content:center}
@@ -326,8 +454,7 @@ background:radial-gradient(circle, rgba(255,255,255,.95), rgba(255,255,255,0));
     <button id="spinClaimBtn" class="btn-modal-claim" style="display:none;margin-top:10px;background:#06b6d4" onclick="playClickSound();claimSpinReward()">🛒 Claim Reward</button>
   </div>
 </div>
-
-<div id="withdrawModal" class="modal">
+ <div id="withdrawModal" class="modal">
   <div class="modal-content">
     <div class="modal-title">💸 ক্যাশ আউট / Contact</div>
     <input id="wName" class="modal-input" placeholder="আপনার 👤 নাম লিখুন">
@@ -368,6 +495,7 @@ const h=document.getElementById("h"),tap=document.getElementById("tap"),codeInpu
 const sS=document.getElementById("sS"),cS=document.getElementById("cS"),mS=document.getElementById("mS"),pS=document.getElementById("pS"),gS=document.getElementById("gS"),eS=document.getElementById("eS"),spinSound=document.getElementById("spinSound"),clapS=document.getElementById("clapS");
 const lMsg=document.getElementById("loaderMsg"),lZone=document.getElementById("loaderZone"),cT=document.getElementById("cTimer"),cv=document.getElementById("scratchCanvas"),cx=cv.getContext("2d");
 const upiPop=document.getElementById("upiPop"),mClaim=document.getElementById("mClaim"),tapFinger=document.getElementById("tapFinger");
+
 const rews=[
   {text:"💵 ক্যাশ ₹ 2",type:"cash",val:2},
   {text:"💵 ক্যাশ ₹ 3",type:"cash",val:3},
@@ -420,6 +548,7 @@ function pop(msg,type="info"){
   navigator.vibrate&&navigator.vibrate(120);
   setTimeout(()=>{ toast.classList.remove("show"); },3500);
 }
+
 function showConfirm(e,t){document.getElementById("cMsg").innerHTML=e;document.getElementById("confirmPop").style.display="flex";okFn=t}
 function closePop(){document.getElementById("confirmPop").style.display="none"}
 function okPop(){closePop();if(okFn)okFn()}
@@ -486,20 +615,14 @@ async function verifyCode(){
       localStorage.setItem("verified","1");
       localStorage.removeItem("first_spin_done"); 
       localStorage.removeItem("scratch_done");
-    verified = 1;
+
+      verified = 1;
       canSpin = true;
       tap.style.display="none";
 
       playClap();
       fireConfetti();
       openSpinOrder();
-
-      tutorialStep = 0;
-      localStorage.removeItem("spinDone");
-      localStorage.removeItem("bonusDone");
-      localStorage.removeItem("scratchDone");
-
-      setTimeout(startTutorial,1000);
     }else if(s==="used"){
       pop("☑️ কোড টি ব্যবহার হয়েছে","error");
     }else{
@@ -579,8 +702,7 @@ function premiumRewardFX(){
     box.appendChild(coin);
     setTimeout(()=>coin.remove(),2000);
   }
-
-  confetti({
+confetti({
     particleCount:220,
     spread:170,
     origin:{y:.6}
@@ -627,6 +749,7 @@ function scratchEdge(e,t){
   s.addColorStop(0,"rgba(255,255,255,.35)");s.addColorStop(.4,"rgba(220,220,220,.18)");s.addColorStop(1,"rgba(255,255,255,0)");
   cx.fillStyle=s;cx.beginPath();cx.arc(e,t,22,0,6.283);cx.fill();cx.restore();
 }
+
 function scratchPowder(e,t){
   let s=document.querySelector(".scratch-container");
   for(let a=0;a<3;a++){
@@ -646,6 +769,7 @@ function silverFoil(e,t){
     s.appendChild(o);setTimeout(()=>o.remove(),900);
   }
 }
+
 function doScr(e){
   if(isDraw&&!isScr){
     let t=getP(e);
@@ -708,9 +832,6 @@ function hRew(){
   }else{
     pAud("eS");sLdr("ফলাফল চোখ রাখুন...",8,()=>initCv());
   }
-
-  tutorialStep = 4;
-  setTimeout(runTutorial,1000);
 }
 
 function sLdr(e,t,s){
@@ -753,12 +874,7 @@ function claimDailyBonus(){
       }
     },1e3);
   });
-
-  tutorialStep = 3;
-  setTimeout(runTutorial,1000);
-}
-
-function updateBonusTimer(){
+}function updateBonusTimer(){
   const btn=document.getElementById("bonusClaimBtn");
   const timer=document.getElementById("bonusTimer");
   const lastBonus=Number(localStorage.getItem("last_bonus_time")||0);
@@ -888,7 +1004,9 @@ function claimSpinReward(){
 
     flyReward("mushroom");
     speak("চমৎকার! আপনি " + e.val + " গ্রাম ছাতু পেয়েছেন।");
-    }uUI();
+  }
+
+  uUI();
 
   canSpin = false;
   localStorage.setItem("first_spin_done","YES");
@@ -898,9 +1016,6 @@ function claimSpinReward(){
 
   document.getElementById("spinModal").style.display="none";
   currentSpinReward = null;
-
-  tutorialStep = 2;
-  setTimeout(runTutorial,1000);
 }
 
 function openWithdrawModal(){pAud("cS");document.getElementById("withdrawModal").style.display="flex"}
@@ -1129,6 +1244,17 @@ function tapHand(target){
   if(navigator.vibrate) navigator.vibrate(25);
 }
 
+function doubleTap(target){
+  if(!target) return;
+  moveHand(target);
+  setTimeout(()=>{
+    tapHand(target);
+    setTimeout(()=>{
+      tapHand(target);
+    }, 350);
+  }, 900);
+}
+
 function hideHand(){
   if(!hand) return;
   hand.style.transition = ".5s";
@@ -1154,187 +1280,76 @@ setInterval(()=>{
   }
 }, 40);
 
-/* Human Demo Scratch */
-let demoRun = false;
-let demoTimer = null;
-
-function startScratchDemo(){
-  if(demoRun) return;
-  demoRun = true;
-
-  const card = document.getElementById("scratchCard");
-
-  if(!hand || !card) return;
-
-  const r = card.getBoundingClientRect();
-  hand.style.display = "block";
-  hand.style.opacity = "1";
-
-  let path = [
-    {x: r.left + 40,  y: r.top + 55},
-    {x: r.left + 250, y: r.top + 70},
-    {x: r.left + 70,  y: r.top + 95},
-    {x: r.left + 230, y: r.top + 120},
-    {x: r.left + 60,  y: r.top + 145},
-    {x: r.left + 250, y: r.top + 155}
-  ];
-
-  let i = 0;
-
-  function move(){
-    if(i >= path.length){
-      i = 0;
-    }
-
-    hand.style.transition = "all .45s ease-in-out";
-    hand.style.left = path[i].x + "px";
-    hand.style.top = path[i].y + "px";
-    hand.style.transform = "scale(.88) rotate(8deg)";
-
-    pAud("scS");
-
-    setTimeout(()=>{
-      hand.style.transform = "scale(1) rotate(0deg)";
-    }, 150);
-
-    i++;
-  }
-
-  move();
-  demoTimer = setInterval(move, 500);
-
-  function stopDemo(){
-    clearInterval(demoTimer);
-    hideHand();
-    demoRun = false;
-
-    cv.removeEventListener("mousedown", stopDemo);
-    cv.removeEventListener("touchstart", stopDemo);
-  }
-
-  cv.addEventListener("mousedown", stopDemo, {once: true});
-  cv.addEventListener("touchstart", stopDemo, {once: true});
-}
-
-/* Tutorial Controller (Strict Sequenced Tutorial) */
+/* Voice Step Tutorial Controller */
 let tutorialStep = 0;
+let tutorialTimer = null;
+
+const tutorialSteps = [
+  {
+    text: "প্রথমে আপনার কোড লিখুন। তারপর সাবমিট করুন।",
+    target: () => document.querySelector(".verify-box button"),
+    check: () => localStorage.getItem("verified") == "1"
+  },
+  {
+    text: "এখন স্পিন করুন।",
+    target: () => document.getElementById("spinBtn"),
+    check: () => localStorage.getItem("spinDone") == "1"
+  },
+  {
+    text: "এখন ফ্রি বোনাস নিন।",
+    target: () => document.getElementById("bonusBtn"),
+    check: () => localStorage.getItem("bonusDone") == "1"
+  },
+  {
+    text: "এখন পুরো স্ক্র্যাচ কার্ডটি ঘষুন।",
+    target: () => document.getElementById("scratchCard"),
+    check: () => localStorage.getItem("scratchDone") == "1"
+  }
+];
 
 function startTutorial(){
-    tutorialStep = 0;
-    runTutorial();
+  runStep();
 }
 
-function runTutorial(){
+function runStep(){
+  clearInterval(tutorialTimer);
+  if(tutorialStep >= tutorialSteps.length){
+    tutorialFinish();
+    return;
+  }
 
-    hideHand();
+  let step = tutorialSteps[tutorialStep];
+  let targetEl = step.target();
 
-    // STEP-1 Submit
-    if(tutorialStep==0){
+  if(targetEl){
+    speakBN(step.text);
+    doubleTap(targetEl);
+  }
 
-        if(localStorage.getItem("verified")=="1"){
-            tutorialStep=1;
-            return runTutorial();
-        }
-
-        let btn=document.querySelector(".verify-box button");
-
-        moveHand(btn);
-
-        let t=setInterval(()=>{
-            if(localStorage.getItem("verified")=="1"){
-                clearInterval(t);
-                hideHand();
-                tutorialStep=1;
-                setTimeout(runTutorial,1000);
-            }else{
-                tapHand(btn);
-                speakBN("প্রথমে কোড লিখে সাবমিট করুন");
-            }
-        },3000);
-
-        return;
+  tutorialTimer = setInterval(()=>{
+    if(step.check()){
+      tutorialStep++;
+      runStep();
+    }else{
+      let targetEl = step.target();
+      if(targetEl){
+        speakBN(step.text);
+        doubleTap(targetEl);
+      }
     }
+  }, 4000);
+}
 
-    // STEP-2 Spin
-    if(tutorialStep==1){
-
-        if(localStorage.getItem("spinDone")=="1"){
-            tutorialStep=2;
-            return runTutorial();
-        }
-
-        let btn=document.getElementById("spinBtn");
-
-        moveHand(btn);
-
-        let t=setInterval(()=>{
-            if(localStorage.getItem("spinDone")=="1"){
-                clearInterval(t);
-                hideHand();
-                tutorialStep=2;
-                setTimeout(runTutorial,1000);
-            }else{
-                tapHand(btn);
-                speakBN("এখন স্পিন করুন");
-            }
-        },3000);
-
-        return;
-    }
-
-    // STEP-3 Bonus
-    if(tutorialStep==2){
-
-        if(localStorage.getItem("bonusDone")=="1"){
-            tutorialStep=3;
-            return runTutorial();
-        }
-
-        let btn=document.getElementById("bonusBtn");
-
-        moveHand(btn);
-
-        let t=setInterval(()=>{
-            if(localStorage.getItem("bonusDone")=="1"){
-                clearInterval(t);
-                hideHand();
-                tutorialStep=3;
-                setTimeout(runTutorial,1000);
-            }else{
-                tapHand(btn);
-                speakBN("এখন ফ্রি বোনাস নিন");
-            }
-        },3000);
-
-        return;
-    }
-
-    // STEP-4 Scratch
-    if(tutorialStep==3){
-
-        if(localStorage.getItem("scratchDone")=="1"){
-            tutorialStep=4;
-            return runTutorial();
-        }
-
-        speakBN("এখন স্ক্র্যাচ কার্ড ঘষুন");
-        startScratchDemo();
-
-        let t=setInterval(()=>{
-            if(localStorage.getItem("scratchDone")=="1"){
-                clearInterval(t);
-                hideHand();
-                tutorialStep=4;
-                setTimeout(runTutorial,1000);
-            }
-        },1000);
-
-        return;
-    }
-
-    hideHand();
-    fireConfetti();
-    speakBN("অভিনন্দন। সব ধাপ সম্পূর্ণ হয়েছে।");
+function tutorialFinish(){
+  hideHand();
+  confetti({
+    particleCount: 300,
+    spread: 180,
+    origin: { y: .6 }
+  });
+  navigator.vibrate?.([120,60,120]);
+  playClap();
+  speakBN("অভিনন্দন। এখন আপনি সম্পূর্ণ প্রস্তুত। শুভকামনা।");
 }
 
 window.onload=()=>{
@@ -1357,14 +1372,14 @@ window.onload=()=>{
   setInterval(checkPayment,5000);
 
   setTimeout(showPromoSequence, 6000);
+  setTimeout(startTutorial, 6000);
 };
-
 const bg=document.getElementById("bg"),gif=document.getElementById("gif"),s=document.getElementById("s");
 setTimeout(()=>{bg.style.display="none";gif.style.display="block";gif.src="img/splash2.gif"},3e3);
 setTimeout(()=>{gif.src="img/splash3.gif"},7e3);
 setTimeout(()=>{s.style.opacity="0";setTimeout(()=>s.remove(),500)},1e4);
 </script>
 </body>
-</html>                                                                                                                                                                                                                                                                                                   
+</html>
+    
 
-   
