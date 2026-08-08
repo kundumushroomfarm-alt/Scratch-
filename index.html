@@ -87,15 +87,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 .btn-modal-claim{background:#22c55e;color:#fff;padding:12px 25px;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-size:16px;width:100%}
 .btn-modal-claim:disabled{background:#64748b;cursor:not-allowed}
 #closeSpin{position:absolute;top:12px;right:12px;width:34px;height:34px;border:none;border-radius:50%;background:#ef4444;color:#fff;font-size:18px;cursor:pointer;z-index:110;box-shadow:0 0 10px rgba(0,0,0,.5)}
-.wheel-wrapper{position:relative;width:260px;height:260px;margin:15px auto;border-radius:50%;padding:8px;background:radial-gradient(circle,#ffe66d,#facc15,#d97706);box-shadow:0 0 15px #facc15,0 0 30px rgba(250,204,21,.8),0 0 60px rgba(250,204,21,.4),inset 0 0 18px rgba(255,255,255,.5),inset 0 -8px 18px rgba(0,0,0,.45);animation:wheelGlow 2.2s ease-in-out infinite}
-#spinWheelVisual{width:100%;height:100%;border-radius:50%;box-shadow:inset 0 0 20px rgba(255,255,255,.25),inset 0 -10px 20px rgba(0,0,0,.4),0 12px 25px rgba(0,0,0,.45);transition:transform 8s cubic-bezier(.08,.82,.17,1)}
-#spinWheelVisual text{font-size:6.8px;font-weight:900;fill:#fff;paint-order:stroke;stroke:#000;stroke-width:.45;text-anchor:middle;dominant-baseline:middle;letter-spacing:.3px}
-.wheel-pointer{position:absolute;top:-8px;left:50%;transform:translateX(-50%);z-index:200;animation:pointerPulse 1s infinite}
-.pointer-tip{width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-top:45px solid #ffd700;filter:drop-shadow(0 0 10px gold) drop-shadow(0 0 18px orange)}
-.pointer-tip::after{content:"";position:absolute;left:-8px;top:-43px;width:16px;height:16px;background:#fff;border:4px solid #ffd700;border-radius:50%;box-shadow:0 0 12px gold,0 0 20px orange}
-@keyframes pointerPulse{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.08)}}
-.center-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;background:radial-gradient(circle,#fff,#ffd700,#ff9800);border:5px solid #fff;box-shadow:0 0 20px gold,inset 0 4px 8px rgba(255,255,255,.8),inset 0 -6px 8px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-size:34px;z-index:105}
-@keyframes wheelGlow{0%,100%{box-shadow:0 0 18px gold,0 0 35px orange,0 0 55px gold}50%{box-shadow:0 0 28px #fff176,0 0 50px gold,0 0 80px orange}}
+.wheel-wrapper{position:relative;width:260px;height:260px;margin:15px auto;border-radius:50%;padding:8px;background:radial-gradient(circle,#ffe66d,#facc15,#d97706);box-shadow:0 0 15px #facc15,0 0 30px rgba(250,204,21,.8),0 0 60px rgba(250,204,21,.4),inset 0 0 18px rgba(255,255,255,.5),inset 0 -8px 18px rgba(0,0,0,.45);animation:wheelGlow 2.2s ease-in-out infinite}@keyframes wheelGlow{0%,100%{box-shadow:0 0 18px gold,0 0 35px orange,0 0 55px gold}50%{box-shadow:0 0 28px #fff176,0 0 50px gold,0 0 80px orange}}
 #spinBtn{position:relative;overflow:visible}
 #spinFinger{position:absolute;left:50%;bottom:70px;transform:translateX(-50%);font-size:46px;z-index:999;pointer-events:none;animation:fingerClick .9s infinite;filter:drop-shadow(0 0 10px #fff)}
 @keyframes fingerClick{0%{transform:translateX(-50%) translateY(0) scale(1)}40%{transform:translateX(-50%) translateY(18px) scale(.9)}60%{transform:translateX(-50%) translateY(18px) scale(.9)}100%{transform:translateX(-50%) translateY(0) scale(1)}}
@@ -175,7 +167,7 @@ body{background:#0f172a;color:#fff;text-align:center;padding:15px;min-height:100
 <div id="confirmPop" class="cPop"><div class="cBox"><div class="cIcon">🏦</div><h2>ক্যাশ আউট</h2><p id="cMsg">আপনি কি নিশ্চিত?</p><div class="cBtn"><button onclick="closePop()">না</button><button onclick="okPop()">হ্যাঁ</button></div></div></div>
 <div id="upiPop" class="uPop"><div class="uBox"><span class="x" onclick="cUPI()">✕</span><img src="img/profile.png" class="pic" alt="Profile"><h2>Bubai Kundu</h2><p>পেমেন্ট করার মাধ্যম বেছে নিন</p><button onclick="oUPI('7047643951@ibl')"><img src="img/phonepe.png" alt="PhonePe">PhonePe</button><button onclick="oUPI('bubaikundu635@okhdfcbank')"><img src="img/gpay.png" alt="Google Pay">Google Pay</button><button onclick="oUPI('7047643951@superyes')"><img src="img/superyes.png" alt="SuperYes">SuperYes</button></div></div>
 <div id="mClaim" class="mClaim"><div class="mCard"><div class="mIcon">🍄</div><h2>100g Mushroom Completed</h2><p>আপনার 100g Mushroom পূর্ণ হয়েছে।<br>Claim Cash করুন।</p><input id="mcName" placeholder="👤 নাম"><input id="mcPhone" maxlength="10" type="tel" placeholder="📞 মোবাইল নম্বর"><div id="tapFinger">👆</div><button id="mushroomClaimBtn" onclick="claimMushroomCash()">🍄 Claim Cash</button></div></div>
-
+                                                               
 <audio id="sS" src="https://files.catbox.moe/po27od.mp3" loop preload="auto"></audio>
 <audio id="cS" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" preload="auto"></audio>
 <audio id="mS" src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3" preload="auto"></audio>
@@ -329,9 +321,7 @@ async function verifyCode(){
       verified=1;canSpin=!0;tap.style.display="none";playClap();fireConfetti();openSpinOrder();
     }else "used"===s?pop("☑️ কোড টি ব্যবহার হয়েছে","error"):pop("❌ ভুল কোড","error");
   }catch(e){pop("😠 মাশরুম কিনুন, আবার চেষ্টা করুন","error")}
-}
-
-function pAud(e){try{let t=document.getElementById(e);t&&(t.currentTime=0,t.play().catch(()=>{}))}catch(e){}}
+}function pAud(e){try{let t=document.getElementById(e);t&&(t.currentTime=0,t.play().catch(()=>{}))}catch(e){}}
 function stopS(){sS.pause();sS.currentTime=0}
 function initApp(){uUI();initCv();chkBns();checkMushroomClaim()}
 function uUI(){let e=parseFloat(document.getElementById("cash").innerText.replace("₹",""))||0;animateValue("cash",e,cash,800,"₹","",2);document.getElementById("mushroom").innerText=shroom+" গ্রাম";document.getElementById("points").innerText=pts+" Pts";checkMushroomClaim()}
@@ -374,7 +364,55 @@ function hRew(){
   if("cash"===cRew.type)flyReward("cash"),cash+=cRew.val,localStorage.setItem("km_cash",cash),uUI(),pAud("mS"),sLdr("ক্যাশ যোগ হচ্ছে...",8,()=>initCv());
   else if("mushroom"===cRew.type){
     flyReward("mushroom");shroom+=cRew.val;localStorage.setItem("km_shroom",shroom);uUI();pAud("gS");pop("🍄 "+cRew.val+"g Mushroom Wallet-এ যোগ হয়েছে। ১০ সেকেন্ড পরে Cash-এ Convert হবে।","info");
-    let e=cRew.val;setTimeout(()=>{shroom>=e&&(shroom-=e,let t=e/10;cash+=t,localStorage.setItem("km_shroom",shroom),localStorage.setItem("km_cash",cash),uUI(),pop("💰 "+e+"g Mushroom = ₹"+t+" Cash এ যোগ হয়েছে","success"),speak("অভিনন্দন। আপনার মাশরুম ক্যাশে কনভার্ট হয়েছে।"function checkPayment(){
+    let e=cRew.val;setTimeout(()=>{shroom>=e&&(shroom-=e,let t=e/10;cash+=t,localStorage.setItem("km_shroom",shroom),localStorage.setItem("km_cash",cash),uUI(),pop("💰 "+e+"g Mushroom = ₹"+t+" Cash এ যোগ হয়েছে","success"),speak("অভিনন্দন। আপনার মাশরুম ক্যাশে কনভার্ট হয়েছে।"))},1e4);sLdr("মাশরুম যোগ হচ্ছে...",8,()=>initCv());
+  }else if("points"===cRew.type){
+    flyReward("points");pts+=cRew.val;pCash=cRew.val/100;localStorage.setItem("km_points",pts);uUI();pAud("pS");
+    sLdr("পয়েন্ট যোগ হচ্ছে...",8,()=>{let e=15;lMsg.innerText="১৫ সেকেন্ড পরে ক্যাশে কনভার্ট হবে...";lZone.style.display="block";cT.innerText=e;let t=setInterval(()=>{e--;cT.innerText=e;e<=0&&(clearInterval(t),cash+=pCash,pts=0,localStorage.setItem("km_cash",cash),localStorage.setItem("km_points",0),uUI(),pAud("mS"),lZone.style.display="none",pCash=0,initCv())},1e3)});
+  }else pAud("eS"),sLdr("ফলাফল চোখ রাখুন...",8,()=>initCv());
+}
+
+function sLdr(e,t,s){let a=document.getElementById("pFill");lMsg.innerText=e;lZone.style.display="block";a.style.width="100%";a.style.transition=`width ${t}s linear`;setTimeout(()=>a.style.width="0%",20);cT.innerText=t;let o=t,n=setInterval(()=>{o--;cT.innerText=o;o<=0&&(clearInterval(n),a.style.transition="none",a.style.width="100%",s&&s())},1e3)}
+function openBonusModal(){pAud("cS");document.getElementById("bonusModal").style.display="flex"}
+
+function claimDailyBonus(){
+  if(Date.now()-Number(localStorage.getItem("last_bonus_time")||0)<BONUS_TIME)return pop("⏳ পরবর্তী বোনাস ২৪ ঘণ্টা পরে পাবেন","warning");
+  document.getElementById("bonusModal").style.display="none";localStorage.setItem("last_bonus_time",Date.now());
+  let e=dPool[Math.floor(Math.random()*dPool.length)];pts+=e;pCash=+(e/100).toFixed(2);localStorage.setItem("km_points",pts);uUI();pAud("pS");pop("🎁 "+e+" Points বোনাস পেয়েছেন","success");updateBonusTimer();
+  sLdr("বোনাস পয়েন্ট যোগ হচ্ছে...",8,()=>{let t=15;lMsg.innerText="১৫ সেকেন্ড পরে ক্যাশে কনভার্ট হবে...";lZone.style.display="block";cT.innerText=t;let s=setInterval(()=>{cT.innerText=--t;t<0&&(clearInterval(s),cash+=pCash,pts-=e,localStorage.setItem("km_cash",cash),localStorage.setItem("km_points",pts),uUI(),pAud("mS"),lZone.style.display="none",initCv())},1e3)});
+}
+
+function updateBonusTimer(){const e=document.getElementById("bonusClaimBtn"),t=document.getElementById("bonusTimer"),s=BONUS_TIME-(Date.now()-Number(localStorage.getItem("last_bonus_time")||0));s<=0?(e&&(e.disabled=!1),t&&(t.innerHTML="🎁 এখন বোনাস নিতে পারবেন")):(e&&(e.disabled=!0),t&&(t.innerHTML=`⏳ ${Math.floor(s/36e5)}ঘ ${Math.floor(s%36e5/6e4)}মি ${Math.floor(s%6e4/1e3)}সে পরে`))}
+setInterval(updateBonusTimer,1e3);function chkBns(){updateBonusTimer()}
+function openSpinOrder(){document.getElementById("spinModal").style.display="flex";document.getElementById("spinBtn").style.display="block";document.getElementById("spinClaimBtn").style.display="none";document.getElementById("spinBtn").disabled=!1;document.getElementById("spinFinger").style.display="block";document.getElementById("spinReward").innerHTML="🎡 SPIN করে পুরস্কার জিতুন"}
+
+function spinOrderWheel(){
+  if(!canSpin)return;const e=document.getElementById("spinBtn");e.classList.add("spinPress");setTimeout(()=>{e.classList.remove("spinPress")},180);document.getElementById("spinFinger").style.display="none";playSpinSound();e.disabled=!0;
+  const t=document.getElementById("spinWheelVisual"),s=["💵 ₹0.80 ক্যাশ","🍄 20g ছাতু","⭐ 100 point","💵 ₹1.00 ক্যাশ","🍄 50g ছাতু","⭐ 50 point"],a=Math.floor(360*Math.random());
+  currentRotation+=2880+a;t.style.transform=`rotate(${currentRotation}deg)`;setTimeout(()=>showSpinReward(s[Math.floor((360-currentRotation%360)%360/60)]),7e3);
+}
+
+function showSpinReward(e){
+  playClap();fireConfetti();let t="🎁",s="";
+  e.includes("₹0.80")?(t="💵",s="চমৎকার! আপনি আশি পয়সা ক্যাশ পেয়েছেন।",currentSpinReward={type:"cash",val:.8}):e.includes("₹1.00")?(t="💵",s="চমৎকার! আপনি এক টাকা ক্যাশ পেয়েছেন।",currentSpinReward={type:"cash",val:1}):e.includes("20g")?(t="🍄",s="চমৎকার! আপনি বিশ গ্রাম ছাতু পেয়েছেন।",currentSpinReward={type:"mushroom",val:20}):e.includes("50g")?(t="🍄",s="চমৎকার! আপনি পঞ্চাশ গ্রাম ছাতু পেয়েছেন।",currentSpinReward={type:"mushroom",val:50}):e.includes("100")?(t="⭐",s="চমৎকার! আপনি একশো পয়েন্ট পেয়েছেন।",currentSpinReward={type:"point",val:100}):(t="⭐",s="চমৎকার! আপনি পঞ্চাশ পয়েন্ট পেয়েছেন।",currentSpinReward={type:"point",val:50});
+  document.getElementById("spinReward").innerHTML=`<div style="background:linear-gradient(135deg,#ffd700,#ff9800);padding:18px;border-radius:18px;color:#fff;box-shadow:0 0 25px gold;animation:pop .4s;"><div style="font-size:55px">${t}</div><div style="font-size:22px;font-weight:800;margin-top:8px">${e}</div></div>`;
+  speak(s,"bn-IN");document.getElementById("spinBtn").style.display="none";document.getElementById("spinClaimBtn").style.display="block";
+}
+
+function claimSpinReward(){
+  if(!currentSpinReward)return;let e=currentSpinReward;"cash"==e.type?(cash+=Number(e.val),localStorage.setItem("km_cash",cash),flyReward("cash"),speak("চমৎকার! আপনি "+e.val+" টাকা ক্যাশ পেয়েছেন।")):"point"==e.type?(pts+=Number(e.val),localStorage.setItem("km_points",pts),flyReward("points"),speak("চমৎকার! আপনি "+e.val+" পয়েন্ট পেয়েছেন।")):"mushroom"==e.type&&(shroom+=Number(e.val),localStorage.setItem("km_shroom",shroom),flyReward("mushroom"),speak("চমৎকার! আপনি "+e.val+" গ্রাম ছাতু পেয়েছেন।"));
+  uUI();canSpin=!1;localStorage.setItem("first_spin_done","YES");pop("🎉 Reward Wallet-এ যোগ হয়েছে","success");document.getElementById("spinModal").style.display="none";currentSpinReward=null;
+   }
+   function openWithdrawModal(){pAud("cS");document.getElementById("withdrawModal").style.display="flex"}
+function closeWithdrawModal(){document.getElementById("withdrawModal").style.display="none"}
+function confirmWithdraw(){if(cash<2)return pop("ক্যাশ Wallet-এ কমপক্ষে ₹2 টাকা থাকতে হবে।","warning");let e=document.getElementById("wName").value.trim(),t=document.getElementById("wPhone").value.trim();if(!e||!t)return pop("নাম এবং ফোন নাম্বার ✍️পূরণ করুন!","warning");if(10!==t.length||/\D/.test(t))return pop("❌ 10 সংখ্যার UPI নম্বর লিখুন","error");showConfirm("🕵️‍♂️ আপনি কি নিশ্চিত?<br><b>💸 ক্যাশ আউট করতে চান?</b>",submitWithdraw)}
+
+function submitWithdraw(){
+  let e=document.getElementById("wName").value.trim(),t=document.getElementById("wPhone").value.trim();
+  fetch(PAYMENT_API,{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams({action:"withdraw",code:codeInput.value,name:e,phone:t,cash:cash,points:pts,mushroom:shroom}).toString()})
+  .then(e=>e.text()).then(e=>{pop("✅ Withdraw Request পাঠানো হয়েছে","success");closeWithdrawModal()}).catch(e=>{pop("❌ Request Failed","error")});
+}
+
+function checkPayment(){
   const e=localStorage.getItem("verify_code")||codeInput.value.trim();if(!e)return;
   fetch(PAYMENT_API+"?action=status&code="+encodeURIComponent(e)).then(e=>e.json()).then(t=>{"YES"==String(t.paid).trim().toUpperCase()&&("WITHDRAW"==String(t.type).trim().toUpperCase()&&(cash=0,localStorage.setItem("km_cash",0)),"MUSHROOM"==String(t.type).trim().toUpperCase()&&(shroom=Math.max(0,shroom-100),localStorage.setItem("km_shroom",shroom)),"POINTS"==String(t.type).trim().toUpperCase()&&(pts=0,localStorage.setItem("km_points",0)),uUI(),fetch(PAYMENT_API,{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:"action=clear_status&code="+encodeURIComponent(e)}),fireConfetti(),playClap(),verified=0,codeInput.value="",localStorage.removeItem("verify_code"),localStorage.removeItem("verified"),localStorage.removeItem("first_spin_done"),localStorage.removeItem("scratch_done"),pop("🎉 পেমেন্ট সফল হয়েছে! কোড রিসেট করা হলো।","success")}).catch(console.error);
 }
