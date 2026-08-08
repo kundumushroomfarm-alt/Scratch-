@@ -187,7 +187,9 @@ z-index:999999;
 animation:fadeIn .4s;
 }
 #promoMedia{max-width:95%;max-height:95%;border-radius:18px;box-shadow:0 0 30px gold;}
-@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}#scratchCanvas{position:absolute;top:0;left:0;z-index:2;cursor:crosshair}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+#scratchCanvas{position:absolute;top:0;left:0;z-index:2;cursor:crosshair}
 .peel{position:absolute;width:26px;height:26px;background:linear-gradient(135deg,#fff,#ececec,#bdbdbd,#fff);border-radius:4px;pointer-events:none;z-index:70;transform-origin:center;animation:peel .8s ease-out forwards;filter:drop-shadow(0 0 5px #fff)}
 @keyframes peel{0%{opacity:1;transform:rotate(0) scale(1)}100%{opacity:0;transform:translate(var(--px),var(--py)) rotate(900deg) scale(.2)}}
 .powder{position:absolute;width:6px;height:6px;border-radius:50%;z-index:50;pointer-events:none;animation:powderFly .8s ease-out forwards;box-shadow:0 0 4px #fff}
@@ -277,15 +279,15 @@ animation:fadeIn .4s;
 #toast.info{border-left:6px solid #3b82f6}
 #toastIcon{font-size:34px}
 #toastTitle{font-size:17px;font-weight:700;color:#fff}
-#toastMsg{font-size:14px;margin-top:3px;color:#ddd}/* =========================================
+#toastMsg{font-size:14px;margin-top:3px;color:#ddd}/* =====================================================
    PREMIUM HUMAN HAND
-========================================= */
+===================================================== */
 
 #guideHand{
 
     position:fixed;
 
-    width:78px;
+    width:80px;
 
     height:auto;
 
@@ -295,74 +297,41 @@ animation:fadeIn .4s;
 
     z-index:99999999;
 
-    pointer-events:none;
-
     display:block;
 
     opacity:1;
 
     visibility:visible;
 
+    pointer-events:none;
+
     user-select:none;
 
     -webkit-user-drag:none;
 
     filter:
-        drop-shadow(0 5px 5px rgba(0,0,0,.35))
-        drop-shadow(0 0 8px rgba(255,215,0,.75));
-
-    transform:
-        translate3d(0,0,0)
-        scale(1);
-
-    transform-origin:
-        center center;
+        drop-shadow(0 5px 6px rgba(0,0,0,.35))
+        drop-shadow(0 0 10px gold);
 
     transition:
-        left .55s cubic-bezier(.22,1,.36,1),
-        top .55s cubic-bezier(.22,1,.36,1),
+        left .55s cubic-bezier(.22,.61,.36,1),
+        top .55s cubic-bezier(.22,.61,.36,1),
         transform .12s ease,
-        opacity .35s ease;
+        opacity .4s ease;
 
-    will-change:
-        left,
-        top,
-        transform;
 }
 
 
-/* =========================================
-   GOLDEN HAND GLOW
-========================================= */
-
-#guideHand::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:-10px;
-
-    border-radius:50%;
-
-    pointer-events:none;
-}
-
-
-/* =========================================
-   BUTTON GLOW
-========================================= */
+/* =====================================================
+   TARGET GLOW
+===================================================== */
 
 .tutorialGlow{
 
     position:relative;
 
-    z-index:999;
-
     animation:
         premiumTargetGlow 1s infinite;
-
-    transform-origin:center;
 
 }
 
@@ -374,16 +343,14 @@ animation:fadeIn .4s;
         box-shadow:
             0 0 0 rgba(255,215,0,0);
 
-        transform:scale(1);
-
     }
 
     50%{
 
         box-shadow:
-            0 0 15px gold,
-            0 0 30px white,
-            0 0 50px rgba(255,215,0,.9);
+            0 0 12px gold,
+            0 0 25px white,
+            0 0 40px gold;
 
         transform:scale(1.04);
 
@@ -394,131 +361,14 @@ animation:fadeIn .4s;
         box-shadow:
             0 0 0 rgba(255,215,0,0);
 
-        transform:scale(1);
-
     }
 
 }
 
 
-/* =========================================
-   GOLDEN TRAIL
-========================================= */
-
-.handTrail{
-
-    position:fixed;
-
-    width:12px;
-
-    height:12px;
-
-    border-radius:50%;
-
-    pointer-events:none;
-
-    z-index:99999997;
-
-    background:
-        radial-gradient(
-            circle,
-            #ffffff 0%,
-            #ffe66d 35%,
-            #ffd700 60%,
-            #ff9800 100%
-        );
-
-    box-shadow:
-        0 0 8px gold,
-        0 0 18px white;
-
-    animation:
-        handTrailFade .8s linear forwards;
-
-}
-
-
-@keyframes handTrailFade{
-
-    0%{
-
-        opacity:1;
-
-        transform:scale(1);
-
-    }
-
-    100%{
-
-        opacity:0;
-
-        transform:scale(.15);
-
-    }
-
-    }
-                            /* =========================================
-   SPARKLE
-========================================= */
-
-.spark{
-
-    position:fixed;
-
-    width:6px;
-
-    height:6px;
-
-    border-radius:50%;
-
-    pointer-events:none;
-
-    z-index:99999996;
-
-    background:white;
-
-    box-shadow:
-        0 0 8px gold,
-        0 0 18px white;
-
-    animation:
-        sparkleMove .9s ease-out forwards;
-
-}
-
-
-@keyframes sparkleMove{
-
-    0%{
-
-        opacity:1;
-
-        transform:
-            translate3d(0,0,0)
-            scale(1);
-
-    }
-
-    100%{
-
-        opacity:0;
-
-        transform:
-            translate3d(
-                calc(var(--sx) * 1px),
-                calc(var(--sy) * 1px),
-                0
-            )
-            scale(.15);
-
-    }
-
-}
-
-
-/* =========================================
+/* =====================================================
    RIPPLE
-========================================= */
+===================================================== */
 
 #tapRipple{
 
@@ -530,13 +380,13 @@ animation:fadeIn .4s;
 
     border-radius:50%;
 
+    border:3px solid gold;
+
     pointer-events:none;
 
-    z-index:99999995;
+    z-index:99999998;
 
     opacity:0;
-
-    border:3px solid gold;
 
 }
 
@@ -544,18 +394,18 @@ animation:fadeIn .4s;
 #tapRipple.ripple{
 
     animation:
-        rippleEffect .7s ease-out forwards;
+        tutorialRipple .7s ease-out;
 
 }
 
 
-@keyframes rippleEffect{
+@keyframes tutorialRipple{
 
     0%{
 
         opacity:1;
 
-        transform:scale(.3);
+        transform:scale(.4);
 
     }
 
@@ -569,9 +419,10 @@ animation:fadeIn .4s;
 
 }
 
-    /* =========================================
+
+/* =====================================================
    LIGHT FLASH
-========================================= */
+===================================================== */
 
 #tapFlash{
 
@@ -587,14 +438,14 @@ animation:fadeIn .4s;
 
     opacity:0;
 
-    z-index:99999994;
+    z-index:99999997;
 
     background:
         radial-gradient(
             circle,
             rgba(255,255,255,.95),
-            rgba(255,215,0,.35),
-            transparent 70%
+            rgba(255,215,0,.45),
+            rgba(255,255,255,0)
         );
 
 }
@@ -603,12 +454,12 @@ animation:fadeIn .4s;
 #tapFlash.flash{
 
     animation:
-        flashEffect .35s ease-out;
+        tutorialFlash .35s ease-out;
 
 }
 
 
-@keyframes flashEffect{
+@keyframes tutorialFlash{
 
     0%{
 
@@ -629,17 +480,125 @@ animation:fadeIn .4s;
 }
 
 
-/* =========================================
-   WAVE
-========================================= */
+/* =====================================================
+   GOLDEN HAND TRAIL
+===================================================== */
 
-.wave{
+.handTrail{
 
     position:fixed;
 
-    width:20px;
+    width:14px;
 
-    height:20px;
+    height:14px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:99999996;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff,
+            #ffd700,
+            #ff9800
+        );
+
+    box-shadow:
+        0 0 8px gold,
+        0 0 18px white;
+
+    animation:
+        trailFade .8s linear forwards;
+
+}
+
+
+@keyframes trailFade{
+
+    0%{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:scale(.15);
+
+    }
+
+}
+
+
+/* =====================================================
+   SPARKLE
+===================================================== */
+
+.spark{
+
+    position:fixed;
+
+    width:6px;
+
+    height:6px;
+
+    border-radius:50%;
+
+    background:white;
+
+    box-shadow:
+        0 0 8px gold,
+        0 0 18px white;
+
+    pointer-events:none;
+
+    z-index:99999995;
+
+    animation:
+        sparkleMove .9s linear forwards;
+
+}
+
+
+@keyframes sparkleMove{
+
+    0%{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:
+            translateY(-35px)
+            scale(.2);
+
+    }
+
+}
+
+
+/* =====================================================
+   REAL WAVE
+===================================================== */
+
+.tutorialWave{
+
+    position:fixed;
 
     border-radius:50%;
 
@@ -647,21 +606,25 @@ animation:fadeIn .4s;
 
     pointer-events:none;
 
-    z-index:99999993;
+    z-index:99999994;
+
+    width:20px;
+
+    height:20px;
 
     animation:
-        waveEffect .7s ease-out forwards;
+        tutorialWaveAnim .7s forwards;
 
 }
 
 
-@keyframes waveEffect{
+@keyframes tutorialWaveAnim{
 
     0%{
 
         opacity:1;
 
-        transform:scale(.3);
+        transform:scale(.2);
 
     }
 
@@ -673,17 +636,53 @@ animation:fadeIn .4s;
 
     }
 
-                        }/* =========================================
-   MOBILE SIZE
-========================================= */
+}
 
-@media(max-width:600px){
 
-    #guideHand{
+/* =====================================================
+   OPTIONAL TUTORIAL TEXT
+===================================================== */
 
-        width:72px;
+#tutorialMessage{
 
-    }
+    position:fixed;
+
+    left:50%;
+
+    bottom:25px;
+
+    transform:translateX(-50%);
+
+    z-index:99999990;
+
+    background:
+        rgba(0,0,0,.88);
+
+    color:white;
+
+    padding:10px 18px;
+
+    border-radius:30px;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    box-shadow:
+        0 0 15px gold;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.3s;
+
+}
+
+
+#tutorialMessage.show{
+
+    opacity:1;
 
 }
 </style>
@@ -692,7 +691,9 @@ animation:fadeIn .4s;
 <body><div id="s"><img id="bg" src="img/splash1.jpg" alt="Splash"><img id="gif" src="img/splash2.gif" alt="Splash GIF"><div id="loaderWrap"><div id="loaderBar"><div id="loaderFill"><div id="loaderGlow"></div></div><div id="rocket">🚀</div></div><div id="loaderText">Loading... 0%</div><div id="welcomeText">🍄 Kundu Mushroom Farm 🍄</div></div></div>
 <div id="confirmPop" class="cPop"><div class="cBox"><div class="cIcon">🏦</div><h2>ক্যাশ আউট</h2><p id="cMsg">আপনি কি নিশ্চিত?</p><div class="cBtn"><button onclick="closePop()">না</button><button onclick="okPop()">হ্যাঁ</button></div></div></div>
 <div id="upiPop" class="uPop"><div class="uBox"><span class="x" onclick="cUPI()">✕</span><img src="img/profile.png" class="pic" alt="Profile"><h2>Bubai Kundu</h2><p>পেমেন্ট করার মাধ্যম বেছে নিন</p><button onclick="oUPI('7047643951@ibl')"><img src="img/phonepe.png" alt="PhonePe">PhonePe</button><button onclick="oUPI('bubaikundu635@okhdfcbank')"><img src="img/gpay.png" alt="Google Pay">Google Pay</button><button onclick="oUPI('7047643951@superyes')"><img src="img/superyes.png" alt="SuperYes">SuperYes</button></div></div>
-<div id="mClaim" class="mClaim"><div class="mCard"><div class="mIcon">🍄</div><h2>100g Mushroom Completed</h2><p>আপনার 100g Mushroom পূর্ণ হয়েছে।<br>Claim Cash করুন।</p><input id="mcName" placeholder="👤 নাম"><input id="mcPhone" maxlength="10" type="tel" placeholder="📞 মোবাইল নম্বর"><div id="tapFinger">👆</div><button id="mushroomClaimBtn" onclick="claimMushroomCash()">🍄 Claim Cash</button></div></div><audio id="sS" src="https://files.catbox.moe/po27od.mp3" loop preload="auto"></audio>
+<div id="mClaim" class="mClaim"><div class="mCard"><div class="mIcon">🍄</div><h2>100g Mushroom Completed</h2><p>আপনার 100g Mushroom পূর্ণ হয়েছে।<br>Claim Cash করুন।</p><input id="mcName" placeholder="👤 নাম"><input id="mcPhone" maxlength="10" type="tel" placeholder="📞 মোবাইল নম্বর"><div id="tapFinger">👆</div><button id="mushroomClaimBtn" onclick="claimMushroomCash()">🍄 Claim Cash</button></div></div>
+
+<audio id="sS" src="https://files.catbox.moe/po27od.mp3" loop preload="auto"></audio>
 <audio id="cS" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" preload="auto"></audio>
 <audio id="mS" src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3" preload="auto"></audio>
 <audio id="pS" src="https://assets.mixkit.co/active_storage/sfx/270/270-preview.mp3" preload="auto"></audio>
@@ -701,8 +702,7 @@ animation:fadeIn .4s;
 <audio id="eS" src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3" preload="auto"></audio>
 <audio id="spinSound" src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3" preload="auto"></audio>
 <audio id="clapS" src="audio/clap.mp3" preload="auto"></audio>
-
-<div class="container">
+    <div class="container">
   <canvas id="confetti" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99"></canvas>
   
   <div class="cashTitle">
@@ -714,7 +714,7 @@ animation:fadeIn .4s;
   <div class="verify-box">
     <input id="codeInput" type="text" required placeholder=" ">
     <label for="codeInput">কোড লিখুন</label>
-    <button onclick="playClickSound();verifyCode()">Submit কোড</button>
+    <button type="button" onclick="playClickSound();verifyCode()">Submit কোড</button>
     <div id="tap">👆</div>
   </div>
 
@@ -722,10 +722,12 @@ animation:fadeIn .4s;
     <div class="stat-box" id="cashBox"><div class="cash-title">💵 Cash <span class="red">Wal</span><span class="green">let</span></div><div id="cash">₹0.00</div></div>
     <div class="stat-box" id="shroomBox"><div class="mushroom-title">মাশরুম<br>🍄</div><div id="mushroom">0 গ্রাম</div></div>
     <div class="stat-box" id="pointBox"><div class="point-title">পয়েন্ট<br>⭐</div><div id="points">0 Pts</div></div>
-  </div><div class="bonus-zone">
+  </div>
+
+  <div class="bonus-zone">
     <button id="bonusBtn" class="btn-bonus" onclick="playClickSound();openBonusModal()">🎁 ফ্রি বোনাস (ক্যাশ)</button>
     <div class="action-grid">
-      <button class="btn-withdraw" onclick="playClickSound();openWithdrawModal()">💸 ক্যাশ আউট</button>
+      <button id="cashOutBtn" class="btn-withdraw" onclick="playClickSound();openWithdrawModal()">💸 ক্যাশ আউট</button>
       <button class="btn-upi" onclick="playClickSound();openUPIPopup()">💳 UPI Payment</button>
     </div>
   </div>
@@ -753,7 +755,9 @@ animation:fadeIn .4s;
     <div id="bonusTimer" style="margin-bottom:12px;font-weight:700;color:#facc15"></div>
     <button id="bonusClaimBtn" class="btn-modal-claim" onclick="playClickSound();claimDailyBonus()">বোনাস নিন 🎁</button>
   </div>
-</div><div id="spinModal" class="modal">
+</div>
+
+<div id="spinModal" class="modal">
   <div class="modal-content">
     <button id="closeSpin" onclick="closeSpinModal()">✖</button>
     <div class="modal-title">🎰 বোনাস Spin Wheel</div>
@@ -834,8 +838,7 @@ function speak(e,t="bn-IN"){
     s.lang=t; s.rate=.9; s.pitch=1;
     speechSynthesis.speak(s);
   }
-}
-    function pop(msg,type="info"){
+}function pop(msg,type="info"){
   let toast=document.getElementById("toast");
   let icon=document.getElementById("toastIcon");
   let title=document.getElementById("toastTitle");
@@ -926,12 +929,11 @@ async function verifyCode(){
       fireConfetti();
       openSpinOrder();
 
-      tutorialStep = 0;
       localStorage.removeItem("spinDone");
       localStorage.removeItem("bonusDone");
       localStorage.removeItem("scratchDone");
 
-      setTimeout(startTutorial,1000);
+      setTimeout(startPremiumTutorial,1000);
     }else if(s==="used"){
       pop("☑️ কোড টি ব্যবহার হয়েছে","error");
     }else{
@@ -940,7 +942,9 @@ async function verifyCode(){
   }catch(err){
     pop("😠 মাশরুম কিনুন, আবার চেষ্টা করুন","error");
   }
-    }function pAud(e){try{let t=document.getElementById(e);if(t){t.currentTime=0;t.play().catch(()=>{})}}catch(e){}}
+}
+
+function pAud(e){try{let t=document.getElementById(e);if(t){t.currentTime=0;t.play().catch(()=>{})}}catch(e){}}
 function stopS(){sS.pause();sS.currentTime=0}
 
 function initApp(){uUI();initCv();chkBns();checkMushroomClaim()}
@@ -1065,7 +1069,9 @@ function scratchPowder(e,t){
     o.style.setProperty("--x",80*Math.random()-40+"px");o.style.setProperty("--y",80*Math.random()-40+"px");
     s.appendChild(o);setTimeout(()=>o.remove(),800);
   }
-    }function silverFoil(e,t){
+}
+
+function silverFoil(e,t){
   let s=document.querySelector(".scratch-container");
   for(let a=0;a<2;a++){
     let o=document.createElement("div");
@@ -1137,7 +1143,6 @@ function hRew(){
     pAud("eS");sLdr("ফলাফল চোখ রাখুন...",8,()=>initCv());
   }
 
-  tutorialStep = 4;
   setTimeout(runTutorial,1000);
 }
 
@@ -1182,7 +1187,6 @@ function claimDailyBonus(){
     },1e3);
   });
 
-  tutorialStep = 3;
   setTimeout(runTutorial,1000);
 }
 
@@ -1227,9 +1231,8 @@ function openSpinOrder(){
   currentRotation+=2880+a;
   t.style.transform=`rotate(${currentRotation}deg)`;
   setTimeout(()=>showSpinReward(s[Math.floor((360-currentRotation%360)%360/60)]),7e3);
-}
-
-function showSpinReward(reward){
+    }
+    function showSpinReward(reward){
   playClap();
   fireConfetti();
 
@@ -1315,7 +1318,7 @@ function claimSpinReward(){
     flyReward("mushroom");
     speak("চমৎকার! আপনি " + e.val + " গ্রাম ছাতু পেয়েছেন।");
   }
-uUI();
+  uUI();
 
   canSpin = false;
   localStorage.setItem("first_spin_done","YES");
@@ -1326,7 +1329,6 @@ uUI();
   document.getElementById("spinModal").style.display="none";
   currentSpinReward = null;
 
-  tutorialStep = 2;
   setTimeout(runTutorial,1000);
 }
 function openWithdrawModal(){pAud("cS");document.getElementById("withdrawModal").style.display="flex"}
@@ -1338,7 +1340,9 @@ function confirmWithdraw(){
   if(!e||!t)return pop("নাম এবং ফোন নাম্বার ✍️পূরণ করুন!","warning");
   if(10!==t.length||/\D/.test(t))return pop("❌ 10 সংখ্যার UPI নম্বর লিখুন","error");
   showConfirm("🕵️‍♂️ আপনি কি নিশ্চিত?<br><b>💸 ক্যাশ আউট করতে চান?</b>",submitWithdraw);
-    }function submitWithdraw(){
+}
+
+function submitWithdraw(){
   let name=document.getElementById("wName").value.trim();
   let phone=document.getElementById("wPhone").value.trim();
 
@@ -1357,8 +1361,10 @@ function confirmWithdraw(){
   })
   .then(r=>r.text())
   .then(res=>{
+    localStorage.setItem("cashOutDone","1");
     pop("✅ Withdraw Request পাঠানো হয়েছে","success");
     closeWithdrawModal();
+    setTimeout(runTutorial,1000);
   })
   .catch(err=>{
     pop("❌ Request Failed","error");
@@ -1408,6 +1414,7 @@ function checkPayment(){
       localStorage.removeItem("spinDone");
       localStorage.removeItem("scratch_done");
       localStorage.removeItem("scratchDone");
+      localStorage.removeItem("cashOutDone");
       pop("🎉 পেমেন্ট সফল হয়েছে! কোড রিসেট করা হলো।","success");
     }
   })
@@ -1476,57 +1483,59 @@ function showPromoSequence(){
 }
 
 /* =====================================================
-   🌟 ULTRA PREMIUM HAND TUTORIAL
-   CODE
-   ↓
-   SUBMIT
-   ↓
-   SPIN
-   ↓
-   BONUS
-   ↓
-   SCRATCH
-   ↓
-   CASH OUT
-   ↓
-   SUCCESS
+   PREMIUM TUTORIAL SYSTEM
+   CODE → SUBMIT → SPIN → BONUS → SCRATCH → CASH OUT
 ===================================================== */
 
 
-/* =========================================
-   ELEMENTS
-========================================= */
+/* =====================================================
+   VARIABLES
+===================================================== */
 
-const hand = document.getElementById("guideHand");
-const ripple = document.getElementById("tapRipple");
-const flash = document.getElementById("tapFlash");
+let tutorialStep = 0;
+
+let tutorialTimer = null;
+
+let scratchDemoTimer = null;
+
+let tutorialStarted = false;
 
 
-/* =========================================
-   VIBRATION
-========================================= */
+const hand =
+    document.getElementById("guideHand");
 
-function tutorialVibrate(pattern){
+const ripple =
+    document.getElementById("tapRipple");
 
-    if(
-        navigator.vibrate &&
-        typeof navigator.vibrate === "function"
-    ){
+const flash =
+    document.getElementById("tapFlash");
 
-        navigator.vibrate(pattern);
+
+/* =====================================================
+   STOP TUTORIAL TIMER
+===================================================== */
+
+function stopTutorialTimer(){
+
+    if(tutorialTimer){
+
+        clearInterval(tutorialTimer);
+
+        tutorialTimer = null;
 
     }
 
 }
 
 
-/* =========================================
+/* =====================================================
    BANGLA VOICE
-========================================= */
+===================================================== */
 
 function speakBN(text){
 
-    if(!("speechSynthesis" in window)) return;
+    if(!("speechSynthesis" in window))
+        return;
 
     speechSynthesis.cancel();
 
@@ -1546,9 +1555,59 @@ function speakBN(text){
 }
 
 
-/* =========================================
+/* =====================================================
+   SHOW TUTORIAL MESSAGE
+===================================================== */
+
+function showTutorialMessage(text){
+
+    let box =
+        document.getElementById(
+            "tutorialMessage"
+        );
+
+    if(!box){
+
+        box =
+            document.createElement("div");
+
+        box.id =
+            "tutorialMessage";
+
+        document.body.appendChild(box);
+
+    }
+
+    box.innerText = text;
+
+    box.classList.add("show");
+
+}
+
+
+/* =====================================================
+   HIDE TUTORIAL MESSAGE
+===================================================== */
+
+function hideTutorialMessage(){
+
+    const box =
+        document.getElementById(
+            "tutorialMessage"
+        );
+
+    if(box){
+
+        box.classList.remove("show");
+
+    }
+
+}
+
+
+/* =====================================================
    SPARKLE
-========================================= */
+===================================================== */
 
 function sparkle(x,y){
 
@@ -1560,25 +1619,25 @@ function sparkle(x,y){
         s.className = "spark";
 
         s.style.left =
-            (x + Math.random()*30 - 15) + "px";
+            (
+                x +
+                Math.random()*30 -
+                15
+            ) + "px";
 
         s.style.top =
-            (y + Math.random()*30 - 15) + "px";
-
-        s.style.setProperty(
-            "--sx",
-            Math.random()*70 - 35
-        );
-
-        s.style.setProperty(
-            "--sy",
-            Math.random()*70 - 60
-        );
+            (
+                y +
+                Math.random()*30 -
+                15
+            ) + "px";
 
         document.body.appendChild(s);
 
         setTimeout(()=>{
+
             s.remove();
+
         },900);
 
     }
@@ -1586,66 +1645,79 @@ function sparkle(x,y){
 }
 
 
-/* =========================================
+/* =====================================================
    FLASH
-========================================= */
+===================================================== */
 
 function showFlash(x,y){
 
-    if(!flash) return;
+    if(!flash)
+        return;
 
     flash.style.left =
-        (x - 35) + "px";
+        (x-35) + "px";
 
     flash.style.top =
-        (y - 35) + "px";
+        (y-35) + "px";
 
-    flash.classList.remove("flash");
+    flash.classList.remove(
+        "flash"
+    );
 
     void flash.offsetWidth;
 
-    flash.classList.add("flash");
+    flash.classList.add(
+        "flash"
+    );
 
 }
 
 
-/* =========================================
+/* =====================================================
    WAVE
-========================================= */
+===================================================== */
 
-function createWave(x,y){
+function showWave(x,y){
 
     const w =
         document.createElement("div");
 
-    w.className = "wave";
+    w.className =
+        "tutorialWave";
 
-    w.style.left = x + "px";
+    w.style.left =
+        (x-10) + "px";
 
-    w.style.top = y + "px";
+    w.style.top =
+        (y-10) + "px";
 
     document.body.appendChild(w);
 
     setTimeout(()=>{
+
         w.remove();
+
     },700);
 
 }
 
 
-/* =========================================
+/* =====================================================
    MOVE HAND
-========================================= */
+===================================================== */
 
 function moveHand(target){
 
-    if(!target || !hand) return;
+    if(!target || !hand)
+        return;
 
 
-    /* Remove previous Glow */
+    /* Remove old glow */
 
     document
-        .querySelectorAll(".tutorialGlow")
+        .querySelectorAll(
+            ".tutorialGlow"
+        )
         .forEach(el=>{
 
             el.classList.remove(
@@ -1655,7 +1727,19 @@ function moveHand(target){
         });
 
 
-    /* Auto Scroll */
+    /* Make hand visible */
+
+    hand.style.display =
+        "block";
+
+    hand.style.visibility =
+        "visible";
+
+    hand.style.opacity =
+        "1";
+
+
+    /* Auto scroll */
 
     target.scrollIntoView({
 
@@ -1668,29 +1752,21 @@ function moveHand(target){
     });
 
 
-    /* Wait for Scroll */
-
     setTimeout(()=>{
 
-        if(!hand) return;
+        if(!target)
+            return;
+
 
         const r =
             target.getBoundingClientRect();
-
-
-        hand.style.display = "block";
-
-        hand.style.visibility =
-            "visible";
-
-        hand.style.opacity = "1";
 
 
         hand.style.left =
             (
                 r.left +
                 r.width/2 -
-                25
+                20
             ) + "px";
 
 
@@ -1712,32 +1788,24 @@ function moveHand(target){
 }
 
 
-/* =========================================
+/* =====================================================
    TAP HAND
-========================================= */
+===================================================== */
 
 function tapHand(target){
 
-    if(!target || !hand) return;
+    if(!target || !hand)
+        return;
 
 
     const r =
         target.getBoundingClientRect();
 
 
-    const x =
-        r.left + r.width/2;
-
-
-    const y =
-        r.top + r.height/2;
-
-
-    /* Real Finger Press */
+    /* Finger Press */
 
     hand.style.transition =
-        "transform .12s ease";
-
+        "transform .12s";
 
     hand.style.transform =
         "scale(.88) rotate(2deg)";
@@ -1751,16 +1819,24 @@ function tapHand(target){
     },120);
 
 
+    const x =
+        r.left +
+        r.width/2;
+
+    const y =
+        r.top +
+        r.height/2;
+
+
     /* Ripple */
 
     if(ripple){
 
         ripple.style.left =
-            (x - 10) + "px";
+            (x-10) + "px";
 
         ripple.style.top =
-            (y - 10) + "px";
-
+            (y-10) + "px";
 
         ripple.classList.remove(
             "ripple"
@@ -1775,22 +1851,16 @@ function tapHand(target){
     }
 
 
-    /* Flash */
+    /* Premium Effects */
 
     showFlash(x,y);
 
-
-    /* Sparkle */
-
     sparkle(x,y);
 
-
-    /* Wave */
-
-    createWave(x,y);
+    showWave(x,y);
 
 
-    /* Click Sound */
+    /* Sound */
 
     if(
         typeof playClickSound ===
@@ -1802,64 +1872,43 @@ function tapHand(target){
     }
 
 
-    /* Vibration */
+    /* Vibrate */
 
-    tutorialVibrate(25);
+    if(
+        navigator.vibrate
+    ){
 
-}
+        navigator.vibrate(25);
 
-
-/* =========================================
-   DOUBLE TAP
-========================================= */
-
-function doubleTap(target){
-
-    if(!target) return;
-
-
-    moveHand(target);
-
-
-    setTimeout(()=>{
-
-        tapHand(target);
-
-
-        setTimeout(()=>{
-
-            tapHand(target);
-
-        },350);
-
-
-    },900);
+    }
 
 }
 
 
-/* =========================================
+/* =====================================================
    HIDE HAND
-========================================= */
+===================================================== */
 
 function hideHand(){
 
-    if(!hand) return;
+    if(!hand)
+        return;
 
 
     hand.style.transition =
-        ".45s ease";
+        ".4s ease";
 
-
-    hand.style.opacity = "0";
-
+    hand.style.opacity =
+        "0";
 
     hand.style.transform =
         "scale(.7)";
 
 
     document
-        .querySelectorAll(".tutorialGlow")
+        .querySelectorAll(
+            ".tutorialGlow"
+        )
         .forEach(el=>{
 
             el.classList.remove(
@@ -1883,53 +1932,62 @@ function hideHand(){
         hand.style.transform =
             "scale(1)";
 
-    },500);
+    },450);
 
 }
 
-    /* =========================================
+    /* =====================================================
    GOLDEN TRAIL
-========================================= */
+===================================================== */
 
 setInterval(()=>{
 
-    if(
-        !hand ||
-        hand.style.display === "none"
-    ) return;
+    if(!hand)
+        return;
 
 
     const left =
-        parseFloat(hand.style.left);
-
+        parseFloat(
+            hand.style.left
+        );
 
     const top =
-        parseFloat(hand.style.top);
+        parseFloat(
+            hand.style.top
+        );
 
 
     if(
         isNaN(left) ||
         isNaN(top)
-    ) return;
+    ){
+
+        return;
+
+    }
 
 
-    if(left <= -100) return;
+    if(left < -100)
+        return;
 
 
     const t =
         document.createElement("div");
-
 
     t.className =
         "handTrail";
 
 
     t.style.left =
-        (left + 28) + "px";
+        (
+            left + 28
+        ) + "px";
 
 
     t.style.top =
-        (top + 50) + "px";
+        (
+            top + 50
+        ) + "px";
 
 
     document.body.appendChild(t);
@@ -1949,13 +2007,11 @@ setInterval(()=>{
    SCRATCH DEMO
 ===================================================== */
 
-let demoRun = false;
-let demoTimer = null;
-
-
 function startScratchDemo(){
 
-    if(demoRun) return;
+    if(scratchDemoTimer)
+        return;
+
 
     const card =
         document.getElementById(
@@ -1963,10 +2019,8 @@ function startScratchDemo(){
         );
 
 
-    if(!hand || !card) return;
-
-
-    demoRun = true;
+    if(!card || !hand)
+        return;
 
 
     card.scrollIntoView({
@@ -1984,70 +2038,74 @@ function startScratchDemo(){
             card.getBoundingClientRect();
 
 
-        hand.style.display =
-            "block";
-
-        hand.style.opacity =
-            "1";
-
-
         const path = [
 
             {
-                x:r.left + 35,
-                y:r.top + 45
+                x:r.left+35,
+                y:r.top+40
             },
 
             {
-                x:r.left + r.width - 45,
-                y:r.top + 55
+                x:r.right-35,
+                y:r.top+55
             },
 
             {
-                x:r.left + 55,
-                y:r.top + 80
+                x:r.left+45,
+                y:r.top+85
             },
 
             {
-                x:r.left + r.width - 55,
-                y:r.top + 105
+                x:r.right-45,
+                y:r.top+115
             },
 
             {
-                x:r.left + 50,
-                y:r.top + 130
+                x:r.left+45,
+                y:r.top+145
             },
 
             {
-                x:r.left + r.width - 50,
-                y:r.top + 150
+                x:r.right-45,
+                y:r.top+170
             }
 
         ];
 
+
         let i = 0;
 
-        function move(){
 
-            if(i >= path.length){
+        function demoMove(){
 
-                i = 0;
+            if(
+                localStorage.getItem(
+                    "scratchDone"
+                ) === "1"
+            ){
+
+                stopScratchDemo();
+
+                return;
 
             }
 
-            hand.style.transition =
-                "all .45s ease-in-out";
+
+            const p =
+                path[i];
+
 
             hand.style.left =
-                path[i].x + "px";
+                p.x + "px";
+
 
             hand.style.top =
-                path[i].y + "px";
+                p.y + "px";
+
 
             hand.style.transform =
-                "scale(.88) rotate(8deg)";
+                "scale(.9) rotate(7deg)";
 
-            pAud("scS");
 
             setTimeout(()=>{
 
@@ -2056,171 +2114,702 @@ function startScratchDemo(){
 
             },150);
 
+
+            sparkle(
+                p.x+20,
+                p.y+25
+            );
+
+
             i++;
 
-        }
+            if(i >= path.length){
 
-        move();
+                i = 0;
 
-        demoTimer =
-            setInterval(move, 500);
-
-        function stopDemo(){
-
-            clearInterval(demoTimer);
-
-            hideHand();
-
-            demoRun = false;
-
-            cv.removeEventListener(
-                "mousedown",
-                stopDemo
-            );
-
-            cv.removeEventListener(
-                "touchstart",
-                stopDemo
-            );
+            }
 
         }
 
-        cv.addEventListener(
-            "mousedown",
-            stopDemo,
-            {once:true}
-        );
 
-        cv.addEventListener(
-            "touchstart",
-            stopDemo,
-            {once:true}
-        );
+        demoMove();
 
-    }, 600);
+        scratchDemoTimer =
+            setInterval(
+                demoMove,
+                650
+            );
+
+
+    },700);
 
 }
 
-/* Tutorial Controller (Strict Sequenced Tutorial) */
-let tutorialStep = 0;
 
-function startTutorial(){
+/* =====================================================
+   STOP SCRATCH DEMO
+===================================================== */
+
+function stopScratchDemo(){
+
+    if(scratchDemoTimer){
+
+        clearInterval(
+            scratchDemoTimer
+        );
+
+        scratchDemoTimer = null;
+
+    }
+
+}
+
+
+/* =====================================================
+   START PREMIUM TUTORIAL
+===================================================== */
+
+function startPremiumTutorial(){
+
+    if(tutorialStarted)
+        return;
+
+
+    tutorialStarted = true;
+
     tutorialStep = 0;
-    runTutorial();
+
+    stopTutorialTimer();
+
+    stopScratchDemo();
+
+    hideHand();
+
+
+    setTimeout(()=>{
+
+        runTutorial();
+
+    },700);
+
 }
+
+
+/* =====================================================
+   MAIN TUTORIAL
+===================================================== */
 
 function runTutorial(){
 
-    hideHand();
+    stopTutorialTimer();
 
-    // STEP-1 Submit
-    if(tutorialStep==0){
+    hideTutorialMessage();
 
-        if(localStorage.getItem("verified")=="1"){
-            tutorialStep=1;
-            return runTutorial();
+
+    /* =================================================
+       STEP 0 — CODE INPUT
+    ================================================= */
+
+    if(tutorialStep === 0){
+
+        const input =
+            document.getElementById(
+                "codeInput"
+            );
+
+
+        if(!input){
+
+            console.error(
+                "❌ codeInput পাওয়া যায়নি"
+            );
+
+            return;
+
         }
 
-        let btn=document.querySelector(".verify-box button");
+
+        /* Already verified */
+
+        if(
+            localStorage.getItem(
+                "verified"
+            ) === "1"
+        ){
+
+            tutorialStep = 2;
+
+            setTimeout(
+                runTutorial,
+                700
+            );
+
+            return;
+
+        }
+
+
+        moveHand(input);
+
+        showTutorialMessage(
+            "প্রথমে আপনার কোড লিখুন"
+        );
+
+
+        setTimeout(()=>{
+
+            speakBN(
+                "প্রথমে আপনার কোড লিখুন"
+            );
+
+        },700);
+
+
+        tutorialTimer =
+            setInterval(()=>{
+
+
+                /* Code লেখা হয়েছে */
+
+                if(
+                    input.value.trim()
+                    !== ""
+                ){
+
+                    stopTutorialTimer();
+
+                    hideHand();
+
+                    tutorialStep = 1;
+
+
+                    setTimeout(
+                        runTutorial,
+                        900
+                    );
+
+                    return;
+
+                }
+
+
+                moveHand(input);
+
+                speakBN(
+                    "প্রথমে আপনার কোড লিখুন"
+                );
+
+
+            },4000);
+
+
+        return;
+
+    }
+
+
+    /* =================================================
+       STEP 1 — SUBMIT
+    ================================================= */
+
+    if(tutorialStep === 1){
+
+        const btn =
+            document.querySelector(
+                ".verify-box button"
+            );
+
+
+        if(!btn){
+
+            console.error(
+                "❌ Submit button পাওয়া যায়নি"
+            );
+
+            return;
+
+        }
+
+
+        /* Already verified */
+
+        if(
+            localStorage.getItem(
+                "verified"
+            ) === "1"
+        ){
+
+            tutorialStep = 2;
+
+            setTimeout(
+                runTutorial,
+                700
+            );
+
+            return;
+
+        }
+
 
         moveHand(btn);
 
-        let t=setInterval(()=>{
-            if(localStorage.getItem("verified")=="1"){
-                clearInterval(t);
-                hideHand();
-                tutorialStep=1;
-                setTimeout(runTutorial,1000);
-            }else{
+        showTutorialMessage(
+            "এখন Submit করুন"
+        );
+
+
+        setTimeout(()=>{
+
+            speakBN(
+                "এখন সাবমিট করুন"
+            );
+
+        },700);
+
+
+        tutorialTimer =
+            setInterval(()=>{
+
+
+                /* Submit successful */
+
+                if(
+                    localStorage.getItem(
+                        "verified"
+                    ) === "1"
+                ){
+
+                    stopTutorialTimer();
+
+                    hideHand();
+
+                    tutorialStep = 2;
+
+
+                    setTimeout(
+                        runTutorial,
+                        1000
+                    );
+
+                    return;
+
+                }
+
+
                 tapHand(btn);
-                speakBN("প্রথমে কোড লিখে সাবমিট করুন");
-            }
-        },3000);
+
+                speakBN(
+                    "এখন সাবমিট করুন"
+                );
+
+
+            },4000);
+
 
         return;
+
     }
 
-    // STEP-2 Spin
-    if(tutorialStep==1){
 
-        if(localStorage.getItem("spinDone")=="1"){
-            tutorialStep=2;
-            return runTutorial();
+    /* =================================================
+       STEP 2 — SPIN
+    ================================================= */
+
+    if(tutorialStep === 2){
+
+        const btn =
+            document.getElementById(
+                "spinBtn"
+            );
+
+
+        if(!btn){
+
+            console.error(
+                "❌ spinBtn পাওয়া যায়নি"
+            );
+
+            return;
+
         }
 
-        let btn=document.getElementById("spinBtn");
+
+        if(
+            localStorage.getItem(
+                "spinDone"
+            ) === "1"
+        ){
+
+            tutorialStep = 3;
+
+            return setTimeout(
+                runTutorial,
+                700
+            );
+
+        }
+
 
         moveHand(btn);
 
-        let t=setInterval(()=>{
-            if(localStorage.getItem("spinDone")=="1"){
-                clearInterval(t);
-                hideHand();
-                tutorialStep=2;
-                setTimeout(runTutorial,1000);
-            }else{
+        showTutorialMessage(
+            "এখন স্পিন করুন"
+        );
+
+        speakBN(
+            "এখন স্পিন করুন"
+        );
+
+
+        tutorialTimer =
+            setInterval(()=>{
+
+
+                if(
+                    localStorage.getItem(
+                        "spinDone"
+                    ) === "1"
+                ){
+
+                    stopTutorialTimer();
+
+                    hideHand();
+
+                    tutorialStep = 3;
+
+                    return setTimeout(
+                        runTutorial,
+                        1000
+                    );
+
+                }
+
+
                 tapHand(btn);
-                speakBN("এখন স্পিন করুন");
-            }
-        },3000);
+
+                speakBN(
+                    "এখন স্পিন করুন"
+                );
+
+
+            },4000);
+
 
         return;
+
     }
 
-    // STEP-3 Bonus
-    if(tutorialStep==2){
 
-        if(localStorage.getItem("bonusDone")=="1"){
-            tutorialStep=3;
-            return runTutorial();
+    /* =================================================
+       STEP 3 — BONUS
+    ================================================= */
+
+    if(tutorialStep === 3){
+
+        const btn =
+            document.getElementById(
+                "bonusBtn"
+            );
+
+
+        if(!btn){
+
+            console.error(
+                "❌ bonusBtn পাওয়া যায়নি"
+            );
+
+            return;
+
         }
 
-        let btn=document.getElementById("bonusBtn");
+
+        if(
+            localStorage.getItem(
+                "bonusDone"
+            ) === "1"
+        ){
+
+            tutorialStep = 4;
+
+            return setTimeout(
+                runTutorial,
+                700
+            );
+
+        }
+
 
         moveHand(btn);
 
-        let t=setInterval(()=>{
-            if(localStorage.getItem("bonusDone")=="1"){
-                clearInterval(t);
-                hideHand();
-                tutorialStep=3;
-                setTimeout(runTutorial,1000);
-            }else{
+        showTutorialMessage(
+            "এখন ফ্রি বোনাস নিন"
+        );
+
+        speakBN(
+            "এখন ফ্রি বোনাস নিন"
+        );
+
+
+        tutorialTimer =
+            setInterval(()=>{
+
+
+                if(
+                    localStorage.getItem(
+                        "bonusDone"
+                    ) === "1"
+                ){
+
+                    stopTutorialTimer();
+
+                    hideHand();
+
+                    tutorialStep = 4;
+
+                    return setTimeout(
+                        runTutorial,
+                        1000
+                    );
+
+                }
+
+
                 tapHand(btn);
-                speakBN("এখন ফ্রি বোনাস নিন");
-            }
-        },3000);
+
+                speakBN(
+                    "এখন ফ্রি বোনাস নিন"
+                );
+
+
+            },4000);
+
 
         return;
+
     }
 
-    // STEP-4 Scratch
-    if(tutorialStep==3){
 
-        if(localStorage.getItem("scratchDone")=="1"){
-            tutorialStep=4;
-            return runTutorial();
+    /* =================================================
+       STEP 4 — SCRATCH
+    ================================================= */
+
+    if(tutorialStep === 4){
+
+        if(
+            localStorage.getItem(
+                "scratchDone"
+            ) === "1"
+        ){
+
+            tutorialStep = 5;
+
+            return setTimeout(
+                runTutorial,
+                700
+            );
+
         }
 
-        speakBN("এখন স্ক্র্যাচ কার্ড ঘষুন");
+
+        showTutorialMessage(
+            "এখন পুরো স্ক্র্যাচ কার্ডটি ঘষুন"
+        );
+
+
         startScratchDemo();
 
-        let t=setInterval(()=>{
-            if(localStorage.getItem("scratchDone")=="1"){
-                clearInterval(t);
-                hideHand();
-                tutorialStep=4;
-                setTimeout(runTutorial,1000);
-            }
-        },1000);
+
+        speakBN(
+            "এখন পুরো স্ক্র্যাচ কার্ডটি ঘষুন"
+        );
+
+
+        tutorialTimer =
+            setInterval(()=>{
+
+
+                if(
+                    localStorage.getItem(
+                        "scratchDone"
+                    ) === "1"
+                ){
+
+                    stopTutorialTimer();
+
+                    stopScratchDemo();
+
+                    hideHand();
+
+                    tutorialStep = 5;
+
+
+                    setTimeout(
+                        runTutorial,
+                        1000
+                    );
+
+                    return;
+
+                }
+
+
+                speakBN(
+                    "এখন পুরো স্ক্র্যাচ কার্ডটি ঘষুন"
+                );
+
+
+            },4000);
+
 
         return;
+
     }
 
+
+    /* =================================================
+       STEP 5 — CASH OUT
+    ================================================= */
+
+    if(tutorialStep === 5){
+
+        const btn =
+            document.getElementById(
+                "cashOutBtn"
+            );
+
+
+        if(!btn){
+
+            console.error(
+                "❌ cashOutBtn পাওয়া যায়নি"
+            );
+
+            return;
+
+        }
+
+
+        if(
+            localStorage.getItem(
+                "cashOutDone"
+            ) === "1"
+        ){
+
+            tutorialStep = 6;
+
+            return setTimeout(
+                runTutorial,
+                700
+            );
+
+        }
+
+
+        moveHand(btn);
+
+        showTutorialMessage(
+            "এখন ক্যাশ আউট করুন"
+        );
+
+        speakBN(
+            "এখন ক্যাশ আউট করুন"
+        );
+
+
+        tutorialTimer =
+            setInterval(()=>{
+
+
+                if(
+                    localStorage.getItem(
+                        "cashOutDone"
+                    ) === "1"
+                ){
+
+                    stopTutorialTimer();
+
+                    hideHand();
+
+                    tutorialStep = 6;
+
+                    return setTimeout(
+                        runTutorial,
+                        1000
+                    );
+
+                }
+
+
+                tapHand(btn);
+
+                speakBN(
+                    "এখন ক্যাশ আউট করুন"
+                );
+
+
+            },4000);
+
+
+        return;
+
+    }
+
+
+    /* =================================================
+       FINISH
+    ================================================= */
+
+    stopTutorialTimer();
+
+    stopScratchDemo();
+
     hideHand();
-    fireConfetti();
-    speakBN("অভিনন্দন। সব ধাপ সম্পূর্ণ হয়েছে।");
-    }window.onload=()=>{
+
+    hideTutorialMessage();
+
+
+    setTimeout(()=>{
+
+        if(
+            typeof fireConfetti ===
+            "function"
+        ){
+
+            fireConfetti();
+
+        }
+
+
+        if(
+            typeof confetti ===
+            "function"
+        ){
+
+            confetti({
+
+                particleCount:300,
+
+                spread:180,
+
+                origin:{
+                    y:.6
+                }
+
+            });
+
+        }
+
+
+        speakBN(
+            "অভিনন্দন। সব ধাপ সম্পূর্ণ হয়েছে। শুভকামনা।"
+        );
+
+
+    },700);
+
+}
+
+window.onload=()=>{
   codeInput.value = localStorage.getItem("verify_code") || "";
   if(codeInput.value){
     verified = 1;
@@ -2242,27 +2831,33 @@ function runTutorial(){
   setTimeout(showPromoSequence, 6000);
 };
 
+window.addEventListener("load",()=>{
+    setTimeout(()=>{
+        startPremiumTutorial();
+    },6000);
+});
+
 const bg=document.getElementById("bg"),gif=document.getElementById("gif"),s=document.getElementById("s");
 setTimeout(()=>{bg.style.display="none";gif.style.display="block";gif.src="img/splash2.gif"},3e3);
 setTimeout(()=>{gif.src="img/splash3.gif"},7e3);
 setTimeout(()=>{s.style.opacity="0";setTimeout(()=>s.remove(),500)},1e4);
 </script>
 
-<!-- =========================================
+<!-- =====================================================
      PREMIUM TUTORIAL HAND
-========================================= -->
+===================================================== -->
 
 <img
-  id="guideHand"
-  src="img/hand.png"
-  alt="Tutorial Hand"
-  draggable="false"
+    id="guideHand"
+    src="img/hand.png"
+    alt="Tutorial Hand"
+    draggable="false"
 >
 
 <div id="tapRipple"></div>
+
 <div id="tapFlash"></div>
 
-<!-- Tutorial Success Sound Library -->
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </body>
 </html>
+ 
