@@ -166,19 +166,6 @@ animation:shineMove 2s linear infinite;
 @keyframes iconJump{from{transform:translateY(0);}to{transform:translateY(-10px) scale(1.2);}}
 .rewardText{font-size:22px;font-weight:800}
 
-.spark{
-position:fixed;
-width:6px;
-height:6px;
-border-radius:50%;
-background:white;
-box-shadow:0 0 8px gold, 0 0 18px white;
-pointer-events:none;
-z-index:99999996;
-animation:sparkFx .9s linear forwards;
-}
-@keyframes sparkFx{0%{opacity:1;transform:translateY(0) scale(1);}100%{opacity:0;transform:translateY(-35px) scale(.2);}}
-
 .coinRain{
 position:absolute;
 top:-20px;
@@ -200,73 +187,7 @@ z-index:999999;
 animation:fadeIn .4s;
 }
 #promoMedia{max-width:95%;max-height:95%;border-radius:18px;box-shadow:0 0 30px gold;}
-@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-
-#guideHand{
-    position:fixed;
-    width:75px;
-    left:-150px;
-    top:-150px;
-    z-index:99999999;
-    pointer-events:none;
-    transition: left .8s cubic-bezier(.25,1,.5,1), top .8s cubic-bezier(.25,1,.5,1), transform .12s ease;
-    filter: drop-shadow(2px 10px 10px rgba(0,0,0,0.5)) drop-shadow(0 0 8px #fff) drop-shadow(0 0 18px gold);
-    animation:handPulse 1.3s infinite;
-}
-@keyframes handPulse{0%{ transform:scale(1); }50%{ transform:scale(1.08); }100%{ transform:scale(1); }}
-#tapRipple{
-    position:fixed;
-    width:20px;
-    height:20px;
-    border-radius:50%;
-    border:3px solid #fff;
-    opacity:0;
-    pointer-events:none;
-    z-index:99999998;
-}
-.ripple{animation:ripple .8s forwards;}
-@keyframes ripple{0%{ transform:scale(.2); opacity:1; }100%{ transform:scale(5); opacity:0; }}
-
-.handTrail{
-position:fixed;
-width:14px;
-height:14px;
-border-radius:50%;
-pointer-events:none;
-z-index:99999997;
-background:radial-gradient(circle,#fff,#ffd700,#ff9800);
-box-shadow:0 0 15px gold;
-animation:trailFade .8s linear forwards;
-}
-@keyframes trailFade{0%{ opacity:1; transform:scale(1); }100%{ opacity:0; transform:scale(.2); }}
-
-#tapFlash{
-position:fixed;
-width:70px;
-height:70px;
-border-radius:50%;
-pointer-events:none;
-opacity:0;
-z-index:99999995;
-background:radial-gradient(circle, rgba(255,255,255,.95), rgba(255,255,255,0));
-}
-.flash{animation:flash .35s;}
-@keyframes flash{0%{ opacity:1; transform:scale(.2); }100%{ opacity:0; transform:scale(2.5); }}
-
-.wave{
-position:fixed;
-border-radius:50%;
-border:3px solid gold;
-pointer-events:none;
-z-index:99999994;
-animation:wave .7s forwards;
-}
-@keyframes wave{0%{ width:20px; height:20px; opacity:1; }100%{ width:120px; height:120px; margin-left:-50px; margin-top:-50px; opacity:0; }}
-
-.tutorialGlow{animation:premiumGlow 1s infinite !important;}
-@keyframes premiumGlow{0%{ box-shadow:0 0 0 gold; transform:scale(1); }50%{ box-shadow:0 0 18px gold, 0 0 35px #fff, 0 0 55px #ff0; transform:scale(1.05); }100%{ box-shadow:0 0 0 gold; transform:scale(1); }}
-
-#scratchCanvas{position:absolute;top:0;left:0;z-index:2;cursor:crosshair}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}#scratchCanvas{position:absolute;top:0;left:0;z-index:2;cursor:crosshair}
 .peel{position:absolute;width:26px;height:26px;background:linear-gradient(135deg,#fff,#ececec,#bdbdbd,#fff);border-radius:4px;pointer-events:none;z-index:70;transform-origin:center;animation:peel .8s ease-out forwards;filter:drop-shadow(0 0 5px #fff)}
 @keyframes peel{0%{opacity:1;transform:rotate(0) scale(1)}100%{opacity:0;transform:translate(var(--px),var(--py)) rotate(900deg) scale(.2)}}
 .powder{position:absolute;width:6px;height:6px;border-radius:50%;z-index:50;pointer-events:none;animation:powderFly .8s ease-out forwards;box-shadow:0 0 4px #fff}
@@ -356,16 +277,422 @@ animation:wave .7s forwards;
 #toast.info{border-left:6px solid #3b82f6}
 #toastIcon{font-size:34px}
 #toastTitle{font-size:17px;font-weight:700;color:#fff}
-#toastMsg{font-size:14px;margin-top:3px;color:#ddd}
+#toastMsg{font-size:14px;margin-top:3px;color:#ddd}/* =========================================
+   PREMIUM HUMAN HAND
+========================================= */
+
+#guideHand{
+
+    position:fixed;
+
+    width:78px;
+
+    height:auto;
+
+    left:-150px;
+
+    top:-150px;
+
+    z-index:99999999;
+
+    pointer-events:none;
+
+    display:block;
+
+    opacity:1;
+
+    visibility:visible;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+
+    filter:
+        drop-shadow(0 5px 5px rgba(0,0,0,.35))
+        drop-shadow(0 0 8px rgba(255,215,0,.75));
+
+    transform:
+        translate3d(0,0,0)
+        scale(1);
+
+    transform-origin:
+        center center;
+
+    transition:
+        left .55s cubic-bezier(.22,1,.36,1),
+        top .55s cubic-bezier(.22,1,.36,1),
+        transform .12s ease,
+        opacity .35s ease;
+
+    will-change:
+        left,
+        top,
+        transform;
+}
+
+
+/* =========================================
+   GOLDEN HAND GLOW
+========================================= */
+
+#guideHand::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-10px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+}
+
+
+/* =========================================
+   BUTTON GLOW
+========================================= */
+
+.tutorialGlow{
+
+    position:relative;
+
+    z-index:999;
+
+    animation:
+        premiumTargetGlow 1s infinite;
+
+    transform-origin:center;
+
+}
+
+
+@keyframes premiumTargetGlow{
+
+    0%{
+
+        box-shadow:
+            0 0 0 rgba(255,215,0,0);
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        box-shadow:
+            0 0 15px gold,
+            0 0 30px white,
+            0 0 50px rgba(255,215,0,.9);
+
+        transform:scale(1.04);
+
+    }
+
+    100%{
+
+        box-shadow:
+            0 0 0 rgba(255,215,0,0);
+
+        transform:scale(1);
+
+    }
+
+}
+
+
+/* =========================================
+   GOLDEN TRAIL
+========================================= */
+
+.handTrail{
+
+    position:fixed;
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:99999997;
+
+    background:
+        radial-gradient(
+            circle,
+            #ffffff 0%,
+            #ffe66d 35%,
+            #ffd700 60%,
+            #ff9800 100%
+        );
+
+    box-shadow:
+        0 0 8px gold,
+        0 0 18px white;
+
+    animation:
+        handTrailFade .8s linear forwards;
+
+}
+
+
+@keyframes handTrailFade{
+
+    0%{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:scale(.15);
+
+    }
+
+    }
+                            /* =========================================
+   SPARKLE
+========================================= */
+
+.spark{
+
+    position:fixed;
+
+    width:6px;
+
+    height:6px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:99999996;
+
+    background:white;
+
+    box-shadow:
+        0 0 8px gold,
+        0 0 18px white;
+
+    animation:
+        sparkleMove .9s ease-out forwards;
+
+}
+
+
+@keyframes sparkleMove{
+
+    0%{
+
+        opacity:1;
+
+        transform:
+            translate3d(0,0,0)
+            scale(1);
+
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:
+            translate3d(
+                calc(var(--sx) * 1px),
+                calc(var(--sy) * 1px),
+                0
+            )
+            scale(.15);
+
+    }
+
+}
+
+
+/* =========================================
+   RIPPLE
+========================================= */
+
+#tapRipple{
+
+    position:fixed;
+
+    width:20px;
+
+    height:20px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:99999995;
+
+    opacity:0;
+
+    border:3px solid gold;
+
+}
+
+
+#tapRipple.ripple{
+
+    animation:
+        rippleEffect .7s ease-out forwards;
+
+}
+
+
+@keyframes rippleEffect{
+
+    0%{
+
+        opacity:1;
+
+        transform:scale(.3);
+
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:scale(4);
+
+    }
+
+}
+
+    /* =========================================
+   LIGHT FLASH
+========================================= */
+
+#tapFlash{
+
+    position:fixed;
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    opacity:0;
+
+    z-index:99999994;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.95),
+            rgba(255,215,0,.35),
+            transparent 70%
+        );
+
+}
+
+
+#tapFlash.flash{
+
+    animation:
+        flashEffect .35s ease-out;
+
+}
+
+
+@keyframes flashEffect{
+
+    0%{
+
+        opacity:1;
+
+        transform:scale(.2);
+
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:scale(2.5);
+
+    }
+
+}
+
+
+/* =========================================
+   WAVE
+========================================= */
+
+.wave{
+
+    position:fixed;
+
+    width:20px;
+
+    height:20px;
+
+    border-radius:50%;
+
+    border:3px solid gold;
+
+    pointer-events:none;
+
+    z-index:99999993;
+
+    animation:
+        waveEffect .7s ease-out forwards;
+
+}
+
+
+@keyframes waveEffect{
+
+    0%{
+
+        opacity:1;
+
+        transform:scale(.3);
+
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:scale(6);
+
+    }
+
+                        }/* =========================================
+   MOBILE SIZE
+========================================= */
+
+@media(max-width:600px){
+
+    #guideHand{
+
+        width:72px;
+
+    }
+
+}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body><div id="s"><img id="bg" src="img/splash1.jpg" alt="Splash"><img id="gif" src="img/splash2.gif" alt="Splash GIF"><div id="loaderWrap"><div id="loaderBar"><div id="loaderFill"><div id="loaderGlow"></div></div><div id="rocket">🚀</div></div><div id="loaderText">Loading... 0%</div><div id="welcomeText">🍄 Kundu Mushroom Farm 🍄</div></div></div>
 <div id="confirmPop" class="cPop"><div class="cBox"><div class="cIcon">🏦</div><h2>ক্যাশ আউট</h2><p id="cMsg">আপনি কি নিশ্চিত?</p><div class="cBtn"><button onclick="closePop()">না</button><button onclick="okPop()">হ্যাঁ</button></div></div></div>
 <div id="upiPop" class="uPop"><div class="uBox"><span class="x" onclick="cUPI()">✕</span><img src="img/profile.png" class="pic" alt="Profile"><h2>Bubai Kundu</h2><p>পেমেন্ট করার মাধ্যম বেছে নিন</p><button onclick="oUPI('7047643951@ibl')"><img src="img/phonepe.png" alt="PhonePe">PhonePe</button><button onclick="oUPI('bubaikundu635@okhdfcbank')"><img src="img/gpay.png" alt="Google Pay">Google Pay</button><button onclick="oUPI('7047643951@superyes')"><img src="img/superyes.png" alt="SuperYes">SuperYes</button></div></div>
-<div id="mClaim" class="mClaim"><div class="mCard"><div class="mIcon">🍄</div><h2>100g Mushroom Completed</h2><p>আপনার 100g Mushroom পূর্ণ হয়েছে।<br>Claim Cash করুন।</p><input id="mcName" placeholder="👤 নাম"><input id="mcPhone" maxlength="10" type="tel" placeholder="📞 মোবাইল নম্বর"><div id="tapFinger">👆</div><button id="mushroomClaimBtn" onclick="claimMushroomCash()">🍄 Claim Cash</button></div></div>
-
-<audio id="sS" src="https://files.catbox.moe/po27od.mp3" loop preload="auto"></audio>
+<div id="mClaim" class="mClaim"><div class="mCard"><div class="mIcon">🍄</div><h2>100g Mushroom Completed</h2><p>আপনার 100g Mushroom পূর্ণ হয়েছে।<br>Claim Cash করুন।</p><input id="mcName" placeholder="👤 নাম"><input id="mcPhone" maxlength="10" type="tel" placeholder="📞 মোবাইল নম্বর"><div id="tapFinger">👆</div><button id="mushroomClaimBtn" onclick="claimMushroomCash()">🍄 Claim Cash</button></div></div><audio id="sS" src="https://files.catbox.moe/po27od.mp3" loop preload="auto"></audio>
 <audio id="cS" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" preload="auto"></audio>
 <audio id="mS" src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3" preload="auto"></audio>
 <audio id="pS" src="https://assets.mixkit.co/active_storage/sfx/270/270-preview.mp3" preload="auto"></audio>
@@ -395,9 +722,7 @@ animation:wave .7s forwards;
     <div class="stat-box" id="cashBox"><div class="cash-title">💵 Cash <span class="red">Wal</span><span class="green">let</span></div><div id="cash">₹0.00</div></div>
     <div class="stat-box" id="shroomBox"><div class="mushroom-title">মাশরুম<br>🍄</div><div id="mushroom">0 গ্রাম</div></div>
     <div class="stat-box" id="pointBox"><div class="point-title">পয়েন্ট<br>⭐</div><div id="points">0 Pts</div></div>
-  </div>
-
-  <div class="bonus-zone">
+  </div><div class="bonus-zone">
     <button id="bonusBtn" class="btn-bonus" onclick="playClickSound();openBonusModal()">🎁 ফ্রি বোনাস (ক্যাশ)</button>
     <div class="action-grid">
       <button class="btn-withdraw" onclick="playClickSound();openWithdrawModal()">💸 ক্যাশ আউট</button>
@@ -428,9 +753,7 @@ animation:wave .7s forwards;
     <div id="bonusTimer" style="margin-bottom:12px;font-weight:700;color:#facc15"></div>
     <button id="bonusClaimBtn" class="btn-modal-claim" onclick="playClickSound();claimDailyBonus()">বোনাস নিন 🎁</button>
   </div>
-</div>
-
-<div id="spinModal" class="modal">
+</div><div id="spinModal" class="modal">
   <div class="modal-content">
     <button id="closeSpin" onclick="closeSpinModal()">✖</button>
     <div class="modal-title">🎰 বোনাস Spin Wheel</div>
@@ -477,10 +800,6 @@ animation:wave .7s forwards;
     <img id="promoMedia" src="" alt="Promo Media">
 </div>
 
-<img id="guideHand" src="img/hand.png" alt="Guide Hand">
-<div id="tapRipple"></div>
-<div id="tapFlash"></div>
-
 <script>
 const VERIFY_API="https://script.google.com/macros/s/AKfycbyDgAPFl-7b05R2hVtYrfoCq-oNpOjSwr9JVA16zdSjMAHWZWHrKjRhmgTs4sECUirq/exec";
 const PAYMENT_API="https://script.google.com/macros/s/AKfycbylx1xbuXL4TIX_C_xTR4cdpCV28v2dBuF48bY3-4oDJ1N63qG27x4BfSM1TKZW-PfJwA/exec";
@@ -516,20 +835,7 @@ function speak(e,t="bn-IN"){
     speechSynthesis.speak(s);
   }
 }
-
-function speakBN(text){
-  if("speechSynthesis" in window){
-    speechSynthesis.cancel();
-    let u=new SpeechSynthesisUtterance(text);
-    u.lang="bn-IN";
-    u.rate=.92;
-    u.pitch=1;
-    u.volume=1;
-    speechSynthesis.speak(u);
-  }
-}
-
-function pop(msg,type="info"){
+    function pop(msg,type="info"){
   let toast=document.getElementById("toast");
   let icon=document.getElementById("toastIcon");
   let title=document.getElementById("toastTitle");
@@ -634,9 +940,7 @@ async function verifyCode(){
   }catch(err){
     pop("😠 মাশরুম কিনুন, আবার চেষ্টা করুন","error");
   }
-}
-
-function pAud(e){try{let t=document.getElementById(e);if(t){t.currentTime=0;t.play().catch(()=>{})}}catch(e){}}
+    }function pAud(e){try{let t=document.getElementById(e);if(t){t.currentTime=0;t.play().catch(()=>{})}}catch(e){}}
 function stopS(){sS.pause();sS.currentTime=0}
 
 function initApp(){uUI();initCv();chkBns();checkMushroomClaim()}
@@ -761,9 +1065,7 @@ function scratchPowder(e,t){
     o.style.setProperty("--x",80*Math.random()-40+"px");o.style.setProperty("--y",80*Math.random()-40+"px");
     s.appendChild(o);setTimeout(()=>o.remove(),800);
   }
-}
-
-function silverFoil(e,t){
+    }function silverFoil(e,t){
   let s=document.querySelector(".scratch-container");
   for(let a=0;a<2;a++){
     let o=document.createElement("div");
@@ -772,7 +1074,6 @@ function silverFoil(e,t){
     s.appendChild(o);setTimeout(()=>o.remove(),900);
   }
 }
-                                                                                                                                                                                                                                            
 function doScr(e){
   if(isDraw&&!isScr){
     let t=getP(e);
@@ -1013,7 +1314,8 @@ function claimSpinReward(){
 
     flyReward("mushroom");
     speak("চমৎকার! আপনি " + e.val + " গ্রাম ছাতু পেয়েছেন।");
-    }uUI();
+  }
+uUI();
 
   canSpin = false;
   localStorage.setItem("first_spin_done","YES");
@@ -1036,9 +1338,7 @@ function confirmWithdraw(){
   if(!e||!t)return pop("নাম এবং ফোন নাম্বার ✍️পূরণ করুন!","warning");
   if(10!==t.length||/\D/.test(t))return pop("❌ 10 সংখ্যার UPI নম্বর লিখুন","error");
   showConfirm("🕵️‍♂️ আপনি কি নিশ্চিত?<br><b>💸 ক্যাশ আউট করতে চান?</b>",submitWithdraw);
-}
-
-function submitWithdraw(){
+    }function submitWithdraw(){
   let name=document.getElementById("wName").value.trim();
   let phone=document.getElementById("wPhone").value.trim();
 
@@ -1175,181 +1475,630 @@ function showPromoSequence(){
   }, 5000);
 }
 
-/* Premium Hand Controller & Tutorial System */
+/* =====================================================
+   🌟 ULTRA PREMIUM HAND TUTORIAL
+   CODE
+   ↓
+   SUBMIT
+   ↓
+   SPIN
+   ↓
+   BONUS
+   ↓
+   SCRATCH
+   ↓
+   CASH OUT
+   ↓
+   SUCCESS
+===================================================== */
+
+
+/* =========================================
+   ELEMENTS
+========================================= */
+
 const hand = document.getElementById("guideHand");
 const ripple = document.getElementById("tapRipple");
 const flash = document.getElementById("tapFlash");
 
-function sparkle(x,y){
-  for(let i=0;i<8;i++){
-    let s=document.createElement("div");
-    s.className="spark";
-    s.style.left=(x+Math.random()*30-15)+"px";
-    s.style.top=(y+Math.random()*30-15)+"px";
-    document.body.appendChild(s);
-    setTimeout(()=>s.remove(),900);
-  }
+
+/* =========================================
+   VIBRATION
+========================================= */
+
+function tutorialVibrate(pattern){
+
+    if(
+        navigator.vibrate &&
+        typeof navigator.vibrate === "function"
+    ){
+
+        navigator.vibrate(pattern);
+
+    }
+
 }
+
+
+/* =========================================
+   BANGLA VOICE
+========================================= */
+
+function speakBN(text){
+
+    if(!("speechSynthesis" in window)) return;
+
+    speechSynthesis.cancel();
+
+    const u =
+        new SpeechSynthesisUtterance(text);
+
+    u.lang = "bn-IN";
+
+    u.rate = .92;
+
+    u.pitch = 1;
+
+    u.volume = 1;
+
+    speechSynthesis.speak(u);
+
+}
+
+
+/* =========================================
+   SPARKLE
+========================================= */
+
+function sparkle(x,y){
+
+    for(let i=0;i<8;i++){
+
+        const s =
+            document.createElement("div");
+
+        s.className = "spark";
+
+        s.style.left =
+            (x + Math.random()*30 - 15) + "px";
+
+        s.style.top =
+            (y + Math.random()*30 - 15) + "px";
+
+        s.style.setProperty(
+            "--sx",
+            Math.random()*70 - 35
+        );
+
+        s.style.setProperty(
+            "--sy",
+            Math.random()*70 - 60
+        );
+
+        document.body.appendChild(s);
+
+        setTimeout(()=>{
+            s.remove();
+        },900);
+
+    }
+
+}
+
+
+/* =========================================
+   FLASH
+========================================= */
 
 function showFlash(x,y){
-  if(!flash) return;
-  flash.style.left=(x-35)+"px";
-  flash.style.top=(y-35)+"px";
-  flash.classList.remove("flash");
-  void flash.offsetWidth;
-  flash.classList.add("flash");
+
+    if(!flash) return;
+
+    flash.style.left =
+        (x - 35) + "px";
+
+    flash.style.top =
+        (y - 35) + "px";
+
+    flash.classList.remove("flash");
+
+    void flash.offsetWidth;
+
+    flash.classList.add("flash");
+
 }
 
-function wave(x,y){
-  let w=document.createElement("div");
-  w.className="wave";
-  w.style.left=x+"px";
-  w.style.top=y+"px";
-  document.body.appendChild(w);
-  setTimeout(()=>w.remove(),700);
+
+/* =========================================
+   WAVE
+========================================= */
+
+function createWave(x,y){
+
+    const w =
+        document.createElement("div");
+
+    w.className = "wave";
+
+    w.style.left = x + "px";
+
+    w.style.top = y + "px";
+
+    document.body.appendChild(w);
+
+    setTimeout(()=>{
+        w.remove();
+    },700);
+
 }
+
+
+/* =========================================
+   MOVE HAND
+========================================= */
 
 function moveHand(target){
-  if(!target || !hand) return;
-  
-  document.querySelectorAll(".tutorialGlow").forEach(el=>el.classList.remove("tutorialGlow"));
-  
-  target.scrollIntoView({
-    behavior:"smooth",
-    block:"center"
-  });
 
-  setTimeout(()=>{
-    const r = target.getBoundingClientRect();
-    hand.style.left = (r.left + r.width/2 - 20) + "px";
-    hand.style.top  = (r.top + r.height/2 - 10) + "px";
-    target.classList.add("tutorialGlow");
-  }, 500);
+    if(!target || !hand) return;
+
+
+    /* Remove previous Glow */
+
+    document
+        .querySelectorAll(".tutorialGlow")
+        .forEach(el=>{
+
+            el.classList.remove(
+                "tutorialGlow"
+            );
+
+        });
+
+
+    /* Auto Scroll */
+
+    target.scrollIntoView({
+
+        behavior:"smooth",
+
+        block:"center",
+
+        inline:"center"
+
+    });
+
+
+    /* Wait for Scroll */
+
+    setTimeout(()=>{
+
+        if(!hand) return;
+
+        const r =
+            target.getBoundingClientRect();
+
+
+        hand.style.display = "block";
+
+        hand.style.visibility =
+            "visible";
+
+        hand.style.opacity = "1";
+
+
+        hand.style.left =
+            (
+                r.left +
+                r.width/2 -
+                25
+            ) + "px";
+
+
+        hand.style.top =
+            (
+                r.top +
+                r.height/2 -
+                15
+            ) + "px";
+
+
+        target.classList.add(
+            "tutorialGlow"
+        );
+
+
+    },550);
+
 }
+
+
+/* =========================================
+   TAP HAND
+========================================= */
 
 function tapHand(target){
-  if(!target || !hand) return;
-  const r = target.getBoundingClientRect();
 
-  hand.style.transition = "transform .12s";
-  hand.style.transform = "scale(.88) rotate(2deg)";
-  setTimeout(()=>{
-    hand.style.transform = "scale(1) rotate(0deg)";
-  }, 120);
+    if(!target || !hand) return;
 
-  if(ripple){
-    ripple.style.left = (r.left + r.width/2 - 10) + "px";
-    ripple.style.top  = (r.top + r.height/2 - 10) + "px";
-    ripple.classList.remove("ripple");
-    void ripple.offsetWidth;
-    ripple.classList.add("ripple");
-  }
 
-  showFlash(r.left + r.width/2, r.top + r.height/2);
-  sparkle(r.left + r.width/2, r.top + r.height/2);
-  wave(r.left + r.width/2, r.top + r.height/2);
+    const r =
+        target.getBoundingClientRect();
 
-  playClickSound?.();
-  if(navigator.vibrate) navigator.vibrate(25);
+
+    const x =
+        r.left + r.width/2;
+
+
+    const y =
+        r.top + r.height/2;
+
+
+    /* Real Finger Press */
+
+    hand.style.transition =
+        "transform .12s ease";
+
+
+    hand.style.transform =
+        "scale(.88) rotate(2deg)";
+
+
+    setTimeout(()=>{
+
+        hand.style.transform =
+            "scale(1) rotate(0deg)";
+
+    },120);
+
+
+    /* Ripple */
+
+    if(ripple){
+
+        ripple.style.left =
+            (x - 10) + "px";
+
+        ripple.style.top =
+            (y - 10) + "px";
+
+
+        ripple.classList.remove(
+            "ripple"
+        );
+
+        void ripple.offsetWidth;
+
+        ripple.classList.add(
+            "ripple"
+        );
+
+    }
+
+
+    /* Flash */
+
+    showFlash(x,y);
+
+
+    /* Sparkle */
+
+    sparkle(x,y);
+
+
+    /* Wave */
+
+    createWave(x,y);
+
+
+    /* Click Sound */
+
+    if(
+        typeof playClickSound ===
+        "function"
+    ){
+
+        playClickSound();
+
+    }
+
+
+    /* Vibration */
+
+    tutorialVibrate(25);
+
 }
+
+
+/* =========================================
+   DOUBLE TAP
+========================================= */
 
 function doubleTap(target){
-  if(!target) return;
-  moveHand(target);
-  setTimeout(()=>{
-    tapHand(target);
+
+    if(!target) return;
+
+
+    moveHand(target);
+
+
     setTimeout(()=>{
-      tapHand(target);
-    }, 350);
-  }, 900);
+
+        tapHand(target);
+
+
+        setTimeout(()=>{
+
+            tapHand(target);
+
+        },350);
+
+
+    },900);
+
 }
+
+
+/* =========================================
+   HIDE HAND
+========================================= */
 
 function hideHand(){
-  if(!hand) return;
-  hand.style.transition = ".5s";
-  hand.style.opacity = "0";
-  hand.style.transform = "scale(.7)";
-  setTimeout(()=>{
-    hand.style.left = "-150px";
-    hand.style.top = "-150px";
-    hand.style.opacity = "1";
-    hand.style.transform = "scale(1)";
-    document.querySelectorAll(".tutorialGlow").forEach(el=>el.classList.remove("tutorialGlow"));
-  }, 600);
+
+    if(!hand) return;
+
+
+    hand.style.transition =
+        ".45s ease";
+
+
+    hand.style.opacity = "0";
+
+
+    hand.style.transform =
+        "scale(.7)";
+
+
+    document
+        .querySelectorAll(".tutorialGlow")
+        .forEach(el=>{
+
+            el.classList.remove(
+                "tutorialGlow"
+            );
+
+        });
+
+
+    setTimeout(()=>{
+
+        hand.style.left =
+            "-150px";
+
+        hand.style.top =
+            "-150px";
+
+        hand.style.opacity =
+            "1";
+
+        hand.style.transform =
+            "scale(1)";
+
+    },500);
+
 }
 
-setInterval(()=>{
-  if(hand && hand.style.left != "" && hand.style.left != "-150px"){
-    let t = document.createElement("div");
-    t.className = "handTrail";
-    t.style.left = (hand.offsetLeft + 28) + "px";
-    t.style.top  = (hand.offsetTop + 50) + "px";
-    document.body.appendChild(t);
-    setTimeout(()=>t.remove(), 800);
-  }
-}, 40);
+    /* =========================================
+   GOLDEN TRAIL
+========================================= */
 
-/* ===== Human Demo Scratch ===== */
+setInterval(()=>{
+
+    if(
+        !hand ||
+        hand.style.display === "none"
+    ) return;
+
+
+    const left =
+        parseFloat(hand.style.left);
+
+
+    const top =
+        parseFloat(hand.style.top);
+
+
+    if(
+        isNaN(left) ||
+        isNaN(top)
+    ) return;
+
+
+    if(left <= -100) return;
+
+
+    const t =
+        document.createElement("div");
+
+
+    t.className =
+        "handTrail";
+
+
+    t.style.left =
+        (left + 28) + "px";
+
+
+    t.style.top =
+        (top + 50) + "px";
+
+
+    document.body.appendChild(t);
+
+
+    setTimeout(()=>{
+
+        t.remove();
+
+    },800);
+
+
+},80);
+
+
+/* =====================================================
+   SCRATCH DEMO
+===================================================== */
+
 let demoRun = false;
 let demoTimer = null;
 
+
 function startScratchDemo(){
-  if(demoRun) return;
-  demoRun = true;
 
-  const hand = document.getElementById("guideHand");
-  const card = document.getElementById("scratchCard");
+    if(demoRun) return;
 
-  if(!hand || !card) return;
+    const card =
+        document.getElementById(
+            "scratchCard"
+        );
 
-  const r = card.getBoundingClientRect();
-  hand.style.display = "block";
-  hand.style.opacity = "1";
 
-  let path = [
-    {x: r.left + 40,  y: r.top + 55},
-    {x: r.left + 250, y: r.top + 70},
-    {x: r.left + 70,  y: r.top + 95},
-    {x: r.left + 230, y: r.top + 120},
-    {x: r.left + 60,  y: r.top + 145},
-    {x: r.left + 250, y: r.top + 155}
-  ];
+    if(!hand || !card) return;
 
-  let i = 0;
 
-  function move(){
-    if(i >= path.length){
-      i = 0;
-    }
+    demoRun = true;
 
-    hand.style.transition = "all .45s ease-in-out";
-    hand.style.left = path[i].x + "px";
-    hand.style.top = path[i].y + "px";
-    hand.style.transform = "scale(.88) rotate(8deg)";
 
-    pAud("scS");
+    card.scrollIntoView({
+
+        behavior:"smooth",
+
+        block:"center"
+
+    });
+
 
     setTimeout(()=>{
-      hand.style.transform = "scale(1) rotate(0deg)";
-    }, 150);
 
-    i++;
-  }
+        const r =
+            card.getBoundingClientRect();
 
-  move();
-  demoTimer = setInterval(move, 500);
 
-  function stopDemo(){
-    clearInterval(demoTimer);
-    hideHand();
-    demoRun = false;
+        hand.style.display =
+            "block";
 
-    cv.removeEventListener("mousedown", stopDemo);
-    cv.removeEventListener("touchstart", stopDemo);
-  }
+        hand.style.opacity =
+            "1";
 
-  cv.addEventListener("mousedown", stopDemo, {once: true});
-  cv.addEventListener("touchstart", stopDemo, {once: true});
+
+        const path = [
+
+            {
+                x:r.left + 35,
+                y:r.top + 45
+            },
+
+            {
+                x:r.left + r.width - 45,
+                y:r.top + 55
+            },
+
+            {
+                x:r.left + 55,
+                y:r.top + 80
+            },
+
+            {
+                x:r.left + r.width - 55,
+                y:r.top + 105
+            },
+
+            {
+                x:r.left + 50,
+                y:r.top + 130
+            },
+
+            {
+                x:r.left + r.width - 50,
+                y:r.top + 150
+            }
+
+        ];
+
+        let i = 0;
+
+        function move(){
+
+            if(i >= path.length){
+
+                i = 0;
+
+            }
+
+            hand.style.transition =
+                "all .45s ease-in-out";
+
+            hand.style.left =
+                path[i].x + "px";
+
+            hand.style.top =
+                path[i].y + "px";
+
+            hand.style.transform =
+                "scale(.88) rotate(8deg)";
+
+            pAud("scS");
+
+            setTimeout(()=>{
+
+                hand.style.transform =
+                    "scale(1) rotate(0deg)";
+
+            },150);
+
+            i++;
+
+        }
+
+        move();
+
+        demoTimer =
+            setInterval(move, 500);
+
+        function stopDemo(){
+
+            clearInterval(demoTimer);
+
+            hideHand();
+
+            demoRun = false;
+
+            cv.removeEventListener(
+                "mousedown",
+                stopDemo
+            );
+
+            cv.removeEventListener(
+                "touchstart",
+                stopDemo
+            );
+
+        }
+
+        cv.addEventListener(
+            "mousedown",
+            stopDemo,
+            {once:true}
+        );
+
+        cv.addEventListener(
+            "touchstart",
+            stopDemo,
+            {once:true}
+        );
+
+    }, 600);
+
 }
 
 /* Tutorial Controller (Strict Sequenced Tutorial) */
@@ -1471,9 +2220,7 @@ function runTutorial(){
     hideHand();
     fireConfetti();
     speakBN("অভিনন্দন। সব ধাপ সম্পূর্ণ হয়েছে।");
-}
-
-window.onload=()=>{
+    }window.onload=()=>{
   codeInput.value = localStorage.getItem("verify_code") || "";
   if(codeInput.value){
     verified = 1;
@@ -1500,6 +2247,22 @@ setTimeout(()=>{bg.style.display="none";gif.style.display="block";gif.src="img/s
 setTimeout(()=>{gif.src="img/splash3.gif"},7e3);
 setTimeout(()=>{s.style.opacity="0";setTimeout(()=>s.remove(),500)},1e4);
 </script>
+
+<!-- =========================================
+     PREMIUM TUTORIAL HAND
+========================================= -->
+
+<img
+  id="guideHand"
+  src="img/hand.png"
+  alt="Tutorial Hand"
+  draggable="false"
+>
+
+<div id="tapRipple"></div>
+<div id="tapFlash"></div>
+
+<!-- Tutorial Success Sound Library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </body>
-</html>  
-                 
+</html>
